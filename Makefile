@@ -9,7 +9,7 @@ OPTIONS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-par
 
 .PHONY = clean
 
-OBJECTS_FILES = main.o Variable.o Solver.o
+OBJECTS_FILES = main.o Variable.o Solver.o Contrainte.o
 
 gcc : CXXFLAGS= $(OPTIONS) -O3
 gcc : main

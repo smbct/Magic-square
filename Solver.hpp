@@ -34,7 +34,7 @@ class Solver {
         int _n;
         int _M;
 
-        list<Variable*> _variables;
+        std::list<Variable*> _variables;
 
 };
 

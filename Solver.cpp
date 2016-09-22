@@ -13,8 +13,11 @@ _n(n),
 _M( (n*(n*n+1))/2 )
 {
     // création des n*n variables
-    for(int ind = 0; ind < n*n; ind++) {
-        Variable* variable
+    for(int ind = 0; ind < n; ind++) {
+        for(int ind2 = 0; ind2 < n; ind2++) {
+            Variable* variable = new Variable(1, n*n);
+            
+        }
 
     }
 
@@ -22,12 +25,12 @@ _M( (n*(n*n+1))/2 )
 
 
 /*----------------------------------------------------------------------------*/
-Solver::resoudre() {
+void Solver::resoudre() {
 
 
 }
 
-
+/*----------------------------------------------------------------------------*/
 Solver::~Solver() {
 
 
