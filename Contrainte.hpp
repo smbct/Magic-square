@@ -41,9 +41,7 @@ class Contrainte {
         void ajouterVariable(Variable* var);
 
     protected:
-        std::list<Variable*> _variables;
-        std::list<Variable*> _affectees;
-        std::list<Variable*> _libres;
+        std::list<Variable*> _var;
 
 };
 

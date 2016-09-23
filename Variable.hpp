@@ -11,6 +11,7 @@
 #include <list>
 #include <string>
 #include <stack>
+#include <map>
 
 /**
  * \class Variable
@@ -33,10 +34,11 @@ class Variable {
         std::string toString();
 
         /**
-         * \brief enleve un ensemble de valeur du domaine
+         * \brief tente d'enlever une valeur du domaine
          * \param val l'ensemble des valeurs à enlever
+         * \return vrai ssi la valeur était présente
          */
-        void enleveVal(int val);
+        bool enleveVal(int val);
 
         /**
          * \brief sauvegarde de l'état actuel du domaine
@@ -48,11 +50,32 @@ class Variable {
          */
         void restoreDomaine();
 
+        /**
+         * \brief affectation de la variable à une valeur non encore affectée
+         */
+        bool affecter();
+
+        /**
+         * \brief la variable redevient libre
+         */
+        void desaffecter();
+
+        /**
+         * \brief indique si la variable a été affectée à une valeur ou non
+         */
+        bool estAffectee();
+
+        /**
+         * \brief retourne la valeur affectée à la variable
+         * \pre la variable a été affectée
+         */
+        int valeur();
+
     private:
-        bool _affectation;
-        int _val;
+        bool _affectee;
         std::list<int> _domaine;
         std::stack<std::list<int> > _filtrees;
+        std::list<int>::iterator _valIt;
 };
 
 #endif
