@@ -9,6 +9,8 @@
 #include "CtSomme.hpp"
 #include "CtAllDiff.hpp"
 
+#include <iostream>
+
 using namespace std;
 
 /*----------------------------------------------------------------------------*/
@@ -35,10 +37,10 @@ void Solver::construireInstance() {
     for(int indCt = 0; indCt < 2*_n+2; indCt ++) {
         _contraintes[indCt] = new CtSomme(_M);
     }
-    _contraintes.back() = new CtAllDiff();
+    //_contraintes.back() = new CtAllDiff();
 
     // création des n*n variables
-    for(int ligne = 0; ligne < ligne; ligne++) {
+    /*for(int ligne = 0; ligne < ligne; ligne++) {
         for(int col = 0; col < _n; col++) {
             Variable* variable = new Variable(1, _n*_n);
             _variables.push_back(variable);
@@ -61,7 +63,7 @@ void Solver::construireInstance() {
             _contraintes.back()->ajouterVariable(variable);
         }
 
-    }
+    }*/
 
 }
 
@@ -81,16 +83,19 @@ void Solver::resoudre() {
             var->sauvegardeDomaine();
         }
 
-        filtrerPropager();
-
-        // exploration
         if(!aAffecter.empty()) { // parcours en profondeur
+
+            // filtrage/propagation
+            filtrerPropager();
+
+            // exploration
             affectees.push(aAffecter.front());
             aAffecter.pop_front();
             affectees.top()->affecter(); // affectation de la variable à la première valeur
-        } else { // backtrack
+        } else { // on est dans une feuille de l'arbre
 
             // toutes les variables ont été fixées
+
             // vérification que les contraintes sont respectées
             if(estSolution()) { // feuille de l'arbre, vérif si c'est une solution
                 solution = true;
@@ -105,9 +110,7 @@ void Solver::resoudre() {
 
         }
 
-        // verif de la réalisabilité, backtracking si nécessaire
-        // si solution trouvée, arret <- vrai
-
+        // verif si contradiction, backtracking si nécessaire
         if(contradiction()) {
             backtrack(affectees, aAffecter);
         }

@@ -43,7 +43,6 @@ bool CtSomme::evaluer() {
 /*----------------------------------------------------------------------------*/
 bool CtSomme::filtrer() {
 
-
     bool res = false;
 
     // 1ère étape : calcul du membre de droite en fonction des valeurs affectées

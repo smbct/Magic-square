@@ -3,6 +3,7 @@
 #include "Variable.hpp"
 #include "CtAllDiff.hpp"
 #include "CtSomme.hpp"
+#include "Solver.hpp"
 
 #include <vector>
 
@@ -17,7 +18,7 @@ int main() {
 
     // cout << "La grille est de taille " << size << " * " << size << endl;
 
-    Variable variable(1, size*size);
+    //Variable variable(1, size*size);
 
     /*cout << "au début : " << variable.toString() << endl;
 
@@ -32,11 +33,11 @@ int main() {
 
     cout << "après restoration : " << variable.toString() << endl;*/
 
-    Variable var2(1, size*size);
+    /*Variable var2(1, size*size);
 
     CtAllDiff contrainte;
     contrainte.ajouterVariable(&variable);
-    contrainte.ajouterVariable(&var2);
+    contrainte.ajouterVariable(&var2);*/
 
     /*variable.sauvegardeDomaine();
     var2.sauvegardeDomaine();
@@ -59,7 +60,7 @@ int main() {
     var2.restoreDomaine();
     cout << "domaine de la variable 2 : " << var2.toString() << endl;*/
 
-    cout << "tentative de deux affectations" << endl;
+    /*cout << "tentative de deux affectations" << endl;
     if(variable.affecter() && var2.affecter()) {
         cout << "valeurs : " << variable.valeur() << " ; " << var2.valeur() << endl;
         cout << "Contrainte respectée ? " << contrainte.evaluer() << endl;
@@ -87,7 +88,10 @@ int main() {
 
     for(Variable* variable : var) {
         delete variable;
-    }
+    }*/
+
+    Solver solver(size);
+    // solver.resoudre();
 
     return 0;
 }
