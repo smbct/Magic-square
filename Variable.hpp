@@ -52,6 +52,7 @@ class Variable {
 
         /**
          * \brief affectation de la variable à une valeur non encore affectée
+         * \pre il existe une affectation possible pour cette variable
          */
         bool affecter();
 
@@ -71,11 +72,17 @@ class Variable {
          */
         int valeur();
 
+        /**
+         * \brief indique si l'affectation de cette variable n'est pas possible dans cet état (on peut éventuellement "backtracker")
+         * \return vrai ssi la variable ne peut pas être affectée
+         */
+        bool impossible();
+
     private:
         bool _affectee;
         std::list<int> _domaine;
         std::stack<std::list<int> > _filtrees;
-        std::list<int>::iterator _valIt;
+        std::list<int>::iterator _valIt; // itérateur vers la valeur en cours d'affectation
 };
 
 #endif

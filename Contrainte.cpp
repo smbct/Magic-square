@@ -17,3 +17,8 @@ Contrainte::Contrainte() {
 void Contrainte::ajouterVariable(Variable* variable) {
     _var.push_back(variable);
 }
+
+/*----------------------------------------------------------------------------*/
+Contrainte::~Contrainte() {
+
+}

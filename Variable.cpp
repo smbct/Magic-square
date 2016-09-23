@@ -84,6 +84,10 @@ void Variable::restoreDomaine() {
 /*----------------------------------------------------------------------------*/
 bool Variable::affecter() {
 
+    // TODO enlever ça
+    assert(_domaine.size() != 0);
+
+    // si pas d'affectation, on affecte au début de la liste
     if(!_affectee) {
         _affectee = true;
         _valIt = _domaine.begin();
@@ -91,6 +95,7 @@ bool Variable::affecter() {
         _valIt ++;
     }
 
+    // si toutes les valeurs ont été affectées, la variable n'est plus affectable pour le moment
     if(_valIt == _domaine.end()) {
         _affectee = false;
         return false;
@@ -116,4 +121,9 @@ int Variable::valeur() {
     assert(_affectee);
 
     return *_valIt;
+}
+
+/*----------------------------------------------------------------------------*/
+bool Variable::impossible() {
+    return _domaine.size() == 0;
 }
