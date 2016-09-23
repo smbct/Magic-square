@@ -40,6 +40,11 @@ class Contrainte {
          */
         void ajouterVariable(Variable* var);
 
+        /**
+         * \bried destructeur par défaut
+         */
+        virtual ~Contrainte();
+
     protected:
         std::list<Variable*> _var;
 

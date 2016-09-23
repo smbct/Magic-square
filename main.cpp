@@ -77,11 +77,13 @@ int main() {
     for(int i = 1; i <= 2; i++) {
         var[0]->affecter();
     }
-    /*for(int i = 1; i <= 6; i++) {
+    for(int i = 1; i <= 6; i++) {
         var[1]->affecter();
-    }*/
+    }
 
     cout << "filtrage : " << cont.filtrer() << endl;
+    cout << "domaine après filtrage : " << var[2]->toString() << endl;
+
 
     for(Variable* variable : var) {
         delete variable;

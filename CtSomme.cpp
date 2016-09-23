@@ -7,6 +7,7 @@
 
 #include "CtSomme.hpp"
 #include <iostream>
+#include <cassert>
 
 using namespace std;
 
@@ -42,6 +43,7 @@ bool CtSomme::evaluer() {
 /*----------------------------------------------------------------------------*/
 bool CtSomme::filtrer() {
 
+
     bool res = false;
 
     // 1ère étape : calcul du membre de droite en fonction des valeurs affectées
@@ -55,6 +57,9 @@ bool CtSomme::filtrer() {
             libre.push_back(variable);
         }
     }
+
+    // TODO enlever
+    assert(libre.size() != 0);
 
     cout << "valeur cherchée : " << dte << endl;
 
@@ -72,69 +77,17 @@ bool CtSomme::filtrer() {
         // pour chaque valeur possible de cette variable, on vérifie si on peut rendre la contrainte vraie
         while(variable->affecter()) {
 
-            bool trouve = false; // indique si une affectations des valeurs permet de vérifier la contrainte
-            int somme = variable->valeur();
-
-            // TODO test à rajouter
-            // attention ici la liste doit avoir au moins un élément
-            auto it = aTester.begin();
-
-            do {
-
-                // si on n'est pas au bout, on continue à avancer dans la liste
-                if(it != aTester.end()) { // s'il reste des variables à affecter, elle le sont
-
-                    if((*it)->estAffectee()) {
-                        somme -= (*it)->valeur();
-                    }
-
-                    if((*it)->affecter()) { // si possible l'affectation suivante est faîte
-                        cout << (*it)->valeur() << " ";
-                        // mise à jour de la somme des variables affectées
-                        somme += (*it)->valeur();
-
-                        // si la somme des affectées est > à la valeur de dte, pas possible de vérifier la contrainte
-                        if(somme > dte) {
-                            cout << "pas ici" << endl;
-                            somme -= (*it)->valeur();
-                            (*it)->desaffecter();
-                            it --;
-                        } else {
-                            it ++; // on avance à la prochaine variable à affecter
-                        }
-
-                    } else {
-                        it --;
-                    }
-
-                } else { //toutes les variables ont été affectées, on vérifie si on peut valider la contrainte
-                    cout << endl;
-
-                    if(somme == dte) { // si la contrainte est vérifiée, on peut sortir du test
-                        trouve = true;
-                        cout << somme << " -- ";
-                        for(Variable* var : aTester) {
-                            cout << var->valeur() << " ; ";
-                        }
-                        cout << variable->valeur() << endl;
-                    } else { // sinon, on recul pour tenter d'autres affectations
-                        it --;
-                    }
-                }
-
-            } while(!trouve && aTester.front()->estAffectee());
+            bool trouve = true;
+            if(aTester.size() > 0) { // tentative d'affectation vérifiant la contrainte
+                trouve = satisfaire(aTester, variable->valeur(), dte);
+            } else { // test facile, il suffit de voir si la valeur correspond
+                trouve = (variable->valeur() == dte); // on peut mettre ce test autre part pour améliorer les perf ? TODO
+            }
 
             if(!trouve) {
                 aEnlever.push_back(variable->valeur());
-            } else {
-                // il faut désaffecter les variables manuellement
-                for(Variable* var : aTester) {
-                    var->desaffecter();
-                }
             }
-
         }
-        // la variable est désaffectée automatiquement
 
         if(aEnlever.size() > 0 && !res) {
             res = true;
@@ -147,12 +100,62 @@ bool CtSomme::filtrer() {
         }
     }
 
-
-
     return res;
 }
 
 /*----------------------------------------------------------------------------*/
-bool CtSomme::satisfaire(std::list<Variable*>& var, int val, int dte) {
+bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte) {
 
+    auto it = listeTest.begin();
+
+    int somme = val; // somme de toute les variables affectées
+
+    bool trouve = false;
+
+    // rajouter des bornes pour ne pas faire certains tests ?
+
+    do { // tant qu'une affectation n'a pas été trouvée et qu'elles n'ont pas toutes été testées
+
+        if(it != listeTest.end()) { // s'il reste des variables à affecter, elle le sont
+
+            if((*it)->estAffectee()) { // si la variable était déjà affectée, on met à jour la valeur de la somme
+                somme -= (*it)->valeur();
+            }
+
+            if((*it)->affecter()) { // si possible l'affectation suivante est faîte
+
+                // mise à jour de la somme des variables affectées
+                somme += (*it)->valeur();
+
+                // si la somme des affectées est > à la valeur de dte, pas possible de vérifier la contrainte
+                if(somme > dte) {
+                    somme -= (*it)->valeur();
+                    (*it)->desaffecter();
+                    it --;
+                } else {
+                    it ++; // on avance à la prochaine variable à affecter
+                }
+
+            } else {
+                it --;
+            }
+
+        } else { //toutes les variables ont été affectées, on vérifie si on peut valider la contrainte
+
+            if(somme == dte) { // si la contrainte est vérifiée, on peut sortir du test
+                trouve = true;
+            } else { // sinon, on recul pour tenter d'autres affectations
+                it --;
+            }
+        }
+
+    } while(!trouve && listeTest.front()->estAffectee());
+
+    if(trouve) {
+        for(Variable* var : listeTest) {
+            var->desaffecter();
+        }
+    }
+
+    return trouve;
 }
