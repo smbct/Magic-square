@@ -90,7 +90,7 @@ int main() {
         delete variable;
     }*/
 
-    Solver solver(size);
+    Solver solver(3);
     // solver.resoudre();
 
     return 0;
