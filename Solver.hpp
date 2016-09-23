@@ -77,4 +77,4 @@ class Solver {
 
 };
 
-#endif
+#endif // SOLVER_HPP

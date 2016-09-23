@@ -41,7 +41,7 @@ class Contrainte {
         void ajouterVariable(Variable* var);
 
         /**
-         * \bried destructeur par défaut
+         * \brief destructeur par défaut
          */
         virtual ~Contrainte();
 

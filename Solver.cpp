@@ -18,14 +18,13 @@ Solver::Solver(int n) :
 _n(n),
 _M( (n*(n*n+1))/2 )
 {
+    cout << "test1" << endl;
     construireInstance();
+    cout << "test2" << endl;
 }
 
 /*----------------------------------------------------------------------------*/
 void Solver::construireInstance() {
-
-    // création des contraintes
-    _contraintes.resize(2*_n+3);
 
     // organisation des contraintes :
     // n contraintes ligne
@@ -34,13 +33,17 @@ void Solver::construireInstance() {
     // enfin 1 contrainte alldiff
 
     // création des contraintes
+    _contraintes.resize(2*_n+3);
+
+    // création des contraintes
     for(int indCt = 0; indCt < 2*_n+2; indCt ++) {
         _contraintes[indCt] = new CtSomme(_M);
     }
-    //_contraintes.back() = new CtAllDiff();
+
+    _contraintes.back() = new CtAllDiff();
 
     // création des n*n variables
-    /*for(int ligne = 0; ligne < ligne; ligne++) {
+    for(int ligne = 0; ligne < _n; ligne++) {
         for(int col = 0; col < _n; col++) {
             Variable* variable = new Variable(1, _n*_n);
             _variables.push_back(variable);
@@ -63,7 +66,9 @@ void Solver::construireInstance() {
             _contraintes.back()->ajouterVariable(variable);
         }
 
-    }*/
+    }
+
+    cout << "variables size : " << _variables.size() << endl;
 
 }
 
@@ -88,6 +93,8 @@ void Solver::resoudre() {
             // filtrage/propagation
             filtrerPropager();
 
+            // cout << "contradiction ? " << contradiction() << endl;
+
             // exploration
             affectees.push(aAffecter.front());
             aAffecter.pop_front();
@@ -107,7 +114,6 @@ void Solver::resoudre() {
                     arret = true;
                 }
             }
-
         }
 
         // verif si contradiction, backtracking si nécessaire
@@ -115,6 +121,22 @@ void Solver::resoudre() {
             backtrack(affectees, aAffecter);
         }
 
+    }
+
+    if(solution) {
+        cout << "Une solution a été trouvée : " << endl;
+
+        auto it = _variables.begin();
+        for(int ligne = 0; ligne < _n; ligne ++) {
+            for(int col = 0; col < _n; col ++) {
+
+                cout << (*it)->valeur() << " ";
+                it ++;
+            }
+            cout << endl;
+        }
+    } else {
+        cout << "Hélas, aucune solution n'a été trouvée :(" << endl;
     }
 
 }
@@ -193,12 +215,12 @@ Solver::~Solver() {
 
     // destruction des contraintes
     for(Contrainte* ctr : _contraintes) {
-        delete[] ctr;
+        delete ctr;
     }
 
     // destruction des variables
     for(Variable* var : _variables) {
-        delete[] var;
+        delete var;
     }
 
 }

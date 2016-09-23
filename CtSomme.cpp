@@ -58,9 +58,7 @@ bool CtSomme::filtrer() {
     }
 
     // TODO enlever
-    assert(libre.size() != 0);
-
-    cout << "valeur cherchée : " << dte << endl;
+    // assert(libre.size() != 0);
 
     // ensuite, parcours de toutes les variables libres. On cherche une affectation impossible
 
@@ -92,7 +90,6 @@ bool CtSomme::filtrer() {
             res = true;
         }
 
-        cout << "taille aEnlever : " << aEnlever.size() << endl;
         // les valeurs contradictoires sont ensuite supprimées du domaine de la variable
         for(int val : aEnlever) {
             variable->enleveVal(val);
