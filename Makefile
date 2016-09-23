@@ -1,11 +1,13 @@
 EXEC=mafic-square
 
 CC=g++
-CXX=g++ -std=c++11
+CXX=g++
 LDLIBS=
 CPPFLAGS=-I include
 
 OPTIONS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter
+
+LDFLAGS=$(OPTIIONS)
 
 .PHONY = clean
 
