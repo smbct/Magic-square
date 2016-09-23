@@ -1,9 +1,9 @@
-EXEC=mafic-square
+EXEC=magic-square
 
 CC=g++
 CXX=g++
 LDLIBS=
-CPPFLAGS=-I include
+CPPFLAGS=
 
 OPTIONS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter
 
