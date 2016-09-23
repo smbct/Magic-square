@@ -56,6 +56,8 @@ bool CtSomme::filtrer() {
         }
     }
 
+    cout << "valeur cherchée : " << dte << endl;
+
     // ensuite, parcours de toutes les variables libres. On cherche une affectation impossible
 
     // le test est fait pour chaque variable libre
@@ -71,7 +73,7 @@ bool CtSomme::filtrer() {
         while(variable->affecter()) {
 
             bool trouve = false; // indique si une affectations des valeurs permet de vérifier la contrainte
-            int somme = 0;
+            int somme = variable->valeur();
 
             // TODO test à rajouter
             // attention ici la liste doit avoir au moins un élément
@@ -87,17 +89,18 @@ bool CtSomme::filtrer() {
                     }
 
                     if((*it)->affecter()) { // si possible l'affectation suivante est faîte
-
+                        cout << (*it)->valeur() << " ";
                         // mise à jour de la somme des variables affectées
                         somme += (*it)->valeur();
 
                         // si la somme des affectées est > à la valeur de dte, pas possible de vérifier la contrainte
                         if(somme > dte) {
+                            cout << "pas ici" << endl;
                             somme -= (*it)->valeur();
                             (*it)->desaffecter();
                             it --;
                         } else {
-                            it ++; // on vance à la prochaine variable à affecter
+                            it ++; // on avance à la prochaine variable à affecter
                         }
 
                     } else {
@@ -105,13 +108,15 @@ bool CtSomme::filtrer() {
                     }
 
                 } else { //toutes les variables ont été affectées, on vérifie si on peut valider la contrainte
+                    cout << endl;
 
                     if(somme == dte) { // si la contrainte est vérifiée, on peut sortir du test
                         trouve = true;
-                        for(Variable* var : libre) {
+                        cout << somme << " -- ";
+                        for(Variable* var : aTester) {
                             cout << var->valeur() << " ; ";
                         }
-                        cout << endl;
+                        cout << variable->valeur() << endl;
                     } else { // sinon, on recul pour tenter d'autres affectations
                         it --;
                     }
@@ -119,21 +124,35 @@ bool CtSomme::filtrer() {
 
             } while(!trouve && aTester.front()->estAffectee());
 
-            if(trouve) {
+            if(!trouve) {
                 aEnlever.push_back(variable->valeur());
+            } else {
+                // il faut désaffecter les variables manuellement
+                for(Variable* var : aTester) {
+                    var->desaffecter();
+                }
             }
 
         }
         // la variable est désaffectée automatiquement
 
+        if(aEnlever.size() > 0 && !res) {
+            res = true;
+        }
 
+        cout << "taille aEnlever : " << aEnlever.size() << endl;
         // les valeurs contradictoires sont ensuite supprimées du domaine de la variable
-        /*for(int val : aEnlever) {
+        for(int val : aEnlever) {
             variable->enleveVal(val);
-        }*/
+        }
     }
 
 
 
     return res;
+}
+
+/*----------------------------------------------------------------------------*/
+bool CtSomme::satisfaire(std::list<Variable*>& var, int val, int dte) {
+
 }
