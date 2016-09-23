@@ -68,12 +68,18 @@ int main() {
     CtSomme cont((size*(size*size+1))/2);
 
     vector<Variable*> var(3);
-    for(Variable* variable : var) {
+    for(Variable*& variable : var) {
         variable = new Variable(1, size*size);
         cont.ajouterVariable(variable);
+        variable->sauvegardeDomaine();
     }
 
-
+    for(int i = 1; i <= 2; i++) {
+        var[0]->affecter();
+    }
+    /*for(int i = 1; i <= 6; i++) {
+        var[1]->affecter();
+    }*/
 
     cout << "filtrage : " << cont.filtrer() << endl;
 
