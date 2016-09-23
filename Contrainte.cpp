@@ -10,9 +10,10 @@
 /*----------------------------------------------------------------------------*/
 Contrainte::Contrainte() {
 
+
 }
 
 /*----------------------------------------------------------------------------*/
 void Contrainte::ajouterVariable(Variable* variable) {
-    _variables.push_back(variable);
+    _var.push_back(variable);
 }

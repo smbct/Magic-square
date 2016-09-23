@@ -8,7 +8,10 @@
 #ifndef SOLVER_HPP
 #define SOLVER_HPP
 
+#include <vector>
+
 #include "Variable.hpp"
+#include "Contrainte.hpp"
 
 /**
  * \class Solver
@@ -35,6 +38,7 @@ class Solver {
         int _M;
 
         std::list<Variable*> _variables;
+        std::vector<Contrainte*> _contraintes;
 
 };
 

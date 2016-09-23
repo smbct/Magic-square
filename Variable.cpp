@@ -9,10 +9,14 @@
 #include <sstream>
 #include <iostream>
 
+#include <cassert>
+
 using namespace std;
 
 /*----------------------------------------------------------------------------*/
-Variable::Variable(int min, int max) {
+Variable::Variable(int min, int max) :
+_affectee(false)
+{
 
     for(int val = min; val <= max; val ++) {
         _domaine.push_back(val);
@@ -43,11 +47,23 @@ string Variable::toString() {
 }
 
 /*----------------------------------------------------------------------------*/
-void Variable::enleveVal(int val) {
-    // garde en mémoire la liste des valeurs enlevées
-    _filtrees.top().push_back(val);
-    // suppression des valeurs du domaine
-    _domaine.remove(val);
+bool Variable::enleveVal(int val) {
+
+    bool res = false;
+    auto it = find(_domaine.begin(), _domaine.end(), val);
+
+    if(it != _domaine.end()) {
+        // garde en mémoire la liste des valeurs enlevées
+        _filtrees.top().push_back(val);
+
+        // suppression des valeurs du domaine
+        _domaine.erase(it);
+
+        // la valeur était bien présente
+        res = true;
+    }
+
+    return res;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -63,4 +79,41 @@ void Variable::restoreDomaine() {
     _domaine.insert(_domaine.end(), supp.begin(), supp.end());
     // suppression des valeurs supprimées du backup
     _filtrees.pop();
+}
+
+/*----------------------------------------------------------------------------*/
+bool Variable::affecter() {
+
+    if(!_affectee) {
+        _affectee = true;
+        _valIt = _domaine.begin();
+    } else {
+        _valIt ++;
+    }
+
+    if(_valIt == _domaine.end()) {
+        _affectee = false;
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+void Variable::desaffecter() {
+    _affectee = false;
+}
+
+/*----------------------------------------------------------------------------*/
+bool Variable::estAffectee() {
+    return _affectee;
+}
+
+/*----------------------------------------------------------------------------*/
+int Variable::valeur() {
+
+    // TODO remplacer par des exceptions
+    assert(_affectee);
+
+    return *_valIt;
 }

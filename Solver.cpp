@@ -12,11 +12,16 @@ Solver::Solver(int n) :
 _n(n),
 _M( (n*(n*n+1))/2 )
 {
+
+    // création des contraintes
+    _contraintes.resize(2*_n+3);
+    
+
     // création des n*n variables
-    for(int ind = 0; ind < n; ind++) {
-        for(int ind2 = 0; ind2 < n; ind2++) {
+    for(int y = 0; y < n; y++) {
+        for(int x = 0; x < n; x++) {
             Variable* variable = new Variable(1, n*n);
-            
+
         }
 
     }
