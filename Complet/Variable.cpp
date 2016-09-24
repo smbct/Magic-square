@@ -29,27 +29,33 @@ string Variable::toString() {
 
     string res;
 
-    res = "{";
+    if(!estAffectee()) {
+        res = "{";
 
-    for(auto it = _domaine.begin(); it != _domaine.end(); it++) {
-        ostringstream flux;
-        flux << *it;
-        res += flux.str();
-        auto it2 = it;
-        it2 ++;
-        if(it2 != _domaine.end()) {
-            res += ", ";
+        for(auto it = _domaine.begin(); it != _domaine.end(); it++) {
+            ostringstream flux;
+            flux << *it;
+            res += flux.str();
+            auto it2 = it;
+            it2 ++;
+            if(it2 != _domaine.end()) {
+                res += ", ";
+            }
         }
+        res += "}";
+    } else {
+        ostringstream flux;
+        flux << valeur();
+        res += ":= " + flux.str();
     }
-    res += "}";
 
     return res;
 }
 
 /*----------------------------------------------------------------------------*/
-bool Variable::enleveVal(int val) {
+int Variable::enleveVal(int val) {
 
-    bool res = false;
+    int res = 0;
     auto it = find(_domaine.begin(), _domaine.end(), val);
 
     if(it != _domaine.end()) {
@@ -60,7 +66,11 @@ bool Variable::enleveVal(int val) {
         _domaine.erase(it);
 
         // la valeur était bien présente
-        res = true;
+        if(_domaine.size() > 0) {
+            res = 1;
+        } else {
+            res = 2;
+        }
     }
 
     return res;

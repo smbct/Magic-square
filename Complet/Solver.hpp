@@ -9,9 +9,12 @@
 #define SOLVER_HPP
 
 #include <vector>
+#include <map>
+#include <queue>
 
 #include "Variable.hpp"
 #include "Contrainte.hpp"
+
 
 /**
  * \class Solver
@@ -67,12 +70,22 @@ class Solver {
          */
         bool contradiction();
 
+        /**
+         * \brief met à jour la file d'attente des contraintes à filtrer
+         * \param variable la variables qui a été modifiée (soit fixée, soit filtrée)
+         */
+        void majFileFiltre(Variable* variable);
+
     private:
         int _n;
         int _M;
 
         std::list<Variable*> _variables;
         std::vector<Contrainte*> _contraintes;
+
+        std::map<Variable*, std::list<Contrainte*>> _associees; // pour chaque variable, les contraintes dans lesquelles elle apparaît
+
+        std::list<Contrainte*> _aFiltrer; // liste des contraintes à filtrer, mise à jour après l'exploration
 
 
 };
