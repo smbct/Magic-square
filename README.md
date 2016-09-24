@@ -1,4 +1,4 @@
-### Magic-square
+# Magic-square
 Constraint Programming project
 
 This is the first project of constraint programming.

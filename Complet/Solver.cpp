@@ -12,6 +12,7 @@
 #include <iostream>
 #include <algorithm>
 
+
 using namespace std;
 
 /*----------------------------------------------------------------------------*/
@@ -19,9 +20,7 @@ Solver::Solver(int n) :
 _n(n),
 _M( (n*(n*n+1))/2 )
 {
-    cout << "test1" << endl;
     construireInstance();
-    cout << "test2" << endl;
 }
 
 /*----------------------------------------------------------------------------*/
@@ -49,27 +48,33 @@ void Solver::construireInstance() {
             Variable* variable = new Variable(1, _n*_n);
             _variables.push_back(variable);
 
+            // création de la paire pour la liste associative
+            _associees.insert(pair<Variable*, list<Contrainte*>>(variable, list<Contrainte*>()));
+
             // ajout de la variable à la contrainte ligne
             _contraintes[ligne]->ajouterVariable(variable);
+            _associees[variable].push_back(_contraintes[ligne]);
 
             // ajout de la variable à une contrainte colonne
             _contraintes[_n+col]->ajouterVariable(variable);
+            _associees[variable].push_back(_contraintes[_n+col]);
 
             // si nécessaire ajout aux contraintes diagonales
             if(ligne == col) {
                 _contraintes[2*_n]->ajouterVariable(variable);
+                _associees[variable].push_back(_contraintes[2*_n]);
             }
             if(ligne == _n-col-1) { // anti-diagonale
                 _contraintes[2*_n+1]->ajouterVariable(variable);
+                _associees[variable].push_back(_contraintes[2*_n+1]);
             }
 
             // enfin ajout à la contrainte AllDiff
             _contraintes.back()->ajouterVariable(variable);
+            _associees[variable].push_back(_contraintes.back());
         }
 
     }
-
-    cout << "variables size : " << _variables.size() << endl;
 
 }
 
@@ -82,7 +87,13 @@ void Solver::resoudre() {
     list<Variable*> aAffecter(_variables); // les variables restant à affecter
     stack<Variable*> affectees; // les variables déjà affectées
 
+    int iteration = 0;
+
     while(!arret) {
+
+        cout << "itération : " << iteration << endl;
+        iteration ++;
+
 
         // sauvegarde de l'état des domaines
         for(Variable* var : _variables) {
@@ -100,6 +111,9 @@ void Solver::resoudre() {
             affectees.push(aAffecter.front());
             aAffecter.pop_front();
             affectees.top()->affecter(); // affectation de la variable à la première valeur
+
+            majFileFiltre(affectees.top()); // une affectation -> des contraintes à filtrer
+
         } else { // on est dans une feuille de l'arbre
 
             // toutes les variables ont été fixées
@@ -158,9 +172,10 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
         for(Variable* var : _variables) {
             var->restoreDomaine();
         }
-
     }
-
+    if(!affectees.empty()) {
+        majFileFiltre(affectees.top()); // une affectation -> des contraintes à filtrer
+    }
 }
 
 /*----------------------------------------------------------------------------*/
@@ -173,13 +188,14 @@ void Solver::filtrerPropager() {
     // sort(contraintesTri.begin(), contraintesTri.end(), [](Contrainte* gch, Contrainte* dte)
                                                             // { return gch->nbVariableFixe() >= dte->nbVariableFixe(); });
 
-
+    // FIXME Pas normal que le nb d'itération change en fonction du sens de parcours des contraintes
+    // Il doit y avoir un problème dans le filtrage des contraintes
 
     bool continuer = true;
     while(continuer) {
-        auto it = _contraintes.begin();
+        auto it = _contraintes.rbegin();
         continuer = false;
-        while(it != _contraintes.end()) { // filtrage des contraintes jusqu'au point fixe
+        while(it != _contraintes.rend()) { // filtrage des contraintes jusqu'au point fixe
             if((*it)->filtrer()) {
                 continuer = true;
             }
@@ -187,6 +203,14 @@ void Solver::filtrerPropager() {
         }
 
     }
+
+    // affichage de debug : résultat du filtrage et position dans l'arbre de résolution
+    int ind = 0;
+    for(Variable* variable : _variables) {
+        cout << "Variable " << ind << " : " << variable->toString() << endl;
+        ind ++;
+    }
+    cout << endl << endl;
 
 }
 
@@ -218,6 +242,16 @@ bool Solver::contradiction() {
         }
     }
     return res;
+}
+
+/*----------------------------------------------------------------------------*/
+void Solver::majFileFiltre(Variable* variable) {
+    list<Contrainte*>& liste = _associees[variable];
+    for(Contrainte* contrainte : liste) {
+        if(find(_aFiltrer.begin(), _aFiltrer.end(), contrainte) == _aFiltrer.end()) {
+            _aFiltrer.push_front(contrainte);
+        }
+    }
 }
 
 /*----------------------------------------------------------------------------*/

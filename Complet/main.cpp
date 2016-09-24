@@ -20,86 +20,71 @@ int main() {
 
     // cout << "La grille est de taille " << size << " * " << size << endl;
 
-    //Variable variable(1, size*size);
-
-    /*cout << "au début : " << variable.toString() << endl;
-
-    variable.sauvegardeDomaine();
-    for(int i = 1; i < 4; i++) {
-        variable.enleveVal(i);
-    }
-
-    cout << "après suppression : " << variable.toString() << endl;
-
-    variable.restoreDomaine();
-
-    cout << "après restoration : " << variable.toString() << endl;*/
-
-    /*Variable var2(1, size*size);
-
-    CtAllDiff contrainte;
-    contrainte.ajouterVariable(&variable);
-    contrainte.ajouterVariable(&var2);*/
-
-    /*variable.sauvegardeDomaine();
-    var2.sauvegardeDomaine();
-
-    cout << "domaine variable 2 : " << var2.toString() << endl << endl;
-
-    cout << "variable 1 affectée" << endl << endl;
-    if(variable.affecter()) {
-
-        cout << "filtrage de la contrainte" << endl;
-        if(contrainte.filtrer()) {
-            cout << "le filtrage est un succes" << endl;
-            cout << "domaine de la variable 2 : " << var2.toString() << endl << endl;
-        }
-
-    }
-
-    cout << "backtracking" << endl;
-    variable.restoreDomaine();
-    var2.restoreDomaine();
-    cout << "domaine de la variable 2 : " << var2.toString() << endl;*/
-
-    /*cout << "tentative de deux affectations" << endl;
-    if(variable.affecter() && var2.affecter()) {
-        cout << "valeurs : " << variable.valeur() << " ; " << var2.valeur() << endl;
-        cout << "Contrainte respectée ? " << contrainte.evaluer() << endl;
-    }
-
-    CtSomme cont((size*(size*size+1))/2);
-
-    vector<Variable*> var(3);
-    for(Variable*& variable : var) {
-        variable = new Variable(1, size*size);
-        cont.ajouterVariable(variable);
-        variable->sauvegardeDomaine();
-    }
-
-    for(int i = 1; i <= 2; i++) {
-        var[0]->affecter();
-    }
-    for(int i = 1; i <= 6; i++) {
-        var[1]->affecter();
-    }
-
-    cout << "filtrage : " << cont.filtrer() << endl;
-    cout << "domaine après filtrage : " << var[2]->toString() << endl;
-
-
-    for(Variable* variable : var) {
-        delete variable;
-    }*/
-
-    Solver solver(3);
+    /*Solver solver(3);
 
     clock_t begin = clock();
     solver.resoudre();
     clock_t end = clock();
     double elapsed_secs = double(end-begin)/ CLOCKS_PER_SEC;
 
-    cout << "temps écoulé : " << elapsed_secs << endl;
+    cout << "temps écoulé : " << elapsed_secs << endl;*/
+
+    int M = (size * (size*size + 1)) / 2;
+    vector<Contrainte*> contraintes(2*size+3);
+    for(int i = 0; i < 2*size + 2; i++) {
+        contraintes[i] = new CtSomme(M);
+    }
+    contraintes.back() = new CtAllDiff();
+
+    list<Variable*> variables;
+
+    for(int l = 0; l < size; l++) {
+        for(int col = 0; col < size; col ++) {
+            Variable* var = new Variable(1, size*size);
+            variables.push_back(var);
+
+            contraintes[l]->ajouterVariable(var);
+            contraintes[size + col]->ajouterVariable(var);
+            contraintes.back()->ajouterVariable(var);
+
+            if(l == col) {
+                contraintes[2*size]->ajouterVariable(var);
+            }
+            if(l == size-col-1) {
+                contraintes[2*size+1]->ajouterVariable(var);
+            }
+        }
+    }
+
+    for(Variable* variable : variables) {
+        variable->sauvegardeDomaine();
+    }
+
+    variables.front()->affecter();
+    // variables.front()->affecter();
+    bool filtrer = true;
+    while(filtrer) {
+        filtrer = false;
+
+        for(Contrainte* cont : contraintes) {
+            if(cont->filtrer()) {
+                filtrer = true;
+            }
+        }
+    }
+
+    int ind = 0;
+    for(Variable* var : variables) {
+        cout << "Variable " << ind << " : " << var->toString() << endl;
+        ind ++;
+    }
+
+    for(Contrainte* ctr : contraintes) {
+        delete ctr;
+    }
+    for(Variable* var : variables) {
+        delete var;
+    }
 
     return 0;
 }

@@ -1,0 +1,1367 @@
+itération : 0
+Variable 0 : := 1
+Variable 1 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 2 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 3 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 4 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 5 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 6 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 7 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 8 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+
+itération : 1
+Variable 0 : := 1
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 2
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 3
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 4
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 5
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 6
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 7
+Variable 0 : := 7
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 8
+Variable 0 : := 8
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 9
+Variable 0 : := 9
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 10
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 11
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 12
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 13
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 14
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 15
+Variable 0 : := 6
+Variable 1 : {3}
+Variable 2 : {6}
+Variable 3 : {5}
+Variable 4 : {5}
+Variable 5 : {5}
+Variable 6 : {4}
+Variable 7 : {7}
+Variable 8 : {4}
+
+
+itération : 16
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 17
+Variable 0 : := 6
+Variable 1 : {3}
+Variable 2 : {6}
+Variable 3 : {5}
+Variable 4 : {5}
+Variable 5 : {5}
+Variable 6 : {4}
+Variable 7 : {7}
+Variable 8 : {4}
+
+
+itération : 18
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 19
+Variable 0 : := 6
+Variable 1 : {3, 2, 4}
+Variable 2 : {6, 7, 5}
+Variable 3 : {5, 4, 6}
+Variable 4 : {5, 6, 4}
+Variable 5 : {5, 3, 6, 4}
+Variable 6 : {4, 3, 5}
+Variable 7 : {7, 8, 5, 6}
+Variable 8 : {4, 3, 5}
+
+
+itération : 20
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 21
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 22
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 23
+Variable 0 : := 6
+Variable 1 : {2, 3, 4, 7, 1, 6, 5}
+Variable 2 : {5, 7, 6, 8, 2, 3, 4}
+Variable 3 : {6, 4, 5, 7, 1, 2, 3}
+Variable 4 : {6, 4, 5, 1, 7, 2, 3}
+Variable 5 : {4, 3, 6, 5, 1, 2, 7}
+Variable 6 : {3, 4, 5, 7, 1, 2, 6}
+Variable 7 : {5, 6, 8, 7, 2, 3, 4}
+Variable 8 : {3, 5, 4, 1, 6, 2}
+
+
+itération : 24
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 25
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 26
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 27
+Variable 0 : := 8
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 28
+Variable 0 : := 7
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 29
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 30
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 31
+Variable 0 : := 6
+Variable 1 : {2, 1, 3, 5, 7, 4, 6}
+Variable 2 : {6, 8, 3, 2, 4, 7, 5, 1}
+Variable 3 : {2, 4, 3, 1, 7, 5, 6, 8}
+Variable 4 : {6, 7, 5, 1, 2, 3, 4}
+Variable 5 : {1, 3, 2, 4, 7, 5, 6}
+Variable 6 : {3, 1, 6, 2, 4, 7, 5}
+Variable 7 : {5, 2, 7, 8, 3, 6, 4, 1}
+Variable 8 : {2, 4, 5, 1, 3, 6, 7}
+
+
+itération : 32
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 33
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 34
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 35
+Variable 0 : := 8
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 36
+Variable 0 : := 7
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 37
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 38
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 39
+Variable 0 : := 1
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 40
+Variable 0 : := 6
+Variable 1 : {3, 2, 5, 4, 6, 7}
+Variable 2 : {4, 3, 2, 6, 5, 7}
+Variable 3 : {8, 3, 4, 5, 6, 7, 9}
+Variable 4 : {4, 5, 2, 6, 3, 7}
+Variable 5 : {4, 3, 5, 2, 1, 6}
+Variable 6 : {2, 1, 6, 3, 4, 5}
+Variable 7 : {6, 3, 4, 7, 5, 1, 2}
+Variable 8 : {7, 4, 3, 6, 2, 5, 8}
+
+
+itération : 41
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 42
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 43
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 44
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 45
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 46
+Variable 0 : := 1
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 47
+Variable 0 : := 2
+Variable 1 : {9}
+Variable 2 : {4}
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 48
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : {4}
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 49
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 50
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 51
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 52
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 53
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : := 6
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 54
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : := 6
+Variable 7 : := 1
+Variable 8 : {8}
+
+
+itération : 55
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : := 6
+Variable 7 : := 1
+Variable 8 : := 8
+
+
+itération : 56
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : := 6
+Variable 7 : := 1
+Variable 8 : := 8
+
+
+Une solution a été trouvée : 
+2 9 4 
+7 5 3 
+6 1 8 
+temps écoulé : 0.037202
+itération : 0
+Variable 0 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 1 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 2 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 3 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 4 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 5 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 6 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 7 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+Variable 8 : {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+
+itération : 1
+Variable 0 : := 1
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 2
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 3
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 4
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 5
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 6
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 7
+Variable 0 : := 7
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 8
+Variable 0 : := 8
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 9
+Variable 0 : := 9
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 10
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 11
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 12
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 13
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 14
+Variable 0 : {}
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 15
+Variable 0 : {6}
+Variable 1 : {3}
+Variable 2 : {6}
+Variable 3 : {5}
+Variable 4 : {5}
+Variable 5 : {5}
+Variable 6 : {4}
+Variable 7 : {7}
+Variable 8 : {4}
+
+
+itération : 16
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 17
+Variable 0 : {6}
+Variable 1 : {3}
+Variable 2 : {6}
+Variable 3 : {5}
+Variable 4 : {5}
+Variable 5 : {5}
+Variable 6 : {4}
+Variable 7 : {7}
+Variable 8 : {4}
+
+
+itération : 18
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 19
+Variable 0 : {6, 4, 5}
+Variable 1 : {3, 2, 4}
+Variable 2 : {6, 7, 5}
+Variable 3 : {5, 4, 6}
+Variable 4 : {5, 6, 4}
+Variable 5 : {5, 3, 6, 4}
+Variable 6 : {4, 3, 5}
+Variable 7 : {7, 8, 5, 6}
+Variable 8 : {4, 3, 5}
+
+
+itération : 20
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 21
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 22
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 23
+Variable 0 : {6, 4, 5, 8, 7, 2, 3}
+Variable 1 : {2, 3, 4, 7, 1, 6, 5}
+Variable 2 : {5, 7, 6, 8, 2, 3, 4}
+Variable 3 : {6, 4, 5, 7, 1, 2, 3}
+Variable 4 : {6, 4, 5, 1, 7, 2, 3}
+Variable 5 : {4, 3, 6, 5, 1, 2, 7}
+Variable 6 : {3, 4, 5, 7, 1, 2, 6}
+Variable 7 : {5, 6, 8, 7, 2, 3, 4}
+Variable 8 : {3, 5, 4, 1, 6, 2}
+
+
+itération : 24
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 25
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 26
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 27
+Variable 0 : := 8
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 28
+Variable 0 : := 7
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 29
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 30
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 31
+Variable 0 : {6, 4, 5, 8, 7, 2, 3, 1}
+Variable 1 : {2, 1, 3, 5, 7, 4, 6}
+Variable 2 : {6, 8, 3, 2, 4, 7, 5, 1}
+Variable 3 : {2, 4, 3, 1, 7, 5, 6, 8}
+Variable 4 : {6, 7, 5, 1, 2, 3, 4}
+Variable 5 : {1, 3, 2, 4, 7, 5, 6}
+Variable 6 : {3, 1, 6, 2, 4, 7, 5}
+Variable 7 : {5, 2, 7, 8, 3, 6, 4, 1}
+Variable 8 : {2, 4, 5, 1, 3, 6, 7}
+
+
+itération : 32
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 33
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 34
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 35
+Variable 0 : := 8
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 36
+Variable 0 : := 7
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 37
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 38
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 39
+Variable 0 : := 1
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 40
+Variable 0 : {6, 4, 5, 2, 3, 1}
+Variable 1 : {3, 2, 5, 4, 6, 7}
+Variable 2 : {4, 3, 2, 6, 5, 7}
+Variable 3 : {8, 3, 4, 5, 6, 7, 9}
+Variable 4 : {4, 5, 2, 6, 3, 7}
+Variable 5 : {4, 3, 5, 2, 1, 6}
+Variable 6 : {2, 1, 6, 3, 4, 5}
+Variable 7 : {6, 3, 4, 7, 5, 1, 2}
+Variable 8 : {7, 4, 3, 6, 2, 5, 8}
+
+
+itération : 41
+Variable 0 : := 6
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 42
+Variable 0 : := 4
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 43
+Variable 0 : := 5
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 44
+Variable 0 : := 2
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 45
+Variable 0 : := 3
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 46
+Variable 0 : := 1
+Variable 1 : {}
+Variable 2 : {}
+Variable 3 : {}
+Variable 4 : {}
+Variable 5 : {}
+Variable 6 : {}
+Variable 7 : {}
+Variable 8 : {}
+
+
+itération : 47
+Variable 0 : {2}
+Variable 1 : {9}
+Variable 2 : {4}
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 48
+Variable 0 : := 2
+Variable 1 : {9}
+Variable 2 : {4}
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 49
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : {4}
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 50
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : {7}
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 51
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : {5}
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 52
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : {3}
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 53
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : {6}
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 54
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : := 6
+Variable 7 : {1}
+Variable 8 : {8}
+
+
+itération : 55
+Variable 0 : := 2
+Variable 1 : := 9
+Variable 2 : := 4
+Variable 3 : := 7
+Variable 4 : := 5
+Variable 5 : := 3
+Variable 6 : := 6
+Variable 7 : := 1
+Variable 8 : {8}
+
+
+itération : 56
+Une solution a été trouvée : 
+2 9 4 
+7 5 3 
+6 1 8 
+temps écoulé : 0.041047

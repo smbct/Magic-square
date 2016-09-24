@@ -7,6 +7,8 @@
 
 #include "CtAllDiff.hpp"
 
+#include <iostream>
+
 using namespace std;
 
 /*----------------------------------------------------------------------------*/
@@ -70,7 +72,7 @@ bool CtAllDiff::filtrer() {
         // la valeur de cette variable ne peut être proposées aux variables libres
         for(Variable* varLibre : libre) {
 
-            if(varLibre->enleveVal(var->valeur())) {
+            if(varLibre->enleveVal(var->valeur()) > 0) {
                 // un changement a eu lieu
                 res = true;
             }
