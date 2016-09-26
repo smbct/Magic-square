@@ -5,13 +5,15 @@
  * \date 21/09/2016
  */
 
-#ifndef VARIABLE_HPP
-#define VARIABLE_HPP
+#ifndef VARIABLE_COMPLET_HPP
+#define VARIABLE_COMPLET_HPP
 
 #include <list>
 #include <string>
 #include <stack>
 #include <map>
+
+namespace complet {
 
 /**
  * \class Variable
@@ -85,4 +87,6 @@ class Variable {
         std::list<int>::iterator _valIt; // itérateur vers la valeur en cours d'affectation
 };
 
-#endif
+}
+
+#endif // VARIABLE_COMPLET_HPP

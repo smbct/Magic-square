@@ -5,10 +5,12 @@
  * \date 23/09/2016
  */
 
-#ifndef CT_ALL_DIFF_HPP
-#define CT_ALL_DIFF_HPP
+#ifndef CT_ALL_DIFF_COMPLET_HPP
+#define CT_ALL_DIFF_COMPLET_HPP
 
 #include "Contrainte.hpp"
+
+namespace complet {
 
 /**
  * \class CtAlldiff
@@ -39,4 +41,6 @@ class CtAllDiff : public Contrainte {
 
 };
 
-#endif // CT_ALL_DIFF_HPP
+}
+
+#endif // CT_ALL_DIFF_COMPLET_HPP

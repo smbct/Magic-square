@@ -5,8 +5,8 @@
  * \date 21/09/2016
  */
 
-#ifndef SOLVER_HPP
-#define SOLVER_HPP
+#ifndef SOLVER_COMPLET_HPP
+#define SOLVER_COMPLET_HPP
 
 #include <vector>
 #include <map>
@@ -15,10 +15,11 @@
 #include "Variable.hpp"
 #include "Contrainte.hpp"
 
+namespace complet {
 
 /**
  * \class Solver
- * \brief représente le solver du problème magic square
+ * \brief représente le solver du problème de magic square
  */
 class Solver {
 
@@ -90,4 +91,6 @@ class Solver {
 
 };
 
-#endif // SOLVER_HPP
+}
+
+#endif // SOLVER_COMPLET_HPP

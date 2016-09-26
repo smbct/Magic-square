@@ -13,6 +13,8 @@
 
 using namespace std;
 
+using namespace complet;
+
 /*----------------------------------------------------------------------------*/
 Variable::Variable(int min, int max) :
 _affectee(false)
