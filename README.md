@@ -17,5 +17,6 @@ In this case the magic number is known. It is equal to (n * (n²+1)) / 2.
 Two solvers are available.
 
 The first one is a complete solver which tests implicitly all the combinations of values for variables and works on constraints to prevent from exploring all the tree.
+This solver has been thought to be reusable. It should be easy to implment other contraints and solve mulitple problems.
 
-The second one is an incomplete solver which use heuristics to find a solution. It is designed to be very fast but it is unable to proove that the problem is impossible.
+The second one is an incomplete solver which uses heuristics to find a solution. It is designed to be very fast but it is unable to proove that the problem is impossible.
