@@ -5,12 +5,14 @@
  * \date 22/02/2016
  */
 
-#ifndef CONTRAINTE_HPP
-#define CONTRAINTE_HPP
+#ifndef CONTRAINTE_COMPLET_HPP
+#define CONTRAINTE_COMPLET_HPP
 
 #include <list>
 
 #include "Variable.hpp"
+
+namespace complet {
 
 class Contrainte {
 
@@ -55,4 +57,6 @@ class Contrainte {
 
 };
 
-#endif
+}
+
+#endif // CONTRAINTE_COMPLET_HPP

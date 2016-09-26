@@ -20,3 +20,4 @@ The first one is a complete solver which tests implicitly all the combinations o
 This solver has been thought to be reusable. It should be easy to implment other contraints and solve mulitple problems.
 
 The second one is an incomplete solver which uses heuristics to find a solution. It is designed to be very fast but it is unable to proove that the problem is impossible.
+This solver is more specific and hasn't been designed to be reusable, asuming an incomplete solver requires less code.

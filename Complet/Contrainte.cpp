@@ -7,6 +7,8 @@
 
 #include "Contrainte.hpp"
 
+using namespace complet;
+
 /*----------------------------------------------------------------------------*/
 Contrainte::Contrainte() {
 

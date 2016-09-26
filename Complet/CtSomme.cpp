@@ -11,6 +11,8 @@
 
 using namespace std;
 
+using namespace complet;
+
 /*----------------------------------------------------------------------------*/
 CtSomme::CtSomme(int M) :
 Contrainte(), _M(M)

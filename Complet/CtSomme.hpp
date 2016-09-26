@@ -5,10 +5,12 @@
  * \date 23/09/2016
  */
 
-#ifndef CT_SOMME_HPP
-#define CT_SOMME_HPP
+#ifndef CT_SOMME_COMPLET_HPP
+#define CT_SOMME_COMPLET_HPP
 
 #include "Contrainte.hpp"
+
+namespace complet {
 
 /**
  * \class CtSomme
@@ -54,4 +56,6 @@ class CtSomme : public Contrainte {
 
 };
 
-#endif // CT_SOMME_HPP
+}
+
+#endif // CT_SOMME_COMPLET_HPP

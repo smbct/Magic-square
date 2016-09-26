@@ -15,6 +15,8 @@
 
 using namespace std;
 
+using namespace complet;
+
 /*----------------------------------------------------------------------------*/
 Solver::Solver(int n) :
 _n(n),
@@ -102,7 +104,7 @@ void Solver::resoudre() {
             // cout << "contradiction ? " << contradiction() << endl;
 
             if(!contradiction()) {
-                
+
                 // exploration
                 affectees.push(aAffecter.front());
                 aAffecter.pop_front();

@@ -11,6 +11,8 @@
 
 using namespace std;
 
+using namespace complet;
+
 /*----------------------------------------------------------------------------*/
 CtAllDiff::CtAllDiff() :
 Contrainte()
