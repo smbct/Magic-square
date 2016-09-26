@@ -20,16 +20,16 @@ int main() {
 
     // cout << "La grille est de taille " << size << " * " << size << endl;
 
-    /*Solver solver(3);
+    Solver solver(3);
 
     clock_t begin = clock();
     solver.resoudre();
     clock_t end = clock();
     double elapsed_secs = double(end-begin)/ CLOCKS_PER_SEC;
 
-    cout << "temps écoulé : " << elapsed_secs << endl;*/
+    cout << "temps écoulé : " << elapsed_secs << endl;
 
-    int M = (size * (size*size + 1)) / 2;
+    /*int M = (size * (size*size + 1)) / 2;
     vector<Contrainte*> contraintes(2*size+3);
     for(int i = 0; i < 2*size + 2; i++) {
         contraintes[i] = new CtSomme(M);
@@ -61,13 +61,15 @@ int main() {
     }
 
     variables.front()->affecter();
-    // variables.front()->affecter();
+    variables.front()->affecter();
+    variables.front()->affecter();
+
     bool filtrer = true;
     while(filtrer) {
         filtrer = false;
 
-        for(Contrainte* cont : contraintes) {
-            if(cont->filtrer()) {
+        for(auto it = contraintes.begin(); it != contraintes.end(); it ++) {
+            if((*it)->filtrer()) {
                 filtrer = true;
             }
         }
@@ -84,7 +86,7 @@ int main() {
     }
     for(Variable* var : variables) {
         delete var;
-    }
+    }*/
 
     return 0;
 }

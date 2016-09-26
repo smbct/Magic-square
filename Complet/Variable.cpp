@@ -108,10 +108,9 @@ bool Variable::affecter() {
     // si toutes les valeurs ont été affectées, la variable n'est plus affectable pour le moment
     if(_valIt == _domaine.end()) {
         _affectee = false;
-        return false;
-    } else {
-        return true;
     }
+
+    return _affectee;
 }
 
 /*----------------------------------------------------------------------------*/
