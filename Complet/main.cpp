@@ -20,7 +20,7 @@ int main() {
 
     // cout << "La grille est de taille " << size << " * " << size << endl;
 
-    Solver solver(3);
+    Solver solver(4);
 
     clock_t begin = clock();
     solver.resoudre();
@@ -86,6 +86,37 @@ int main() {
     }
     for(Variable* var : variables) {
         delete var;
+    }*/
+
+    /*vector<Variable*> variables(3);
+
+    CtSomme contrainte(15);
+
+    for(Variable*& variable : variables) {
+        variable = new Variable(1, 9);
+        contrainte.ajouterVariable(variable);
+    }
+
+    variables[0]->affecter();
+
+    cout << "avant filtrage : " << endl;
+    for(Variable* variable : variables) {
+        cout << variable->toString() << endl;
+    }
+
+
+    for(Variable* variable : variables) {
+        variable->sauvegardeDomaine();
+    }
+
+    contrainte.filtrer();
+    cout << "après filtrage : " << endl;
+    for(Variable* variable : variables) {
+        cout << variable->toString() << endl;
+    }
+
+    for(Variable*& variable : variables) {
+        delete variable;
     }*/
 
     return 0;

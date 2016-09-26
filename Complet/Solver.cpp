@@ -91,7 +91,7 @@ void Solver::resoudre() {
 
     while(!arret) {
 
-        cout << "itération : " << iteration << endl;
+        //cout << "itération : " << iteration << endl;
         iteration ++;
 
         if(!aAffecter.empty()) { // parcours en profondeur
@@ -102,6 +102,7 @@ void Solver::resoudre() {
             // cout << "contradiction ? " << contradiction() << endl;
 
             if(!contradiction()) {
+                
                 // exploration
                 affectees.push(aAffecter.front());
                 aAffecter.pop_front();
@@ -125,13 +126,13 @@ void Solver::resoudre() {
             // toutes les variables ont été fixées
 
             // vérification que les contraintes sont respectées
-            if(estSolution()) { // feuille de l'arbre, vérif si c'est une solution
+            if(estSolution()) {
                 solution = true;
                 arret = true;
             } else {
                 backtrack(affectees, aAffecter);
 
-                if(affectees.empty()) { // tout a été testé, il n'y a pas de solution
+                if(affectees.empty()) {
                     arret = true;
                 }
             }
@@ -152,7 +153,7 @@ void Solver::resoudre() {
             cout << endl;
         }
     } else {
-        cout << "Hélas, aucune solution n'a été trouvée :(" << endl;
+        cout << "Hélas, aucune solution n'a été trouvée :( Il n'en existe pas" << endl;
     }
 
 }
@@ -160,39 +161,41 @@ void Solver::resoudre() {
 /*----------------------------------------------------------------------------*/
 void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& aAffecter) {
 
-    // remontée vers une variable qui peut encore être affectée et l'affecter
-    do {
+    bool arret = false;
 
-        // rétablissement des domaines
-        for(Variable* var : _variables) {
-            var->restoreDomaine();
-        }
+    while(!arret) { // remontée vers une variable qui peut encore être affectée et l'affecter
 
-        // tentative d'affectation une fois de plus
-        if(affectees.top()->estAffectee()) {
-            affectees.top()->affecter();
-            cout << "affectation" << endl;
-        }
+        if(!affectees.empty()) {
 
-        if(!affectees.top()->estAffectee()) { // pas possible d'affecter, on remonte
-            // la variable redevient libre
-            aAffecter.push_front(affectees.top());
-            // toutes les valeurs possibles de la variable ont été testées
-            affectees.pop();
-            cout << "retrait" << endl;
-        }
+            // rétablissement des domaines car une modification est faite
+            for(Variable* var : _variables) {
+                var->restoreDomaine();
+            }
 
-    } while(!affectees.empty() && !affectees.top()->estAffectee());
+            affectees.top()->affecter(); // le premier est forcément affecté (car en cours de résolution)
 
+            if(!affectees.top()->estAffectee()) { // pas possible de l'affecter, il faut remonter
 
-    if(!affectees.empty()) {
-        majFileFiltre(affectees.top()); // une affectation => des contraintes à filtrer
+                // mise à jour de la pile et de la liste
+                aAffecter.push_front(affectees.top());
+                affectees.pop();
+            } else { // l'affectation est réussie, arret du backtrack
 
-        // sauvegarde des domaines
-        for(Variable* variable : _variables) {
-            variable->sauvegardeDomaine();
+                // sauvegarde des domaines
+                for(Variable* variable : _variables) {
+                    variable->sauvegardeDomaine();
+                }
+
+                majFileFiltre(affectees.top()); // une affectation => des contraintes à filtrer
+
+                arret = true;
+            }
+        } else {
+            arret = true;
         }
     }
+
+
 }
 
 /*----------------------------------------------------------------------------*/
@@ -209,21 +212,21 @@ void Solver::filtrerPropager() {
     // Il doit y avoir un problème dans le filtrage des contraintes
 
     // affichage de debug : résultat du filtrage et position dans l'arbre de résolution
-    int ind = 0;
+    /*int ind = 0;
     cout << "avant filtrage : " << endl << endl;
     for(Variable* variable : _variables) {
         cout << "Variable " << ind << " : " << variable->toString() << endl;
         ind ++;
     }
-    cout << endl << endl;
+    cout << endl << endl;*/
 
     bool continuer = true;
     while(continuer) {
-        auto it = _contraintes.rbegin();
+        auto it = _contraintes.begin();
         continuer = false;
-        while(it != _contraintes.rend()) { // filtrage des contraintes jusqu'au point fixe
+        while(it != _contraintes.end()) { // filtrage des contraintes jusqu'au point fixe
             if((*it)->filtrer()) {
-                //continuer = true;
+                continuer = true;
             }
             it ++;
         }
@@ -231,13 +234,13 @@ void Solver::filtrerPropager() {
     }
 
     // affichage de debug : résultat du filtrage et position dans l'arbre de résolution
-    ind = 0;
+    /*ind = 0;
     cout << endl << endl << "après filtrage : " << endl;
     for(Variable* variable : _variables) {
         cout << "Variable " << ind << " : " << variable->toString() << endl;
         ind ++;
     }
-    cout << endl << endl << endl;
+    cout << endl << endl << endl;*/
 
 }
 

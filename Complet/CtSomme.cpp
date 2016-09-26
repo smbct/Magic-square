@@ -58,31 +58,24 @@ bool CtSomme::filtrer() {
         }
     }
 
-    // TODO enlever
-    // assert(libre.size() != 0);
-
     // ensuite, parcours de toutes les variables libres. On cherche une affectation impossible
 
-    // le test est fait pour chaque variable libre
+    // le test est fait pour chaque variable non affectée
 
     for(Variable* variable : libre) {
 
         list<int> aEnlever;
 
         list<Variable*> aTester(libre);
-        aTester.remove(variable); //toutes les variables libres sauf celle en cours de test
+        aTester.remove(variable); //toutes les variables libres sauf celle qui est en cours de test
 
-        // pour chaque valeur possible de cette variable, on vérifie si on peut rendre la contrainte vraie
+
+        // recherche d'une affectation des variables pour vérifier la contrainte
         while(variable->affecter()) {
 
-            bool trouve = true;
-            if(aTester.size() > 0) { // tentative d'affectation vérifiant la contrainte
-                trouve = satisfaire(aTester, variable->valeur(), dte);
-            } else { // test facile, il suffit de voir si la valeur correspond
-                trouve = (variable->valeur() == dte); // on peut mettre ce test autre part pour améliorer les perf ? TODO
-            }
-
-            if(!trouve) {
+            // tentative d'affectation vérifiant la contrainte
+            if(!satisfaire(aTester, variable->valeur(), dte)) {
+                // si aucune affectation des variables n'a permis de vérifier la contrainte, la valeur est inutile
                 aEnlever.push_back(variable->valeur());
             }
         }
@@ -95,6 +88,7 @@ bool CtSomme::filtrer() {
         for(int val : aEnlever) {
             variable->enleveVal(val);
         }
+
     }
 
     return res;
@@ -103,52 +97,51 @@ bool CtSomme::filtrer() {
 /*----------------------------------------------------------------------------*/
 bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte) {
 
-    auto it = listeTest.begin();
+    // rajouter des bornes pour ne pas faire certains tests ?
 
     int somme = val; // somme de toute les variables affectées
 
+    auto it = listeTest.begin();
+    bool continuer = true;
     bool trouve = false;
 
-    // rajouter des bornes pour ne pas faire certains tests ?
+    while(continuer) {
 
-    do { // tant qu'une affectation n'a pas été trouvée et qu'elles n'ont pas toutes été testées
+        // si il y a des variables non affectées, on avance jusqu'au bout
 
-        if(it != listeTest.end()) { // s'il reste des variables à affecter, elle le sont
+        if(it != listeTest.end()) {
 
-            if((*it)->estAffectee()) { // si la variable était déjà affectée, on met à jour la valeur de la somme
+            if((*it)->estAffectee()) {
                 somme -= (*it)->valeur();
             }
 
-            if((*it)->affecter()) { // si possible l'affectation suivante est faîte
-
-                // mise à jour de la somme des variables affectées
+            if((*it)->affecter()) {
                 somme += (*it)->valeur();
-
-                // si la somme des affectées est > à la valeur de dte, pas possible de vérifier la contrainte
-                if(somme > dte) {
-                    somme -= (*it)->valeur();
-                    (*it)->desaffecter();
-                    it --;
+                it ++;
+            } else { // si l'affectation n'est pas possible, on revient en arrière
+                if(it == listeTest.begin()) { // toutes les combi de valeurs ont été testées, l'algo s'arrête
+                    continuer = false;
                 } else {
-                    it ++; // on avance à la prochaine variable à affecter
+                    it --;
                 }
-
-            } else {
-                it --;
             }
 
-        } else { //toutes les variables ont été affectées, on vérifie si on peut valider la contrainte
+        } else { // sinon vérifiction que la contrainte est vérifiée, sinon retour en arrière
 
-            if(somme == dte) { // si la contrainte est vérifiée, on peut sortir du test
+            if(somme == dte) { // contrainte vérifiée, satisfaction réussie
                 trouve = true;
-            } else { // sinon, on recul pour tenter d'autres affectations
+                continuer = false;
+            } else if(it != listeTest.begin()){ // contrainte non vérifiée mais il reste des valeurs à tester
                 it --;
+            } else {
+                continuer = false;
             }
+
         }
 
-    } while(!trouve && listeTest.front()->estAffectee());
+    }
 
-    if(trouve) {
+    if(trouve) { // les variables redeviennent libres
         for(Variable* var : listeTest) {
             var->desaffecter();
         }
