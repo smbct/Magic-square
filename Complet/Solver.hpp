@@ -84,7 +84,7 @@ class Solver {
         std::list<Variable*> _variables;
         std::vector<Contrainte*> _contraintes;
 
-        std::map<Variable*, std::list<Contrainte*>> _associees; // pour chaque variable, les contraintes dans lesquelles elle apparaît
+        std::map<Variable*, std::list<Contrainte*> > _associees; // pour chaque variable, les contraintes dans lesquelles elle apparaît
 
         std::list<Contrainte*> _aFiltrer; // liste des contraintes à filtrer, mise à jour après l'exploration
 

@@ -1,6 +1,6 @@
 /**
  * \file CtAlldiff.hpp
- * \brief définition de la classe d'une contrainte "All different"
+ * \brief définition de la classe d'une contrainte "All different" du solver complet
  * \author S.B
  * \date 23/09/2016
  */
@@ -14,7 +14,7 @@ namespace complet {
 
 /**
  * \class CtAlldiff
- * \brief représente une contrainte All Different du carré magique
+ * \brief représente une contrainte All Different du solver complet
  */
 class CtAllDiff : public Contrainte {
 

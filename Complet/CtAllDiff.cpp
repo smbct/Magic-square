@@ -1,6 +1,6 @@
 /**
  * \file CtAlldiff.cpp
- * \brief implémentation de la contrainte "All different"
+ * \brief implémentation de la contrainte "All different" du solver complet
  * \author S.B
  * \date 23/09/2016
  */
