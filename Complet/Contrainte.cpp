@@ -1,6 +1,6 @@
 /**
  * \file Contrainte.cpp
- * \brief implémentation de la classe Contrainte
+ * \brief implémentation de la classe Contrainte du solver complet
  * \author S.B
  * \date 22/09/2016
  */

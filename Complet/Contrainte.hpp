@@ -1,6 +1,6 @@
 /**
  * \file Contrainte.hpp
- * \brief définition de classe Contrainte
+ * \brief définition de classe Contrainte pour le solver complet
  * \author S.B
  * \date 22/02/2016
  */
@@ -14,6 +14,10 @@
 
 namespace complet {
 
+/**
+ * \class Contrainte
+ * \brief classe représentant une contrainte du solver complet
+ */
 class Contrainte {
 
     public:

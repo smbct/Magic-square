@@ -1,6 +1,6 @@
 /**
  * \file CtSomme.cpp
- * \brief implémentation de la classe CtSomme
+ * \brief implémentation de la classe CtSomme du solver complet
  * \author S.B
  * \date 23/09/2016
  */
@@ -17,7 +17,6 @@ using namespace complet;
 CtSomme::CtSomme(int M) :
 Contrainte(), _M(M)
 {
-
 
 }
 

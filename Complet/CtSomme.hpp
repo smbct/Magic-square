@@ -1,6 +1,6 @@
 /**
  * \file CtSomme.hpp
- * \brief définition de la classe d'une contrainte "somme"
+ * \brief définition de la classe d'une contrainte "somme" du solver complet
  * \author S.B
  * \date 23/09/2016
  */
@@ -14,7 +14,7 @@ namespace complet {
 
 /**
  * \class CtSomme
- * \brief représente une contrainte somme du carré magique (ligne, col ou diag)
+ * \brief représente une contrainte somme du carré magique (ligne, col ou diag) pour le solver complet
  */
 class CtSomme : public Contrainte {
 
