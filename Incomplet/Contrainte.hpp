@@ -26,12 +26,24 @@ class Contrainte {
         Contrainte();
 
         /**
+         * \brief ajout d'une variable dans la contrainte
+         * \param indice l'indice de la variable à ajouter
+         */
+        void ajouterVariable(int indice);
+
+        /**
          * \brief calcule le score avec les valeurs d'une configuration'
          * \param configuration la configuration à tester
          */
         virtual int score(Configuration& configuration) = 0;
 
+        /**
+         * \brief destructeur
+         */
+        virtual ~Contrainte();
+
     protected:
+        std::list<int> _indices; // indices des variables concernées dans une configuration
 
 };
 

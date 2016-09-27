@@ -31,5 +31,6 @@ class CtAllDiff : public Contrainte {
 
 };
 
+}
 
 #endif // CT_ALL_DIFF_INCOMPLET

@@ -13,3 +13,14 @@ using namespace incomplet;
 Contrainte::Contrainte() {
 
 }
+
+/*----------------------------------------------------------------------------*/
+void Contrainte::ajouterVariable(int indice) {
+    _indices.push_back(indice);
+}
+
+
+/*----------------------------------------------------------------------------*/
+Contrainte::~Contrainte() {
+    
+}
