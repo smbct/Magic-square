@@ -6,9 +6,13 @@ using namespace std;
 
 using namespace incomplet;
 
+#include <ctime>
+
 int main() {
 
-    Solver solver(3);
+    srand(time(0));
+
+    Solver solver(4);
 
     solver.resoudre();
 

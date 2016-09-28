@@ -97,6 +97,16 @@ class Configuration {
          */
         void inverserColonne(int colonne);
 
+        /**
+         * \brief inversion de la diagonale
+         */
+        void inverserDiagonale();
+
+        /**
+         * \brief inversione de l'antidiagonale
+         */
+        void inverserAntiDiagonale();
+
     private: // attributs privés
 
         int _taille;

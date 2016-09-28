@@ -48,42 +48,57 @@ void Configuration::inverserColonne(int colonne) {
 }
 
 /*----------------------------------------------------------------------------*/
+void Configuration::inverserDiagonale() {
+    for(int ind = 0; ind < _taille/2; ind ++) {
+        int ind2 = _taille-ind-1;
+        swap(ind*_taille+ind, ind2*_taille+ind2);
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+void Configuration::inverserAntiDiagonale() {
+
+    for(int ind = 0; ind < _taille/2; ind ++) {
+        int ind2 = _taille-ind-1;
+        swap(ind*_taille+_taille-ind-1, ind2*_taille+_taille-ind2-1);
+    }
+
+}
+
+/*----------------------------------------------------------------------------*/
 void Configuration::genererVoisinage(std::list<Configuration>& voisinage) {
 
     Configuration config(_taille);
-    // configurations dans lesquellles une ligne est inversée
-    for(int ligne = 0; ligne < _taille; ligne ++) {
-        config = *this;
-        /*config.inverserLigne(ligne);
-        voisinage.push_back(config);*/
 
-        for(int ind = 0; ind < _taille-1; ind++) {
+    // génération de toutes les permut de deux éléments possible
+    for(int ind = 0; ind < _taille*_taille; ind ++) {
+        for(int ind2 = ind+1; ind2 < _taille*_taille; ind2 ++) {
             config = *this;
-            config.swap(ligne*_taille + ind, ligne*_taille + ind + 1);
-            voisinage.push_back(config);
-        }
-    }
-    // configurations dans lesquelles une colonne est inversée
-    for(int col = 0; col < _taille; col ++) {
-        /*config = *this;
-        config.inverserColonne(col);
-        voisinage.push_back(config);*/
-
-        for(int ind = 0; ind < _taille-1; ind ++) {
-            config = *this;
-            int ind1 = ind*_taille + col;
-            config.swap(ind*_taille+col, (ind+1)*_taille + col);
+            config.swap(ind, ind2);
             voisinage.push_back(config);
         }
     }
 
-    // sur les diagonales
-    for(int diag = 0; diag < _taille-1; diag ++) {
 
-        config = *this;
-        config.swap(diag*_taille+diag, (diag+1)*_taille + diag + 1);
-        voisinage.push_back(config);
-
+    // génération des permutations de 3 éléments
+    // exemple : permutations de 1 2 3 :
+    // 2 1 3 ; 3 1 2 ; 3 2 1 On exclut les permutations de deux éléments
+    for(int ind = 0; ind < _taille*_taille; ind ++) {
+        for(int ind2 = ind+1; ind2 < _taille*_taille; ind2 ++) {
+            for(int ind3 = ind2+1; ind3 < _taille*_taille; ind3 ++) {
+                config = *this;
+                config.swap(ind, ind3);
+                config.swap(ind, ind2);
+                voisinage.push_back(config);
+                config = *this;
+                config.swap(ind, ind2);
+                config.swap(ind2, ind3);
+                voisinage.push_back(config);
+                config = *this;
+                config.swap(ind, ind3);
+                voisinage.push_back(config);
+            }
+        }
     }
 
 }
@@ -112,12 +127,24 @@ void Configuration::generer() {
 /*----------------------------------------------------------------------------*/
 void Configuration::regenerer() {
 
-    for(int ligne = 0; ligne < _taille/2; ligne ++) {
+    for(int ligne = 0; ligne < _taille; ligne +=2) {
         inverserLigne(ligne);
     }
-    for(int col = _taille/2; col < _taille; col ++) {
+    for(int col = 0; col < _taille; col ++) {
         inverserColonne(col);
     }
+
+    inverserDiagonale();
+    inverserAntiDiagonale();
+
+    // int offset = -1;
+    // for(int iter = 0; iter < _taille*_taille/2; iter ++) {
+    //
+    //     int ind = rand() % _taille*_taille;
+    //     int ind2 = rand() % _taille*_taille;
+    //
+    //     swap(ind, ind2);
+    // }
 
 }
 
