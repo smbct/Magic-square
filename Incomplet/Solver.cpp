@@ -66,31 +66,40 @@ void Solver::resoudre() {
     int iter = 0;
     int scoreActuel = calculerScore(config);
 
+    int meilleurScore = scoreActuel;
+
     while(continuer) {
 
+        cout << "jusque là : meilleur score = " << meilleurScore << endl;
+
+        cout << config.toString() << endl;
+        cout << "score : " << scoreActuel << endl;
         list<Configuration> voisins;
         config.genererVoisinage(voisins);
 
-        Configuration* meilleure;
-        int meilleurScore = -1;
+        bool bloque = true;
+        for(Configuration& voisin : voisins) {
 
-        for(Configuration& config : voisins) {
+            int score = calculerScore(voisin);
+            // cout << config.toString() << "  :  " << score << endl;
 
-            int score = calculerScore(config);
-            cout << config.toString() << "  :  " << score << endl;
-
-            if((meilleurScore == -1 || score < meilleurScore) && score < scoreActuel) {
-                meilleurScore = score;
-                meilleure = &config;
+            // un voisin ayant un meilleur score a été trouvé
+            if(score < scoreActuel) {
+                cout << "ameliore" << endl;
+                scoreActuel = score;
+                config = voisin;
+                bloque = false;
             }
         }
 
-        if(meilleurScore != -1) {
-            config = *meilleure;
-            scoreActuel = meilleurScore;
-        } else {
-            continuer = false;
-            // modifier par faire un saut
+        if(bloque) { // min local -> un saut est effectué
+            config.regenerer();
+            scoreActuel = calculerScore(config);
+            cout << endl << endl << "saut" << endl << endl;
+        }
+
+        if(scoreActuel < meilleurScore) {
+            meilleurScore = scoreActuel;
         }
 
         if(meilleurScore == 0 || iter > 10000) {
@@ -101,7 +110,7 @@ void Solver::resoudre() {
 
     }
 
-    cout << "meilleur score : " << scoreActuel << endl;
+    cout << "meilleur score : " << meilleurScore << endl;
 
 
 
