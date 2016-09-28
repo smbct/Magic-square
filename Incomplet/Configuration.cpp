@@ -32,26 +32,58 @@ void Configuration::swap(int ind1, int ind2) {
 }
 
 /*----------------------------------------------------------------------------*/
+void Configuration::inverserLigne(int ligne) {
+    for(int ind = 0; ind < _taille/2; ind ++) {
+        swap(ligne*_taille + ind, ligne*_taille + _taille - ind - 1);
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+void Configuration::inverserColonne(int colonne) {
+    for(int ind = 0; ind < _taille/2; ind ++) {
+        int ind1 = _taille*ind + colonne;
+        int ind2 = _taille*(_taille-ind-1) + colonne;
+        swap(ind1, ind2);
+    }
+}
+
+/*----------------------------------------------------------------------------*/
 void Configuration::genererVoisinage(std::list<Configuration>& voisinage) {
 
     Configuration config(_taille);
+    // configurations dans lesquellles une ligne est inversée
     for(int ligne = 0; ligne < _taille; ligne ++) {
         config = *this;
+        /*config.inverserLigne(ligne);
+        voisinage.push_back(config);*/
 
-        for(int ind = 0; ind < _taille/2; ind ++) {
-            config.swap(ligne*_taille+ind, ligne*_taille + _taille - ind - 1);
+        for(int ind = 0; ind < _taille-1; ind++) {
+            config = *this;
+            config.swap(ligne*_taille + ind, ligne*_taille + ind + 1);
+            voisinage.push_back(config);
         }
-        voisinage.push_back(config);
     }
+    // configurations dans lesquelles une colonne est inversée
     for(int col = 0; col < _taille; col ++) {
-        config = *this;
+        /*config = *this;
+        config.inverserColonne(col);
+        voisinage.push_back(config);*/
 
-        for(int ind = 0; ind < _taille/2; ind ++) {
-            int ind1 = _taille*ind + col;// décalage dans le tableau
-            int ind2 = _taille*(_taille - ind - 1) + col;
-            config.swap(ind1, ind2);
+        for(int ind = 0; ind < _taille-1; ind ++) {
+            config = *this;
+            int ind1 = ind*_taille + col;
+            config.swap(ind*_taille+col, (ind+1)*_taille + col);
+            voisinage.push_back(config);
         }
+    }
+
+    // sur les diagonales
+    for(int diag = 0; diag < _taille-1; diag ++) {
+
+        config = *this;
+        config.swap(diag*_taille+diag, (diag+1)*_taille + diag + 1);
         voisinage.push_back(config);
+
     }
 
 }
@@ -73,6 +105,18 @@ void Configuration::generer() {
     for(int& valeur : _valeurs) {
         valeur = val;
         val ++;
+    }
+
+}
+
+/*----------------------------------------------------------------------------*/
+void Configuration::regenerer() {
+
+    for(int ligne = 0; ligne < _taille/2; ligne ++) {
+        inverserLigne(ligne);
+    }
+    for(int col = _taille/2; col < _taille; col ++) {
+        inverserColonne(col);
     }
 
 }

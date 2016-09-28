@@ -44,6 +44,11 @@ class Configuration {
         void generer();
 
         /**
+         * \brief regénère une configuration à partir de la configuration actuelle
+         */
+        void regenerer();
+
+        /**
          * \brief retourne les valeurs de la configuration
          * \return la chaîne contenant ces informations
          */
@@ -79,6 +84,18 @@ class Configuration {
          * \ind2 l'indice de la deuxième valeur à échanger
          */
         void swap(int ind1, int ind2);
+
+        /**
+         * \brief inversion d'une ligne du carré magique
+         * \pre 0 <= ligne < _taille
+         */
+        void inverserLigne(int ligne);
+
+        /**
+         * \brief inversione d'une colonne du carré magique
+         * \pre 0 <= colonne < _taille
+         */
+        void inverserColonne(int colonne);
 
     private: // attributs privés
 
