@@ -67,6 +67,8 @@ void Solver::resoudre() {
     int scoreActuel = calculerScore(config);
 
     int meilleurScore = scoreActuel;
+    bool rechappe = false;
+    int rechappeIt;
 
     while(continuer) {
 
@@ -77,32 +79,54 @@ void Solver::resoudre() {
         list<Configuration> voisins;
         config.genererVoisinage(voisins);
 
-        bool bloque = true;
+        Configuration voisinMin(_taille);
+        int scoreMinVoisin = -1;
         for(Configuration& voisin : voisins) {
 
             int score = calculerScore(voisin);
-            // cout << config.toString() << "  :  " << score << endl;
 
             // un voisin ayant un meilleur score a été trouvé
-            if(score < scoreActuel) {
-                cout << "ameliore" << endl;
-                scoreActuel = score;
-                config = voisin;
-                bloque = false;
+            if(scoreMinVoisin == -1 || score < scoreMinVoisin) {
+                scoreMinVoisin = score;
+                voisinMin = voisin;
+
             }
         }
 
-        if(bloque) { // min local -> un saut est effectué
+        cout << "scoreActuel : " << scoreActuel << endl;
+        cout << "scoreMin : " << scoreMinVoisin << endl;
+
+        if(scoreMinVoisin < scoreActuel || rechappe) {
+            if(scoreMinVoisin < scoreActuel) {
+                rechappe = false;
+            }
+            config = voisinMin;
+            scoreActuel = scoreMinVoisin;
+        } else if(scoreMinVoisin == scoreActuel) {
+            if(!rechappe) {
+                rechappe = true;
+                rechappeIt = 0;
+            } else {
+                rechappeIt ++;
+            }
+        } else {
+            rechappe = false;
+        }
+
+        if(scoreMinVoisin > scoreActuel) { // min local -> un saut est effectué
+            rechappe = false;
+            rechappeIt = 0;
             config.regenerer();
             scoreActuel = calculerScore(config);
             cout << endl << endl << "saut" << endl << endl;
         }
 
+
         if(scoreActuel < meilleurScore) {
             meilleurScore = scoreActuel;
         }
 
-        if(meilleurScore == 0 || iter > 10000) {
+        if(meilleurScore == 0 || iter > 100000) {
             continuer = false;
         }
 
