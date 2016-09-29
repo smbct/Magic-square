@@ -83,7 +83,7 @@ void Configuration::genererVoisinage(std::list<Configuration>& voisinage) {
     // génération des permutations de 3 éléments
     // exemple : permutations de 1 2 3 :
     // 2 1 3 ; 3 1 2 ; 3 2 1 On exclut les permutations de deux éléments
-    for(int ind = 0; ind < _taille*_taille; ind ++) {
+    /*for(int ind = 0; ind < _taille*_taille; ind ++) {
         for(int ind2 = ind+1; ind2 < _taille*_taille; ind2 ++) {
             for(int ind3 = ind2+1; ind3 < _taille*_taille; ind3 ++) {
                 config = *this;
@@ -99,7 +99,7 @@ void Configuration::genererVoisinage(std::list<Configuration>& voisinage) {
                 voisinage.push_back(config);
             }
         }
-    }
+    }*/
 
 }
 

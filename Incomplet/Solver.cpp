@@ -96,13 +96,33 @@ void Solver::resoudre() {
         cout << "scoreActuel : " << scoreActuel << endl;
         cout << "scoreMin : " << scoreMinVoisin << endl;
 
-        if(scoreMinVoisin < scoreActuel || rechappe) {
-            if(scoreMinVoisin < scoreActuel) {
+        if(scoreMinVoisin < scoreActuel || rechappeIt) {
+            if(scoreMinVoisin <= scoreActuel) {
                 rechappe = false;
             }
             config = voisinMin;
             scoreActuel = scoreMinVoisin;
+
+            rechappe ++;
         } else if(scoreMinVoisin == scoreActuel) {
+
+            if(!rechappe) {
+                rechappe = true;
+                rechappeIt = 0;
+            } else {
+                rechappeIt ++;
+            }
+
+        }
+
+        if (!rechappe || rechappeIt > 10 /* rajouter ou score moins bon*/) {
+            rechappe = false;
+            config.regenerer();
+            scoreActuel = calculerScore(config);
+            cout << endl << endl << "saut" << endl << endl;
+        }
+
+        /*else if(scoreMinVoisin == scoreActuel) {
             if(!rechappe) {
                 rechappe = true;
                 rechappeIt = 0;
@@ -111,15 +131,15 @@ void Solver::resoudre() {
             }
         } else {
             rechappe = false;
-        }
+        }*/
 
-        if(scoreMinVoisin > scoreActuel) { // min local -> un saut est effectué
+        /*if(scoreMinVoisin > scoreActuel) { // min local -> un saut est effectué
             rechappe = false;
             rechappeIt = 0;
             config.regenerer();
             scoreActuel = calculerScore(config);
             cout << endl << endl << "saut" << endl << endl;
-        }
+        }*/
 
 
         if(scoreActuel < meilleurScore) {
