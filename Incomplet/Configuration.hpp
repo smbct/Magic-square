@@ -29,8 +29,10 @@ class Configuration {
 
         /**
          * \brief génère le voisinage d'une configuration
+         * \param voisinage la liste des voisins créés
+         * \param etendre indique s'il faut générer un voisinage étendu ou non
          */
-        void genererVoisinage(std::list<Configuration>& voisinage);
+        void genererVoisinage(std::list<Configuration>& voisinage, bool etendre);
 
         /**
          * \brief retourne la valeur de la variable ind dans la configuration
