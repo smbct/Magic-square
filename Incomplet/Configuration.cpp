@@ -138,7 +138,7 @@ void Configuration::generer() {
 /*----------------------------------------------------------------------------*/
 void Configuration::regenerer() {
 
-    for(int ligne = 0; ligne < _taille; ligne +=2) {
+    for(int ligne = 0; ligne < _taille; ligne ++) {
         inverserLigne(ligne);
     }
     for(int col = 0; col < _taille; col ++) {
@@ -148,14 +148,13 @@ void Configuration::regenerer() {
     inverserDiagonale();
     inverserAntiDiagonale();
 
-    // int offset = -1;
-    // for(int iter = 0; iter < _taille*_taille/2; iter ++) {
-    //
-    //     int ind = rand() % _taille*_taille;
-    //     int ind2 = rand() % _taille*_taille;
-    //
-    //     swap(ind, ind2);
-    // }
+    /*for(int iter = 0; iter < _taille*_taille/2; iter ++) {
+
+        int ind = rand() % _taille*_taille;
+        int ind2 = rand() % _taille*_taille;
+
+        swap(ind, ind2);
+    }*/
 
 }
 
@@ -288,4 +287,26 @@ bool Configuration::allDifferent(list< list<int>::iterator >& valeurs) {
     }
 
     return res;
+}
+
+/*----------------------------------------------------------------------------*/
+bool Configuration::operator==(const Configuration& autre) {
+
+    auto it = _valeurs.begin();
+    auto it2 = autre._valeurs.begin();
+    bool egal = true;
+
+    while(egal && it != _valeurs.end()) {
+
+        if(*it != *it2) {
+            egal = false;
+        } else {
+            it ++;
+            it2 ++;
+        }
+
+    }
+
+    return egal;
+
 }

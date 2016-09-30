@@ -56,6 +56,13 @@ class Configuration {
          */
         std::string toString();
 
+
+        /**
+         * \brief indique si les deux configurations sont égales
+         * \return vrai ssi les deux configurations sont égales
+         */
+        bool operator==(const Configuration& autre);
+
     private: // méthodes privées
 
         /**
