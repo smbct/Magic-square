@@ -1,0 +1,8 @@
+03 23 02 17 20
+25 04 19 07 10
+15 12 13 14 11
+16 18 09 21 01
+06 08 22 05 24
+
+voisinage intelligent se basant sur les cases les plus critiques
+donner un score à chaque case -> en fonction de la ligne, la colonne et de la diagonale, le score sera plus ou moins terrible.

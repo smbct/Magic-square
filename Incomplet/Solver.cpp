@@ -67,8 +67,8 @@ void Solver::resoudre() {
     int scoreActuel = calculerScore(config);
 
     int meilleurScore = scoreActuel;
-    bool rechappe = false;
-    int rechappeIt;
+    bool explore = false;
+    int exploreIt;
 
     while(continuer) {
 
@@ -95,31 +95,34 @@ void Solver::resoudre() {
 
         cout << "scoreActuel : " << scoreActuel << endl;
         cout << "scoreMin : " << scoreMinVoisin << endl;
+        cout << "sortir ? " << explore << " : " << exploreIt << endl;
 
-        if(scoreMinVoisin < scoreActuel || rechappeIt) {
-            if(scoreMinVoisin <= scoreActuel) {
-                rechappe = false;
-            }
+        if(scoreMinVoisin < scoreActuel || (explore && exploreIt < 10)) {
             config = voisinMin;
             scoreActuel = scoreMinVoisin;
-
-            rechappe ++;
-        } else if(scoreMinVoisin == scoreActuel) {
-
-            if(!rechappe) {
-                rechappe = true;
-                rechappeIt = 0;
-            } else {
-                rechappeIt ++;
-            }
-
         }
 
-        if (!rechappe || rechappeIt > 10 /* rajouter ou score moins bon*/) {
-            rechappe = false;
+        if(explore) {
+            exploreIt ++;
+        }
+
+        if(explore && exploreIt > 10) {
+            explore = false;
             config.regenerer();
             scoreActuel = calculerScore(config);
             cout << endl << endl << "saut" << endl << endl;
+        }
+
+        if (scoreMinVoisin > scoreActuel){
+            config.regenerer();
+            scoreActuel = calculerScore(config);
+            cout << endl << endl << "saut" << endl << endl;
+        }
+
+        if(scoreMinVoisin == scoreActuel && !explore) {
+            explore = true;
+            exploreIt = 0;
+            cout << "sortir du min local ?" << endl;
         }
 
         /*else if(scoreMinVoisin == scoreActuel) {
