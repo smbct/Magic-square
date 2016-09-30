@@ -22,6 +22,26 @@ _taille(taille),
 _M( (taille* (taille*taille+1))/2 )
 {
     creerContraintes();
+
+    // vector<int> valeurs = {34, 10, 20, 13, 28, 6, 1, 32, 33, 9, 4, 31, 25, 12, 19, 22, 16, 17, 24, 18, 21, 8, 26, 14, 5, 36, 11, 30, 2, 27, 23, 3, 7, 29, 35, 15};
+
+    // vector<int> valeurs = {4, 9, 2, 3, 5, 7, 8, 1, 6};
+
+    // vector<int> valeurs = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4, 15, 14, 1};
+
+    // Configuration config(valeurs, 4);
+    // list<Configuration> voisins;
+    // config.genererVoisinage(voisins, false);
+    //
+    // vector<int> scores;
+    // for(Configuration& config : voisins) {
+    //     scores.push_back(calculerScore(config));
+    // }
+    // sort(scores.begin(), scores.end());
+    // for(int score : scores) {
+    //     cout << score << endl;
+    // }
+
 }
 
 /*----------------------------------------------------------------------------*/
@@ -82,7 +102,7 @@ void Solver::resoudre() {
         cout << config.toString() << endl;
         cout << "score : " << scoreActuel << endl;
         list<Configuration> voisins;
-        config.genererVoisinage(voisins, true);
+        config.genererVoisinage(voisins, false);
 
         Configuration voisinMin(_taille);
 
@@ -108,6 +128,9 @@ void Solver::resoudre() {
             cout << "nb config égales : " << voisinsEgaux.size() << endl;
             voisinsEgaux.clear();
         }*/
+
+        // si on est très proche d'un min, on peut essayer de renforcer la recherche
+        // autour des variables problématiques dans la grille
 
         if(scoreMinVoisin < scoreActuel) {
             config = voisinMin;
@@ -151,12 +174,14 @@ void Solver::resoudre() {
 /*----------------------------------------------------------------------------*/
 int Solver::calculerScore(Configuration& config) {
 
-    int score = 0;
+    int somme = 0;
 
     for(Contrainte* contrainte : _contraintes) {
-        score += contrainte->score(config);
+        int score = contrainte->score(config);
+        somme += score;
     }
-    return score;
+
+    return somme;
 }
 
 
@@ -172,32 +197,41 @@ bool Solver::explorerMinLocal(Configuration& confMin, Configuration confEqui, in
 
     bool continuer = true;
     bool ameliore = false;
-    while(it < 100 && scoreActuel != 0 && continuer) {
+
+    while(it < 10 && scoreActuel != 0) {
 
         list<Configuration> voisins;
-        confEqui.genererVoisinage(voisins);
+        confEqui.genererVoisinage(voisins, false);
 
-        continuer = false;
+        int scoreMinVoisin = -1;
+        Configuration voisinMin(confMin);
         for(Configuration& voisin : voisins) {
 
             int score = calculerScore(voisin);
             if(score < scoreActuel) {
                 scoreActuel = score;
-                confEqui = voisin;
-                continuer = true;
-                ameliore = true;
-                cout << "amélioration du minimum trouvé" << endl;
-            } else if(score == scoreActuel) {
+                voisinMin = voisin;
+                // ameliore = true;
+                // cout << "amélioration du minimum trouvé" << endl;
+            } else {
 
                 if(count(interdites.begin(), interdites.end(), voisin) == 0) {
-                    interdites.push_back(voisin);
-                    confEqui = voisin;
-                    continuer = true;
+
+                    if(scoreMinVoisin == -1 || score < scoreMinVoisin) {
+                        scoreMinVoisin = score;
+                        voisinMin = voisin;
+                    }
+
+
                 }
             }
         }
 
-        cout << endl << endl;
+        if(scoreMinVoisin == scoreActuel) {
+            interdites.push_back(voisinMin);
+        }
+        scoreActuel = scoreMinVoisin;
+        confEqui = voisinMin;
 
         it ++;
     }
