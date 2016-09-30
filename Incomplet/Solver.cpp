@@ -77,7 +77,7 @@ void Solver::resoudre() {
         cout << config.toString() << endl;
         cout << "score : " << scoreActuel << endl;
         list<Configuration> voisins;
-        config.genererVoisinage(voisins);
+        config.genererVoisinage(voisins, true);
 
         Configuration voisinMin(_taille);
         int scoreMinVoisin = -1;
