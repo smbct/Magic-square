@@ -28,6 +28,13 @@ class Configuration {
         Configuration(int taille);
 
         /**
+         * \brief construction à partir d'une liste de valeur
+         * \param valeurs les valeurs de la configuration à construire
+         * \param taille la taille du problème
+         */
+        Configuration(std::vector<int>& valeurs, int taille);
+
+        /**
          * \brief génère le voisinage d'une configuration
          * \param voisinage la liste des voisins créés
          * \param etendre indique s'il faut générer un voisinage étendu ou non

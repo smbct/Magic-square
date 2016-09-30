@@ -25,6 +25,16 @@ _valeurs(taille*taille)
 }
 
 /*----------------------------------------------------------------------------*/
+Configuration::Configuration(vector<int>& valeurs, int taille) :
+_taille(taille),
+_max(taille*taille),
+_ctr( (taille*(taille*taille+1))/2 ),
+_valeurs(valeurs)
+{
+
+}
+
+/*----------------------------------------------------------------------------*/
 void Configuration::swap(int ind1, int ind2) {
     int temp = _valeurs[ind2];
     _valeurs[ind2] = _valeurs[ind1];
@@ -79,6 +89,25 @@ void Configuration::genererVoisinage(std::list<Configuration>& voisinage, bool e
         }
     }
 
+
+    for(int ligne = 0; ligne < _taille; ligne ++) {
+        config = *this;
+        config.inverserLigne(ligne);
+        voisinage.push_back(config);
+    }
+    for(int col = 0; col < _taille; col ++) {
+        config = *this;
+        config.inverserColonne(col);
+        voisinage.push_back(config);
+    }
+
+    config = *this;
+    config.inverserDiagonale();
+    voisinage.push_back(config);
+
+    config = *this;
+    config.inverserAntiDiagonale();
+    voisinage.push_back(config);
 
     // génération des permutations de 3 éléments
     // exemple : permutations de 1 2 3 :
@@ -138,15 +167,15 @@ void Configuration::generer() {
 /*----------------------------------------------------------------------------*/
 void Configuration::regenerer() {
 
-    for(int ligne = 0; ligne < _taille; ligne ++) {
+    for(int ligne = 0; ligne < _taille; ligne +=2) {
         inverserLigne(ligne);
     }
-    for(int col = 0; col < _taille; col ++) {
+    for(int col = 1; col < _taille; col +=2) {
         inverserColonne(col);
     }
 
     inverserDiagonale();
-    inverserAntiDiagonale();
+    // inverserAntiDiagonale();
 
     /*for(int iter = 0; iter < _taille*_taille/2; iter ++) {
 
