@@ -123,6 +123,13 @@ class Configuration {
          */
         void inverserAntiDiagonale();
 
+        /**
+         * \brief echange d'une ligne avec une colonne
+         * \param ligne la ligne à échanger
+         * \param col la colonne à échanger
+         */
+        void echangerLigneColonne(int ligne, int col);
+
     private: // attributs privés
 
         int _taille;

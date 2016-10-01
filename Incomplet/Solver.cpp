@@ -229,6 +229,7 @@ bool Solver::explorerMinLocal(Configuration& confMin, Configuration confEqui, in
 
         if(scoreMinVoisin == scoreActuel) {
             interdites.push_back(voisinMin);
+
         }
         scoreActuel = scoreMinVoisin;
         confEqui = voisinMin;
