@@ -12,7 +12,7 @@ int main() {
 
     srand(time(0));
 
-    Solver solver(7);
+    Solver solver(18);
 
     solver.resoudre();
 

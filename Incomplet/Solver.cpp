@@ -19,7 +19,10 @@ using namespace std;
 /*----------------------------------------------------------------------------*/
 Solver::Solver(int taille) :
 _taille(taille),
-_M( (taille* (taille*taille+1))/2 )
+_M( (taille* (taille*taille+1))/2 ),
+_tailleTabou(10),
+_maxTabouIt(50),
+_tabou(taille*taille, 0)
 {
     creerContraintes();
 
@@ -88,70 +91,75 @@ void Solver::resoudre() {
     int scoreActuel = calculerScore(config);
 
     int meilleurScore = scoreActuel;
-    bool explore = false;
-    int exploreIt;
 
     list<Configuration> voisinsEgaux; // liste des voisins de même score
     int scoreMinVoisin;
 
+    bool tabou = false;
+    int tabouIt;
+    int scoreTabou;
 
     while(continuer) {
 
         cout << "jusque là : meilleur score = " << meilleurScore << endl;
 
         cout << config.toString() << endl;
-        cout << "score : " << scoreActuel << endl;
         list<Configuration> voisins;
         config.genererVoisinage(voisins, false);
 
         Configuration voisinMin(_taille);
-
         scoreMinVoisin = -1;
-        for(Configuration& voisin : voisins) {
 
-            int score = calculerScore(voisin);
-
-            // un voisin ayant un meilleur score a été trouvé
-            if(scoreMinVoisin == -1 || score < scoreMinVoisin) {
-                scoreMinVoisin = score;
-                voisinMin = voisin;
-            }
-            if(scoreActuel == meilleurScore) {
-                voisinsEgaux.push_back(voisin);
-            }
-        }
+        // calcul du meilleur voisin
+        trouverMeilleurVoisin(config, voisinMin, scoreMinVoisin, tabou, iter);
 
         cout << "scoreActuel : " << scoreActuel << endl;
         cout << "scoreMin voisins : " << scoreMinVoisin << endl;
+        cout << "tabou : " << tabou << "  -  nbIt : " << tabouIt << " score min tabou : " << scoreTabou << endl;
 
-        /*if(scoreMinVoisin == scoreActuel) {
-            cout << "nb config égales : " << voisinsEgaux.size() << endl;
-            voisinsEgaux.clear();
-        }*/
+        config = voisinMin;
+        // scoreActuel = scoreMinVoisin;
 
         // si on est très proche d'un min, on peut essayer de renforcer la recherche
         // autour des variables problématiques dans la grille
 
-        if(scoreMinVoisin < scoreActuel) {
-            config = voisinMin;
-            scoreActuel = scoreMinVoisin;
-        } else {
+        if(tabou) {
 
-            if(scoreMinVoisin == scoreActuel) {
-                if(!explorerMinLocal(config, voisinMin, scoreActuel)) {
-                    config.regenerer();
-                    scoreActuel = calculerScore(config);
-                    cout << endl << endl << "saut" << endl << endl;
-                } else {
-                    config = voisinMin;
+            tabouIt ++;
+
+            if(scoreMinVoisin < scoreTabou) { // amélioration locale
+                scoreTabou = scoreMinVoisin;
+
+                if(scoreTabou < scoreActuel) { // arêt du tabou, un meilleur score a été trouvé
+                    tabou = false;
+                    scoreActuel = scoreTabou;
                 }
             } else {
-                config.regenerer();
-                scoreActuel = calculerScore(config);
-                cout << endl << endl << "saut" << endl << endl;
+                if(tabouIt > _maxTabouIt) { // tabou terminé, pas d'amélioration
+                    tabou = false;
+                    config.regenerer();
+                    scoreActuel = calculerScore(config);
+                    cout << endl << endl << "restart!" << endl << endl;
+                }
+            }
+
+        } else {
+
+            if(scoreMinVoisin < scoreActuel) { // le score est amélioré
+                scoreActuel = scoreMinVoisin;
+
+                if(scoreActuel < meilleurScore) {
+                    meilleurScore = scoreActuel;
+                }
+
+            } else { // min local trouvé, activation du tabou
+                if(!tabou) {
+                    tabou = true;
+                    tabouIt = 0;
+                    scoreTabou = scoreActuel;
+                }
             }
         }
-
 
         if(scoreActuel < meilleurScore) {
             meilleurScore = scoreActuel;
@@ -168,6 +176,49 @@ void Solver::resoudre() {
     cout << "meilleur score : " << meilleurScore << endl;
 
 
+
+}
+
+/*----------------------------------------------------------------------------*/
+void Solver::trouverMeilleurVoisin(Configuration& config, Configuration& voisin, int& scoreVoisin, bool tabou, int iter) {
+
+    int indMax = -1, ind2Max = -1;
+    Configuration meilleure(config);
+    int meilleurScore = -1;
+
+    int ind = 0, ind2;
+    while(ind < _taille*_taille) {
+
+        ind2 = ind+1;
+        while(ind2 < _taille*_taille) {
+
+            if(!tabou || (_tabou[ind] <= iter && _tabou[ind2] <= iter)) { // on peut sélectionner ces éléments
+                Configuration voisin = config;
+                voisin.swap(ind, ind2);
+                int score = calculerScore(voisin);
+
+                if(meilleurScore == -1 || score < meilleurScore) {
+                    meilleure = voisin;
+                    meilleurScore = score;
+                    indMax = ind;
+                    ind2Max = ind2;
+                }
+            }
+            ind2 ++;
+        }
+        ind ++;
+    }
+
+    if(meilleurScore != -1) { // peut arriver à cause des tabous
+        //mise à jour des tabous
+        if(tabou) {
+            _tabou[indMax] = iter+_tailleTabou;
+            _tabou[ind2Max] = iter+_tailleTabou;
+        }
+        voisin = meilleure;
+        scoreVoisin = meilleurScore;
+
+    }
 
 }
 
@@ -195,7 +246,6 @@ bool Solver::explorerMinLocal(Configuration& confMin, Configuration confEqui, in
 
     cout << "exploration d'un minimum" << endl;
 
-    bool continuer = true;
     bool ameliore = false;
 
     while(it < 10 && scoreActuel != 0) {

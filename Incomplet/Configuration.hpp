@@ -63,6 +63,12 @@ class Configuration {
          */
         std::string toString();
 
+        /**
+         * \brief échange deux valeurs dans la configuration
+         * \ind1 l'indice de la première valeur à échanger
+         * \ind2 l'indice de la deuxième valeur à échanger
+         */
+        void swap(int ind1, int ind2);
 
         /**
          * \brief indique si les deux configurations sont égales
@@ -93,13 +99,6 @@ class Configuration {
          * \return vrai ssi toutes les valeurs pointées par les itérateurs sont différentes
          */
         bool allDifferent(std::list< std::list<int>::iterator >& valeurs);
-
-        /**
-         * \brief échange deux valeurs dans la configuration
-         * \ind1 l'indice de la première valeur à échanger
-         * \ind2 l'indice de la deuxième valeur à échanger
-         */
-        void swap(int ind1, int ind2);
 
         /**
          * \brief inversion d'une ligne du carré magique
