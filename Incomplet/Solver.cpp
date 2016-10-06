@@ -101,9 +101,9 @@ void Solver::resoudre() {
 
     while(continuer) {
 
-        cout << "jusque là : meilleur score = " << meilleurScore << endl;
+        // cout << "jusque là : meilleur score = " << meilleurScore << endl;
 
-        cout << config.toString() << endl;
+        // cout << config.toString() << endl;
         list<Configuration> voisins;
         config.genererVoisinage(voisins, false);
 
@@ -113,9 +113,9 @@ void Solver::resoudre() {
         // calcul du meilleur voisin
         trouverMeilleurVoisin(config, voisinMin, scoreMinVoisin, tabou, iter);
 
-        cout << "scoreActuel : " << scoreActuel << endl;
-        cout << "scoreMin voisins : " << scoreMinVoisin << endl;
-        cout << "tabou : " << tabou << "  -  nbIt : " << tabouIt << " score min tabou : " << scoreTabou << endl;
+        // cout << "scoreActuel : " << scoreActuel << endl;
+        // cout << "scoreMin voisins : " << scoreMinVoisin << endl;
+        // cout << "tabou : " << tabou << "  -  nbIt : " << tabouIt << " score min tabou : " << scoreTabou << endl;
 
         config = voisinMin;
         // scoreActuel = scoreMinVoisin;
@@ -139,7 +139,7 @@ void Solver::resoudre() {
                     tabou = false;
                     config.regenerer();
                     scoreActuel = calculerScore(config);
-                    cout << endl << endl << "restart!" << endl << endl;
+                    // cout << endl << endl << "restart!" << endl << endl;
                 }
             }
 
@@ -173,7 +173,7 @@ void Solver::resoudre() {
 
     }
 
-    cout << "meilleur score : " << meilleurScore << endl;
+    // cout << "meilleur score : " << meilleurScore << endl;
 
 
 
