@@ -30,10 +30,9 @@ void Solver::construireInstance() {
 
     // organisation des contraintes :
     // n contraintes ligne
-    // puis n contraintes colonne
-    // 2 contraintes de diagonale
+    // n contraintes colonne
+    // contraintes de diagonale
     // enfin 1 contrainte alldiff
-
     // création des contraintes
     _contraintes.resize(2*_n+3);
 

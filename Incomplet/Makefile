@@ -16,7 +16,7 @@ OBJECTS_FILES = main.o Solver.o Configuration.o Contrainte.o CtAllDiff.o CtSomme
 gcc : CXXFLAGS= $(OPTIONS) -O3
 gcc : main
 
-gcc-debug : CXXFLAGS=$(OPTIONS) -ggdb
+gcc-debug : CXXFLAGS=$(OPTIONS) -g
 gcc-debug : main
 
 run :
