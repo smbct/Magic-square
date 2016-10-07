@@ -8,6 +8,7 @@
 #ifndef CT_SOMME_COMPLET_HPP
 #define CT_SOMME_COMPLET_HPP
 
+#include <vector>
 #include "Contrainte.hpp"
 
 namespace complet {
@@ -45,11 +46,12 @@ class CtSomme : public Contrainte {
         /**
          * \brief tentative de satisfaction de la contrainte à partir d'une affectation
          * \param aTester les variables à tester
-         * \param listeTest : la valeur fixée à tester
-         * \param dte : le membre de droite de la contrainte de somme
+         * \param listeTest la valeur fixée à tester
+         * \param dte le membre de droite de la contrainte de somme
+         * \param dejaTeste liste des valeurs des domaines pour lesquelles une affectation a été trouvée
          * \return vrai ssi il existe une affectation satisfaisant la contrainte
          */
-        bool satisfaire(std::list<Variable*>& listeTest, int val, int dte);
+        bool satisfaire(std::list<Variable*>& listeTest, int val, int dte, std::vector<std::vector<bool>>& dejaTeste);
 
 
     private: // attributs privés

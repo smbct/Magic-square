@@ -103,8 +103,10 @@ bool Variable::affecter() {
     if(!_affectee) {
         _affectee = true;
         _valIt = _domaine.begin();
+        _indDom = 0;
     } else {
         _valIt ++;
+        _indDom ++;
     }
 
     // si toutes les valeurs ont été affectées, la variable n'est plus affectable pour le moment
@@ -136,5 +138,15 @@ int Variable::valeur() {
 
 /*----------------------------------------------------------------------------*/
 bool Variable::impossible() {
-    return _domaine.size() == 0;
+    return tailleDomaine() == 0;
+}
+
+/*----------------------------------------------------------------------------*/
+int Variable::tailleDomaine() {
+    return _domaine.size();
+}
+
+/*----------------------------------------------------------------------------*/
+int Variable::indAffecte() {
+    return _indDom;
 }
