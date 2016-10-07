@@ -8,6 +8,7 @@
 #include "CtAllDiff.hpp"
 
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -54,7 +55,7 @@ bool CtAllDiff::evaluer() {
 }
 
 /*----------------------------------------------------------------------------*/
-bool CtAllDiff::filtrer() {
+bool CtAllDiff::filtrer(list<Contrainte*>& aFiltrer, std::map<Variable*, list<Contrainte*>>& associees) {
 
     // auncun changement pour l'instant
     bool res = false;
@@ -70,16 +71,37 @@ bool CtAllDiff::filtrer() {
         }
     }
 
+    vector<bool> modifiee(libre.size(), false);
+
     for(Variable* var : affect) {
+
+        int indVar = 0;
         // la valeur de cette variable ne peut être proposées aux variables libres
         for(Variable* varLibre : libre) {
 
             if(varLibre->enleveVal(var->valeur()) > 0) {
                 // un changement a eu lieu
                 res = true;
+                modifiee[indVar] = true;
             }
+            indVar ++;
         }
 
+    }
+
+    // mise à jour des contraintes à filtrer
+    int indVar = 0;
+    for(Variable* varLibre : libre) { // revue de chaque variable qui a pu être modifiée
+        if(modifiee[indVar]) { // s'il y a eu une modification, des nouvelles contraintes sont peut être à filtrer
+            list<Contrainte*>& cont = associees[varLibre];
+            for(Contrainte* contrainte : cont) {
+                if(find(aFiltrer.begin(), aFiltrer.end(), contrainte) == aFiltrer.end()) {
+                    // si la contrainte n'est pas dans la liste de filtre, elle est ajoutée
+                    aFiltrer.push_back(contrainte);
+                }
+            }
+        }
+        indVar ++;
     }
 
     return res;

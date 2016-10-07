@@ -6,6 +6,7 @@
  */
 
 #include "CtSomme.hpp"
+#include <algorithm>
 #include <iostream>
 #include <cassert>
 
@@ -42,7 +43,7 @@ bool CtSomme::evaluer() {
 }
 
 /*----------------------------------------------------------------------------*/
-bool CtSomme::filtrer() {
+bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Contrainte*>>& associees) {
 
 
     bool res = false;
@@ -83,6 +84,16 @@ bool CtSomme::filtrer() {
 
         if(aEnlever.size() > 0 && !res) {
             res = true;
+
+            // mise à jour des contraintes à filtrer
+
+            list<Contrainte*>& cont = associees[variable];
+            for(Contrainte* contrainte : cont) {
+                if(find(aFiltrer.begin(), aFiltrer.end(), contrainte) == aFiltrer.end()) {
+                    aFiltrer.push_back(contrainte); // la contrainte est ajoutée si elle n'était pas présente
+                }
+            }
+
         }
 
         // les valeurs contradictoires sont ensuite supprimées du domaine de la variable

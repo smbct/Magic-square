@@ -92,6 +92,15 @@ void Solver::resoudre() {
 
     while(!arret) {
 
+        // affichage courant
+        int ind = 0;
+        for(Variable* variable : _variables) {
+
+            cout << ind << " : " << variable->toString() << endl;
+            ind ++;
+        }
+        cout << endl << endl;
+
         //cout << "itération : " << iteration << endl;
         iteration ++;
 
@@ -109,12 +118,15 @@ void Solver::resoudre() {
                 aAffecter.pop_front();
                 affectees.top()->affecter(); // affectation de la variable à la première valeur
 
+                // mise à jour de la liste des contraites à filtrer
+                list<Contrainte*>& cont = _associees[affectees.top()];
+                _aFiltrer.insert(_aFiltrer.end(), cont.begin(), cont.end());
+
                 // une affectation -> sauvegarde des domaines
                 for(Variable* var : _variables) {
                     var->sauvegardeDomaine();
                 }
 
-                majFileFiltre(affectees.top()); // une affectation -> des contraintes à filtrer
             } else { // verif si contradiction, backtracking si nécessaire
                 backtrack(affectees, aAffecter);
                 if(affectees.empty()) {
@@ -187,7 +199,9 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
                     variable->sauvegardeDomaine();
                 }
 
-                majFileFiltre(affectees.top()); // une affectation => des contraintes à filtrer
+                // mise à jour de la liste des contraintes à filtrer
+                list<Contrainte*>& cont = _associees[affectees.top()];
+                _aFiltrer.insert(_aFiltrer.end(), cont.begin(), cont.end());
 
                 arret = true;
             }
@@ -221,17 +235,24 @@ void Solver::filtrerPropager() {
     }
     cout << endl << endl;*/
 
-    bool continuer = true;
+    /*bool continuer = true;
     while(continuer) {
         auto it = _contraintes.begin();
         continuer = false;
         while(it != _contraintes.end()) { // filtrage des contraintes jusqu'au point fixe
-            if((*it)->filtrer()) {
+            if((*it)->filtrer(_aFiltrer, _associees)) {
                 continuer = true;
             }
             it ++;
         }
 
+    }*/
+
+    while(!_aFiltrer.empty()) {
+        Contrainte * cont = _aFiltrer.front();
+        _aFiltrer.pop_front();
+
+        cont->filtrer(_aFiltrer, _associees);
     }
 
     // affichage de debug : résultat du filtrage et position dans l'arbre de résolution
