@@ -74,22 +74,21 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
 
     // le test est fait pour chaque variable non affectée
 
+    indVar = 0;
     for(Variable* variable : libre) {
 
         list<int> aEnlever;
-
-        list<Variable*> aTester(libre);
-        aTester.remove(variable); //toutes les variables libres sauf celle qui est en cours de test
-
 
         // recherche d'une affectation des variables pour vérifier la contrainte
         while(variable->affecter()) {
 
             // tentative d'affectation vérifiant la contrainte
-            if(!satisfaire(aTester, variable->valeur(), dte, dejaTeste)) {
-                // si aucune affectation des variables n'a permis de vérifier la contrainte, la valeur est inutile
-                aEnlever.push_back(variable->valeur());
-            }
+            //if(!dejaTeste[indVar][variable->indAffecte()]) {
+                if(!satisfaire(libre, indVar, dte-variable->valeur(), dejaTeste)) {
+                    // si aucune affectation des variables n'a permis de vérifier la contrainte, la valeur est inutile
+                    aEnlever.push_back(variable->valeur());
+                }
+            //}
         }
 
         if(aEnlever.size() > 0 && !res) {
@@ -111,19 +110,27 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
             variable->enleveVal(val);
         }
 
+        indVar ++;
     }
 
     return res;
 }
 
 /*----------------------------------------------------------------------------*/
-bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte, vector<vector<bool>>& dejaTeste) {
+bool CtSomme::satisfaire(list<Variable*>& variables, int varTest, int dte, vector<vector<bool>>& dejaTeste) {
 
     // rajouter des bornes pour ne pas faire certains tests ?
 
-    int somme = val; // somme de toute les variables affectées
+    int somme = 0; // somme de toute les variables affectées
 
-    auto it = listeTest.begin();
+    auto it = variables.begin();
+    int indVar = 0;
+
+    if(indVar == varTest) {
+        indVar ++;
+        it ++;
+    }
+
     bool continuer = true;
     bool trouve = false;
 
@@ -131,8 +138,9 @@ bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte, vect
 
         // si il y a des variables non affectées, on avance jusqu'au bout
 
-        if(it != listeTest.end()) {
+        if(it != variables.end()) {
 
+            // dé-mise à jour de la somme, cette valeur là n'est plus actuellement considérée
             if((*it)->estAffectee()) {
                 somme -= (*it)->valeur();
             }
@@ -140,21 +148,49 @@ bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte, vect
             if((*it)->affecter()) {
                 somme += (*it)->valeur();
                 it ++;
+                indVar ++;
+                if(indVar == varTest) { // saut pour ne pas passer la variable à tester
+                    it ++;
+                    indVar ++;
+                }
+
             } else { // si l'affectation n'est pas possible, on revient en arrière
-                if(it == listeTest.begin()) { // toutes les combi de valeurs ont été testées, l'algo s'arrête
+                if(it == variables.begin()) { // toutes les combi de valeurs ont été testées, l'algo s'arrête
                     continuer = false;
                 } else {
                     it --;
+                    indVar --;
+
+                    if(indVar == varTest) {
+                        if(it != variables.begin()) {
+                            it --;
+                            indVar --;
+                        } else {
+                            continuer = false;
+                        }
+                    }
                 }
             }
+
 
         } else { // sinon vérifiction que la contrainte est vérifiée, sinon retour en arrière
 
             if(somme == dte) { // contrainte vérifiée, satisfaction réussie
                 trouve = true;
                 continuer = false;
-            } else if(it != listeTest.begin()){ // contrainte non vérifiée mais il reste des valeurs à tester
+            } else if(it != variables.begin()){ // contrainte non vérifiée mais il reste des valeurs à tester
                 it --;
+                indVar --;
+
+                if(indVar == varTest) {
+                    if(it != variables.begin()) {
+                        it --;
+                        indVar --;
+                    } else {
+                        continuer = false;
+                    }
+                }
+
             } else {
                 continuer = false;
             }
@@ -164,13 +200,27 @@ bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte, vect
     }
 
     if(trouve) { // les variables redeviennent libres
-        for(Variable* var : listeTest) {
-            var->desaffecter();
-        }
 
         // mise à jour du tableau, l'affectation est utile pour plusieurs variables
-        for(Variable* var : listeTest) {
-            
+        indVar = 0;
+        int abc = 0;
+        for(auto iter = variables.begin(); iter != variables.end(); iter ++) {
+            // abc ++;
+            indVar ++;
+        }
+        // for(Variable* var : variables) {
+            // indVar += 1;
+
+            /*if(indVar != varTest) {
+                dejaTeste[indVar][var->indAffecte()] = true;
+            }*/
+        // }
+
+        for(Variable* var : variables) {
+            if(indVar != varTest) {
+                var->desaffecter();
+            }
+            indVar ++;
         }
     }
 
