@@ -45,13 +45,13 @@ class CtSomme : public Contrainte {
 
         /**
          * \brief tentative de satisfaction de la contrainte à partir d'une affectation
-         * \param aTester les variables à tester
-         * \param listeTest la valeur fixée à tester
+         * \param variables les variables à affecter
+         * \param varTest indice de la variable en cours de test
          * \param dte le membre de droite de la contrainte de somme
          * \param dejaTeste liste des valeurs des domaines pour lesquelles une affectation a été trouvée
          * \return vrai ssi il existe une affectation satisfaisant la contrainte
          */
-        bool satisfaire(std::list<Variable*>& listeTest, int val, int dte, std::vector<std::vector<bool>>& dejaTeste);
+        bool satisfaire(std::list<Variable*>& variables, int varTest, int dte, std::vector<std::vector<bool>>& dejaTeste);
 
 
     private: // attributs privés
