@@ -80,11 +80,25 @@ class Variable {
          */
         bool impossible();
 
+        /**
+         * \brief donne le nombre de valeurs du domaine
+         * \return le nombre de valeur du domaine
+         */
+        int tailleDomaine();
+
+        /**
+         * \brief retourne l'indice dans le domaine de la valeur affectée à la variable
+         * \return l'indice dans le domaine de la valeur affectée à la variable
+         * \pre la variable a été affectée
+         */
+        int indAffecte();
+
     private:
         bool _affectee;
         std::list<int> _domaine;
         std::stack<std::list<int> > _filtrees;
         std::list<int>::iterator _valIt; // itérateur vers la valeur en cours d'affectation
+        int _indDom; // indice de l'élément du domaine actuellement affecté
 };
 
 }

@@ -10,8 +10,6 @@ You are given a number n. The problem consists in finding values for the cells o
 
 In this case the magic number is known. It is equal to (n * (n²+1)) / 2.
 
-[a 3*3 solved grid](https://upload.wikimedia.org/wikipedia/commons/e/e4/Magicsquareexample.svg)
-
 ## Solvers
 
 Two solvers are available.
@@ -24,6 +22,6 @@ This solver has been thought to be reusable. It should be easy to implment other
 ### Incomplete solver
 
 The second one is an incomplete solver which uses heuristics to find a solution. It is designed to be very fast but it is unable to proove that the problem is impossible.
-This solver is more specific and hasn't been designed to be reusable, asuming an incomplete solver requires less code.
+This solver is more specific and hasn't been designed to be reusable, assuming an incomplete solver requires less code.
 
 One of the idea used in the solver has been picked from the book : Constraint-based local search, Pascal Van Hentenryck and Laurent Michel.

@@ -60,6 +60,16 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
         }
     }
 
+    // astuce : retenir les valeurs des variables pour lesquelles on a trouvé une affectation
+
+    vector<vector<bool>> dejaTeste(libre.size()); // tableau dans lequel les indices représentent les variables
+    // les listes indiquent les valeurs des domaines pour lesquelles on a trouvé une affectation
+    int indVar = 0;
+    for(Variable* var : libre) {
+        dejaTeste[indVar].resize(var->tailleDomaine(), false);
+        indVar ++;
+    }
+
     // ensuite, parcours de toutes les variables libres. On cherche une affectation impossible
 
     // le test est fait pour chaque variable non affectée
@@ -76,7 +86,7 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
         while(variable->affecter()) {
 
             // tentative d'affectation vérifiant la contrainte
-            if(!satisfaire(aTester, variable->valeur(), dte)) {
+            if(!satisfaire(aTester, variable->valeur(), dte, dejaTeste)) {
                 // si aucune affectation des variables n'a permis de vérifier la contrainte, la valeur est inutile
                 aEnlever.push_back(variable->valeur());
             }
@@ -107,7 +117,7 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
 }
 
 /*----------------------------------------------------------------------------*/
-bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte) {
+bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte, vector<vector<bool>>& dejaTeste) {
 
     // rajouter des bornes pour ne pas faire certains tests ?
 
@@ -156,6 +166,11 @@ bool CtSomme::satisfaire(std::list<Variable*>& listeTest, int val, int dte) {
     if(trouve) { // les variables redeviennent libres
         for(Variable* var : listeTest) {
             var->desaffecter();
+        }
+
+        // mise à jour du tableau, l'affectation est utile pour plusieurs variables
+        for(Variable* var : listeTest) {
+            
         }
     }
 
