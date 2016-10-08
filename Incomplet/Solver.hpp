@@ -62,12 +62,13 @@ class Solver {
         /**
          * \brief recherche du meilleu voisin d'une configuration
          * \param config la configuration étudiée
+         * \param score le score de la configuration étudiée
          * \param voisin le meilleur voisin retourné
          * \param scoreVoisin le score du meilleur voisin trouvé
          * \param tabou vrai ssi le tabou est activé
          * \param iter le nb d'itération de l'algorithme
          */
-        void trouverMeilleurVoisin(Configuration& config, Configuration& voisin, int& scoreVoisin, bool tabou, int iter);
+        void trouverMeilleurVoisin(Configuration& config, int& score, Configuration& voisin, int& scoreVoisin, bool tabou, int iter);
 
     private: // attributs privés
 
