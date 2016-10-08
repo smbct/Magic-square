@@ -49,8 +49,9 @@ class Solver {
 
         /**
          * \brief filtrage et propagation
+         * \return vrai ssi une contradiction a été trouvée, et donc le problème est impossible avec ces affectations
          */
-        void filtrerPropager();
+        bool filtrerPropager();
 
         /**
          * \brief retour sur trace dans l'exploration de l'arbre

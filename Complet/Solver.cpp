@@ -86,20 +86,7 @@ void Solver::resoudre() {
     bool solution = false;
 
 
-    vector<Variable*> testOrdre(_variables.size());
-    int ind = 0;
-    for(auto it = _variables.begin(); it != _variables.end(); it ++) {
-        testOrdre[ind] = *it;
-        ind ++;
-    }
-
-    list<Variable*> aAffecter/*(_variables)*/; // les variables restant à affecter
-    while(!testOrdre.empty()) {
-        int ind2 = rand()%testOrdre.size();
-        aAffecter.push_back(testOrdre[ind2]);
-        testOrdre.erase(testOrdre.begin() + ind2);
-    }
-
+    list<Variable*> aAffecter(_variables); // les variables restant à affecter
 
     stack<Variable*> affectees; // les variables déjà affectées
 
@@ -108,25 +95,25 @@ void Solver::resoudre() {
     while(!arret) {
 
         // affichage courant
-        /*int ind = 0;
+        int ind = 0;
         for(Variable* variable : _variables) {
 
             cout << ind << " : " << variable->toString() << endl;
             ind ++;
         }
-        cout << endl << endl;*/
+        cout << endl << endl;
 
-        //cout << "itération : " << iteration << endl;
+        cout << "itération : " << iteration << endl;
         iteration ++;
 
         if(!aAffecter.empty()) { // parcours en profondeur
 
             // filtrage/propagation
-            filtrerPropager();
+            bool contrad = contrad = filtrerPropager();
 
             // cout << "contradiction ? " << contradiction() << endl;
 
-            if(!contradiction()) {
+            if(!contrad) {
 
                 // exploration
                 affectees.push(aAffecter.front());
@@ -229,56 +216,20 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
 }
 
 /*----------------------------------------------------------------------------*/
-void Solver::filtrerPropager() {
+bool Solver::filtrerPropager() {
 
-    // choix de l'ordre des contraintes
-    // on choisit de filtrer d'abord les contraintes qui ont le plus de variables affectes
+    bool res = false;
 
-    // vector<Contrainte*> contraintesTri(_contraintes);
-    // sort(contraintesTri.begin(), contraintesTri.end(), [](Contrainte* gch, Contrainte* dte)
-                                                            // { return gch->nbVariableFixe() >= dte->nbVariableFixe(); });
-
-    // FIXME Pas normal que le nb d'itération change en fonction du sens de parcours des contraintes
-    // Il doit y avoir un problème dans le filtrage des contraintes
-
-    // affichage de debug : résultat du filtrage et position dans l'arbre de résolution
-    /*int ind = 0;
-    cout << "avant filtrage : " << endl << endl;
-    for(Variable* variable : _variables) {
-        cout << "Variable " << ind << " : " << variable->toString() << endl;
-        ind ++;
-    }
-    cout << endl << endl;*/
-
-    /*bool continuer = true;
-    while(continuer) {
-        auto it = _contraintes.begin();
-        continuer = false;
-        while(it != _contraintes.end()) { // filtrage des contraintes jusqu'au point fixe
-            if((*it)->filtrer(_aFiltrer, _associees)) {
-                continuer = true;
-            }
-            it ++;
-        }
-
-    }*/
-
-    while(!_aFiltrer.empty()) {
+    while(!res && !_aFiltrer.empty()) {
         Contrainte * cont = _aFiltrer.front();
         _aFiltrer.pop_front();
 
-        cont->filtrer(_aFiltrer, _associees);
+        if(cont->filtrer(_aFiltrer, _associees)) {
+            res = true;
+        }
     }
 
-    // affichage de debug : résultat du filtrage et position dans l'arbre de résolution
-    /*ind = 0;
-    cout << endl << endl << "après filtrage : " << endl;
-    for(Variable* variable : _variables) {
-        cout << "Variable " << ind << " : " << variable->toString() << endl;
-        ind ++;
-    }
-    cout << endl << endl << endl;*/
-
+    return res;
 }
 
 /*----------------------------------------------------------------------------*/

@@ -81,7 +81,6 @@ bool CtAllDiff::filtrer(list<Contrainte*>& aFiltrer, std::map<Variable*, list<Co
 
             if(varLibre->enleveVal(var->valeur()) > 0) {
                 // un changement a eu lieu
-                res = true;
                 modifiee[indVar] = true;
             }
             indVar ++;
@@ -101,6 +100,12 @@ bool CtAllDiff::filtrer(list<Contrainte*>& aFiltrer, std::map<Variable*, list<Co
                 }
             }
         }
+
+        // si le domaine est vide, l'information est trasférée
+        if(varLibre->impossible()) {
+            res = true;
+        }
+
         indVar ++;
     }
 
