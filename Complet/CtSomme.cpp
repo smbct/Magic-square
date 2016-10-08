@@ -61,7 +61,6 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
     }
 
     // astuce : retenir les valeurs des variables pour lesquelles on a trouvé une affectation
-
     vector<vector<bool>> dejaTeste(libre.size()); // tableau dans lequel les indices représentent les variables
     // les listes indiquent les valeurs des domaines pour lesquelles on a trouvé une affectation
     int indVar = 0;
@@ -83,12 +82,12 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
         while(variable->affecter()) {
 
             // tentative d'affectation vérifiant la contrainte
-            //if(!dejaTeste[indVar][variable->indAffecte()]) {
+            if(!dejaTeste[indVar][variable->indAffecte()]) {
                 if(!satisfaire(libre, indVar, dte-variable->valeur(), dejaTeste)) {
                     // si aucune affectation des variables n'a permis de vérifier la contrainte, la valeur est inutile
                     aEnlever.push_back(variable->valeur());
                 }
-            //}
+            }
         }
 
         if(aEnlever.size() > 0 && !res) {
@@ -202,26 +201,16 @@ bool CtSomme::satisfaire(list<Variable*>& variables, int varTest, int dte, vecto
     if(trouve) { // les variables redeviennent libres
 
         // mise à jour du tableau, l'affectation est utile pour plusieurs variables
+        // et desaffectation des variabless
         indVar = 0;
-        int abc = 0;
-        for(auto iter = variables.begin(); iter != variables.end(); iter ++) {
-            // abc ++;
-            indVar ++;
-        }
-        // for(Variable* var : variables) {
-            // indVar += 1;
-
-            /*if(indVar != varTest) {
-                dejaTeste[indVar][var->indAffecte()] = true;
-            }*/
-        // }
-
         for(Variable* var : variables) {
             if(indVar != varTest) {
+                dejaTeste[indVar][var->indAffecte()] = true;
                 var->desaffecter();
             }
             indVar ++;
         }
+
     }
 
     return trouve;

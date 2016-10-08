@@ -1,0 +1,363 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 19.68      0.12     0.12   517600     0.23     0.80  complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&)
+ 18.04      0.23     0.11  2170251     0.05     0.13  complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&)
+ 14.76      0.32     0.09 44055586     0.00     0.00  complet::Variable::affecter()
+ 13.12      0.40     0.08    65879     1.21     2.18  complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&)
+  9.84      0.46     0.06 79559521     0.00     0.00  complet::Variable::valeur()
+  9.84      0.52     0.06 11231973     0.01     0.01  complet::Variable::enleveVal(int)
+  6.56      0.56     0.04   233486     0.17     0.17  complet::Variable::restoreDomaine()
+  5.74      0.60     0.04 43549821     0.00     0.00  complet::Variable::estAffectee()
+  1.64      0.61     0.01                             complet::Solver::resoudre()
+  0.82      0.61     0.01  2510522     0.00     0.00  complet::Variable::desaffecter()
+  0.00      0.61     0.00  5786291     0.00     0.00  complet::Variable::indAffecte()
+  0.00      0.61     0.00  1461352     0.00     0.00  complet::Variable::tailleDomaine()
+  0.00      0.61     0.00  1461352     0.00     0.00  std::vector<bool, std::allocator<bool> >::_M_fill_insert(std::_Bit_iterator, unsigned long, bool)
+  0.00      0.61     0.00   233786     0.00     0.00  complet::Variable::sauvegardeDomaine()
+  0.00      0.61     0.00   113574     0.00     0.00  complet::Variable::impossible()
+  0.00      0.61     0.00    18518     0.00     0.00  std::_List_iterator<complet::Contrainte*> std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >::insert<std::_List_iterator<complet::Contrainte*>, void>(std::_List_const_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>)
+  0.00      0.61     0.00    14899     0.00     2.69  complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&)
+  0.00      0.61     0.00       85     0.00     0.00  complet::Contrainte::ajouterVariable(complet::Variable*)
+  0.00      0.61     0.00       50     0.00     0.00  std::_Deque_base<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_initialize_map(unsigned long)
+  0.00      0.61     0.00       25     0.00     0.00  complet::Variable::Variable(int, int)
+  0.00      0.61     0.00       13     0.00     0.00  complet::Contrainte::Contrainte()
+  0.00      0.61     0.00       13     0.00     0.00  complet::Contrainte::~Contrainte()
+  0.00      0.61     0.00       12     0.00     0.00  complet::CtSomme::evaluer()
+  0.00      0.61     0.00       12     0.00     0.00  complet::CtSomme::CtSomme(int)
+  0.00      0.61     0.00       12     0.00     0.00  complet::CtSomme::~CtSomme()
+  0.00      0.61     0.00        4     0.00     0.00  void std::deque<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_push_back_aux<std::__cxx11::list<int, std::allocator<int> > >(std::__cxx11::list<int, std::allocator<int> >&&)
+  0.00      0.61     0.00        2     0.00     0.00  std::_Deque_base<complet::Variable*, std::allocator<complet::Variable*> >::_M_initialize_map(unsigned long)
+  0.00      0.61     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN7complet6SolverC2Ei
+  0.00      0.61     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN7complet7CtSommeC2Ei
+  0.00      0.61     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN7complet8VariableC2Eii
+  0.00      0.61     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN7complet9CtAllDiffC2Ev
+  0.00      0.61     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.61     0.00        1     0.00     0.00  complet::Solver::construireInstance()
+  0.00      0.61     0.00        1     0.00     0.91  complet::CtAllDiff::evaluer()
+  0.00      0.61     0.00        1     0.00     0.00  complet::CtAllDiff::CtAllDiff()
+  0.00      0.61     0.00        1     0.00     0.00  complet::CtAllDiff::~CtAllDiff()
+  0.00      0.61     0.00        1     0.00     0.00  std::vector<complet::Contrainte*, std::allocator<complet::Contrainte*> >::_M_default_append(unsigned long)
+  0.00      0.61     0.00        1     0.00     0.00  std::_Rb_tree<complet::Variable*, std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > >, std::_Select1st<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >::_M_erase(std::_Rb_tree_node<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > >*)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 1.64% of 0.61 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.01    0.60                 complet::Solver::resoudre() [1]
+                0.12    0.30  517600/517600      complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+                0.08    0.06   65879/65879       complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [4]
+                0.00    0.04   14899/14899       complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+                0.00    0.00    3619/44055586     complet::Variable::affecter() [5]
+                0.00    0.00       1/1           complet::CtAllDiff::evaluer() [12]
+                0.00    0.00      12/12          complet::CtSomme::evaluer() [13]
+                0.00    0.00      25/79559521     complet::Variable::valeur() [6]
+                0.00    0.00  113574/113574      complet::Variable::impossible() [25]
+                0.00    0.00   44335/233786      complet::Variable::sauvegardeDomaine() [24]
+                0.00    0.00    3619/18518       std::_List_iterator<complet::Contrainte*> std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >::insert<std::_List_iterator<complet::Contrainte*>, void>(std::_List_const_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>) [26]
+                0.00    0.00       2/2           std::_Deque_base<complet::Variable*, std::allocator<complet::Variable*> >::_M_initialize_map(unsigned long) [35]
+-----------------------------------------------
+                0.12    0.30  517600/517600      complet::Solver::resoudre() [1]
+[2]     68.2    0.12    0.30  517600         complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+                0.11    0.17 2170251/2170251     complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+                0.01    0.00 4737121/44055586     complet::Variable::affecter() [5]
+                0.01    0.00  981083/11231973     complet::Variable::enleveVal(int) [7]
+                0.00    0.00 4277982/79559521     complet::Variable::valeur() [6]
+                0.00    0.00 2588000/43549821     complet::Variable::estAffectee() [10]
+                0.00    0.00 3275769/5786291     complet::Variable::indAffecte() [21]
+                0.00    0.00 1461352/1461352     complet::Variable::tailleDomaine() [22]
+                0.00    0.00 1461352/1461352     std::vector<bool, std::allocator<bool> >::_M_fill_insert(std::_Bit_iterator, unsigned long, bool) [23]
+-----------------------------------------------
+                0.11    0.17 2170251/2170251     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+[3]     45.2    0.11    0.17 2170251         complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+                0.08    0.00 39296353/44055586     complet::Variable::affecter() [5]
+                0.05    0.00 65029364/79559521     complet::Variable::valeur() [6]
+                0.03    0.00 39296353/43549821     complet::Variable::estAffectee() [10]
+                0.01    0.00 2510522/2510522     complet::Variable::desaffecter() [11]
+                0.00    0.00 2510522/5786291     complet::Variable::indAffecte() [21]
+-----------------------------------------------
+                0.08    0.06   65879/65879       complet::Solver::resoudre() [1]
+[4]     23.6    0.08    0.06   65879         complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [4]
+                0.05    0.00 10250890/11231973     complet::Variable::enleveVal(int) [7]
+                0.01    0.00 10250890/79559521     complet::Variable::valeur() [6]
+                0.00    0.00 1646975/43549821     complet::Variable::estAffectee() [10]
+-----------------------------------------------
+                0.00    0.00    3619/44055586     complet::Solver::resoudre() [1]
+                0.00    0.00   18493/44055586     complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+                0.01    0.00 4737121/44055586     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+                0.08    0.00 39296353/44055586     complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+[5]     14.8    0.09    0.00 44055586         complet::Variable::affecter() [5]
+-----------------------------------------------
+                0.00    0.00      25/79559521     complet::Solver::resoudre() [1]
+                0.00    0.00      60/79559521     complet::CtSomme::evaluer() [13]
+                0.00    0.00    1200/79559521     complet::CtAllDiff::evaluer() [12]
+                0.00    0.00 4277982/79559521     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+                0.01    0.00 10250890/79559521     complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [4]
+                0.05    0.00 65029364/79559521     complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+[6]      9.8    0.06    0.00 79559521         complet::Variable::valeur() [6]
+-----------------------------------------------
+                0.01    0.00  981083/11231973     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+                0.05    0.00 10250890/11231973     complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [4]
+[7]      9.8    0.06    0.00 11231973         complet::Variable::enleveVal(int) [7]
+-----------------------------------------------
+                0.00    0.04   14899/14899       complet::Solver::resoudre() [1]
+[8]      6.6    0.00    0.04   14899         complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+                0.04    0.00  233486/233486      complet::Variable::restoreDomaine() [9]
+                0.00    0.00   18493/44055586     complet::Variable::affecter() [5]
+                0.00    0.00   18493/43549821     complet::Variable::estAffectee() [10]
+                0.00    0.00  189451/233786      complet::Variable::sauvegardeDomaine() [24]
+                0.00    0.00   14899/18518       std::_List_iterator<complet::Contrainte*> std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >::insert<std::_List_iterator<complet::Contrainte*>, void>(std::_List_const_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>) [26]
+-----------------------------------------------
+                0.04    0.00  233486/233486      complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+[9]      6.6    0.04    0.00  233486         complet::Variable::restoreDomaine() [9]
+-----------------------------------------------
+                0.00    0.00   18493/43549821     complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+                0.00    0.00 1646975/43549821     complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [4]
+                0.00    0.00 2588000/43549821     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+                0.03    0.00 39296353/43549821     complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+[10]     5.7    0.04    0.00 43549821         complet::Variable::estAffectee() [10]
+-----------------------------------------------
+                0.01    0.00 2510522/2510522     complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+[11]     0.8    0.01    0.00 2510522         complet::Variable::desaffecter() [11]
+-----------------------------------------------
+                0.00    0.00       1/1           complet::Solver::resoudre() [1]
+[12]     0.0    0.00    0.00       1         complet::CtAllDiff::evaluer() [12]
+                0.00    0.00    1200/79559521     complet::Variable::valeur() [6]
+-----------------------------------------------
+                0.00    0.00      12/12          complet::Solver::resoudre() [1]
+[13]     0.0    0.00    0.00      12         complet::CtSomme::evaluer() [13]
+                0.00    0.00      60/79559521     complet::Variable::valeur() [6]
+-----------------------------------------------
+                0.00    0.00 2510522/5786291     complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [3]
+                0.00    0.00 3275769/5786291     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+[21]     0.0    0.00    0.00 5786291         complet::Variable::indAffecte() [21]
+-----------------------------------------------
+                0.00    0.00 1461352/1461352     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+[22]     0.0    0.00    0.00 1461352         complet::Variable::tailleDomaine() [22]
+-----------------------------------------------
+                0.00    0.00 1461352/1461352     complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [2]
+[23]     0.0    0.00    0.00 1461352         std::vector<bool, std::allocator<bool> >::_M_fill_insert(std::_Bit_iterator, unsigned long, bool) [23]
+-----------------------------------------------
+                0.00    0.00   44335/233786      complet::Solver::resoudre() [1]
+                0.00    0.00  189451/233786      complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+[24]     0.0    0.00    0.00  233786         complet::Variable::sauvegardeDomaine() [24]
+                0.00    0.00       4/4           void std::deque<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_push_back_aux<std::__cxx11::list<int, std::allocator<int> > >(std::__cxx11::list<int, std::allocator<int> >&&) [34]
+-----------------------------------------------
+                0.00    0.00  113574/113574      complet::Solver::resoudre() [1]
+[25]     0.0    0.00    0.00  113574         complet::Variable::impossible() [25]
+-----------------------------------------------
+                0.00    0.00    3619/18518       complet::Solver::resoudre() [1]
+                0.00    0.00   14899/18518       complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [8]
+[26]     0.0    0.00    0.00   18518         std::_List_iterator<complet::Contrainte*> std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >::insert<std::_List_iterator<complet::Contrainte*>, void>(std::_List_const_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>) [26]
+-----------------------------------------------
+                0.00    0.00      85/85          complet::Solver::construireInstance() [41]
+[27]     0.0    0.00    0.00      85         complet::Contrainte::ajouterVariable(complet::Variable*) [27]
+-----------------------------------------------
+                0.00    0.00      50/50          complet::Variable::Variable(int, int) [29]
+[28]     0.0    0.00    0.00      50         std::_Deque_base<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_initialize_map(unsigned long) [28]
+-----------------------------------------------
+                0.00    0.00      25/25          complet::Solver::construireInstance() [41]
+[29]     0.0    0.00    0.00      25         complet::Variable::Variable(int, int) [29]
+                0.00    0.00      50/50          std::_Deque_base<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_initialize_map(unsigned long) [28]
+-----------------------------------------------
+                0.00    0.00       1/13          complet::CtAllDiff::CtAllDiff() [42]
+                0.00    0.00      12/13          complet::CtSomme::CtSomme(int) [32]
+[30]     0.0    0.00    0.00      13         complet::Contrainte::Contrainte() [30]
+-----------------------------------------------
+                0.00    0.00       1/13          complet::CtAllDiff::~CtAllDiff() [43]
+                0.00    0.00      12/13          complet::CtSomme::~CtSomme() [33]
+[31]     0.0    0.00    0.00      13         complet::Contrainte::~Contrainte() [31]
+-----------------------------------------------
+                0.00    0.00      12/12          complet::Solver::construireInstance() [41]
+[32]     0.0    0.00    0.00      12         complet::CtSomme::CtSomme(int) [32]
+                0.00    0.00      12/13          complet::Contrainte::Contrainte() [30]
+-----------------------------------------------
+                0.00    0.00      12/12          complet::Solver::~Solver() [53]
+[33]     0.0    0.00    0.00      12         complet::CtSomme::~CtSomme() [33]
+                0.00    0.00      12/13          complet::Contrainte::~Contrainte() [31]
+-----------------------------------------------
+                0.00    0.00       4/4           complet::Variable::sauvegardeDomaine() [24]
+[34]     0.0    0.00    0.00       4         void std::deque<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_push_back_aux<std::__cxx11::list<int, std::allocator<int> > >(std::__cxx11::list<int, std::allocator<int> >&&) [34]
+-----------------------------------------------
+                0.00    0.00       2/2           complet::Solver::resoudre() [1]
+[35]     0.0    0.00    0.00       2         std::_Deque_base<complet::Variable*, std::allocator<complet::Variable*> >::_M_initialize_map(unsigned long) [35]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [70]
+[36]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN7complet6SolverC2Ei [36]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [70]
+[37]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN7complet7CtSommeC2Ei [37]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [70]
+[38]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN7complet8VariableC2Eii [38]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [70]
+[39]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN7complet9CtAllDiffC2Ev [39]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [70]
+[40]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [40]
+-----------------------------------------------
+                0.00    0.00       1/1           complet::Solver::Solver(int) [52]
+[41]     0.0    0.00    0.00       1         complet::Solver::construireInstance() [41]
+                0.00    0.00      85/85          complet::Contrainte::ajouterVariable(complet::Variable*) [27]
+                0.00    0.00      25/25          complet::Variable::Variable(int, int) [29]
+                0.00    0.00      12/12          complet::CtSomme::CtSomme(int) [32]
+                0.00    0.00       1/1           complet::CtAllDiff::CtAllDiff() [42]
+                0.00    0.00       1/1           std::vector<complet::Contrainte*, std::allocator<complet::Contrainte*> >::_M_default_append(unsigned long) [44]
+-----------------------------------------------
+                0.00    0.00       1/1           complet::Solver::construireInstance() [41]
+[42]     0.0    0.00    0.00       1         complet::CtAllDiff::CtAllDiff() [42]
+                0.00    0.00       1/13          complet::Contrainte::Contrainte() [30]
+-----------------------------------------------
+                0.00    0.00       1/1           complet::Solver::~Solver() [53]
+[43]     0.0    0.00    0.00       1         complet::CtAllDiff::~CtAllDiff() [43]
+                0.00    0.00       1/13          complet::Contrainte::~Contrainte() [31]
+-----------------------------------------------
+                0.00    0.00       1/1           complet::Solver::construireInstance() [41]
+[44]     0.0    0.00    0.00       1         std::vector<complet::Contrainte*, std::allocator<complet::Contrainte*> >::_M_default_append(unsigned long) [44]
+-----------------------------------------------
+                0.00    0.00       1/1           complet::Solver::~Solver() [53]
+[45]     0.0    0.00    0.00       1         std::_Rb_tree<complet::Variable*, std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > >, std::_Select1st<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >::_M_erase(std::_Rb_tree_node<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > >*) [45]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [36] _GLOBAL__sub_I__ZN7complet6SolverC2Ei [2] complet::CtSomme::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&) [29] complet::Variable::Variable(int, int)
+  [37] _GLOBAL__sub_I__ZN7complet7CtSommeC2Ei [32] complet::CtSomme::CtSomme(int) [12] complet::CtAllDiff::evaluer()
+  [38] _GLOBAL__sub_I__ZN7complet8VariableC2Eii [33] complet::CtSomme::~CtSomme() [4] complet::CtAllDiff::filtrer(std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >&, std::map<complet::Variable*, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >&)
+  [39] _GLOBAL__sub_I__ZN7complet9CtAllDiffC2Ev [25] complet::Variable::impossible() [42] complet::CtAllDiff::CtAllDiff()
+  [40] _GLOBAL__sub_I_main    [21] complet::Variable::indAffecte() [43] complet::CtAllDiff::~CtAllDiff()
+  [27] complet::Contrainte::ajouterVariable(complet::Variable*) [11] complet::Variable::desaffecter() [28] std::_Deque_base<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_initialize_map(unsigned long)
+  [30] complet::Contrainte::Contrainte() [10] complet::Variable::estAffectee() [35] std::_Deque_base<complet::Variable*, std::allocator<complet::Variable*> >::_M_initialize_map(unsigned long)
+  [31] complet::Contrainte::~Contrainte() [22] complet::Variable::tailleDomaine() [34] void std::deque<std::__cxx11::list<int, std::allocator<int> >, std::allocator<std::__cxx11::list<int, std::allocator<int> > > >::_M_push_back_aux<std::__cxx11::list<int, std::allocator<int> > >(std::__cxx11::list<int, std::allocator<int> >&&)
+  [41] complet::Solver::construireInstance() [9] complet::Variable::restoreDomaine() [44] std::vector<complet::Contrainte*, std::allocator<complet::Contrainte*> >::_M_default_append(unsigned long)
+   [1] complet::Solver::resoudre() [24] complet::Variable::sauvegardeDomaine() [23] std::vector<bool, std::allocator<bool> >::_M_fill_insert(std::_Bit_iterator, unsigned long, bool)
+   [8] complet::Solver::backtrack(std::stack<complet::Variable*, std::deque<complet::Variable*, std::allocator<complet::Variable*> > >&, std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&) [6] complet::Variable::valeur() [26] std::_List_iterator<complet::Contrainte*> std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> >::insert<std::_List_iterator<complet::Contrainte*>, void>(std::_List_const_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>, std::_List_iterator<complet::Contrainte*>)
+   [3] complet::CtSomme::satisfaire(std::__cxx11::list<complet::Variable*, std::allocator<complet::Variable*> >&, int, int, std::vector<std::vector<bool, std::allocator<bool> >, std::allocator<std::vector<bool, std::allocator<bool> > > >&) [5] complet::Variable::affecter() [45] std::_Rb_tree<complet::Variable*, std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > >, std::_Select1st<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > >, std::less<complet::Variable*>, std::allocator<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > > >::_M_erase(std::_Rb_tree_node<std::pair<complet::Variable* const, std::__cxx11::list<complet::Contrainte*, std::allocator<complet::Contrainte*> > > >*)
+  [13] complet::CtSomme::evaluer() [7] complet::Variable::enleveVal(int)
