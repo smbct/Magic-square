@@ -1,11 +1,11 @@
 EXEC=magic-square
 
-CC=g++
-CXX=g++ -std=c++11
+CC=g++ -pg
+CXX=g++
 LDLIBS=
 CPPFLAGS=
 
-OPTIONS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter
+OPTIONS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter -pg
 
 LDFLAGS=$(OPTIIONS)
 

@@ -85,7 +85,22 @@ void Solver::resoudre() {
     bool arret = false;
     bool solution = false;
 
-    list<Variable*> aAffecter(_variables); // les variables restant à affecter
+
+    vector<Variable*> testOrdre(_variables.size());
+    int ind = 0;
+    for(auto it = _variables.begin(); it != _variables.end(); it ++) {
+        testOrdre[ind] = *it;
+        ind ++;
+    }
+
+    list<Variable*> aAffecter/*(_variables)*/; // les variables restant à affecter
+    while(!testOrdre.empty()) {
+        int ind2 = rand()%testOrdre.size();
+        aAffecter.push_back(testOrdre[ind2]);
+        testOrdre.erase(testOrdre.begin() + ind2);
+    }
+
+
     stack<Variable*> affectees; // les variables déjà affectées
 
     int iteration = 0;
@@ -93,13 +108,13 @@ void Solver::resoudre() {
     while(!arret) {
 
         // affichage courant
-        int ind = 0;
+        /*int ind = 0;
         for(Variable* variable : _variables) {
 
             cout << ind << " : " << variable->toString() << endl;
             ind ++;
         }
-        cout << endl << endl;
+        cout << endl << endl;*/
 
         //cout << "itération : " << iteration << endl;
         iteration ++;
@@ -123,7 +138,7 @@ void Solver::resoudre() {
                 _aFiltrer.insert(_aFiltrer.end(), cont.begin(), cont.end());
 
                 // une affectation -> sauvegarde des domaines
-                for(Variable* var : _variables) {
+                for(Variable* var : aAffecter) {
                     var->sauvegardeDomaine();
                 }
 
@@ -181,7 +196,7 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
         if(!affectees.empty()) {
 
             // rétablissement des domaines car une modification est faite
-            for(Variable* var : _variables) {
+            for(Variable* var : aAffecter) {
                 var->restoreDomaine();
             }
 
@@ -195,7 +210,7 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
             } else { // l'affectation est réussie, arret du backtrack
 
                 // sauvegarde des domaines
-                for(Variable* variable : _variables) {
+                for(Variable* variable : aAffecter) {
                     variable->sauvegardeDomaine();
                 }
 

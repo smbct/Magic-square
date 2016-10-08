@@ -96,9 +96,6 @@ void Variable::restoreDomaine() {
 /*----------------------------------------------------------------------------*/
 bool Variable::affecter() {
 
-    // TODO enlever ça
-    // assert(_domaine.size() != 0);
-
     // si pas d'affectation, on affecte au début de la liste
     if(!_affectee) {
         _affectee = true;
@@ -129,9 +126,6 @@ bool Variable::estAffectee() {
 
 /*----------------------------------------------------------------------------*/
 int Variable::valeur() {
-
-    // TODO remplacer par des exceptions
-    assert(_affectee);
 
     return *_valIt;
 }
