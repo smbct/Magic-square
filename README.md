@@ -24,4 +24,4 @@ This solver has been thought to be reusable. It should be easy to implment other
 The second one is an incomplete solver which uses heuristics to find a solution. It is designed to be very fast but it is unable to proove that the problem is impossible.
 This solver is more specific and hasn't been designed to be reusable, assuming an incomplete solver requires less code.
 
-One of the idea used in the solver has been picked from the book : Constraint-based local search, Pascal Van Hentenryck and Laurent Michel.
+One of the idea used in the solver has been picked from the book : Constraint-based local search from Pascal Van Hentenryck and Laurent Michel.
