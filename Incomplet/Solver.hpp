@@ -52,6 +52,14 @@ class Solver {
         int calculerScore(Configuration& configs);
 
         /**
+         * \brief recalcule le score à partir d'un swap dans la confuration
+         * \param var1 la première variable swapée
+         * \param var2 la deuxième variable swapée
+         * \return le nouveau score après le swap
+         */
+        int recalculerScore(int var1, int var2);
+
+        /**
          * \brief explore un minimum local pour tenter d'en sortir
          * \param confMin la configuration du min
          * \param confEqui la configuration pour en sortir, qui a le même score
@@ -75,6 +83,7 @@ class Solver {
         int _taille;
         int _M;
         std::list<Contrainte*> _contraintes;
+        std::vector<int> _sommeContr; // somme de chaque contrainte pour la configuration courante
         const int _tailleTabou;
         const int _maxTabouIt; // nombre d'itération maxi autorisé dans un min local pour en sortir
         std::vector<int> _tabou; // liste tabou, mouvements interdits

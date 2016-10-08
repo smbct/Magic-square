@@ -77,6 +77,7 @@ void Solver::creerContraintes() {
         _contraintes.back()->ajouterVariable(ligne*_taille + (_taille - ligne - 1));
     }
 
+    _sommeContr.resize(_contraintes.size(), 0);
 
 }
 
@@ -88,6 +89,8 @@ void Solver::resoudre() {
 
     bool continuer = true;
     int iter = 0;
+
+    // TODO initialiser les sommes des contraintes ici
     int scoreActuel = calculerScore(config);
 
     int meilleurScore = scoreActuel;
@@ -127,7 +130,7 @@ void Solver::resoudre() {
 
             tabouIt ++;
 
-            if(scoreMinVoisin < scoreTabou) { // amélioration locale
+            if(scoreMinVoisin != -1 && scoreMinVoisin < scoreTabou) { // amélioration locale
                 scoreTabou = scoreMinVoisin;
 
                 if(scoreTabou < scoreActuel) { // arêt du tabou, un meilleur score a été trouvé
@@ -145,7 +148,7 @@ void Solver::resoudre() {
 
         } else {
 
-            if(scoreMinVoisin < scoreActuel) { // le score est amélioré
+            if(scoreMinVoisin != -1 && scoreMinVoisin < scoreActuel) { // le score est amélioré
                 scoreActuel = scoreMinVoisin;
 
                 if(scoreActuel < meilleurScore) {
@@ -228,6 +231,7 @@ void Solver::trouverMeilleurVoisin(Configuration& config, int& score, Configurat
         // voisin = meilleure;
         scoreVoisin = meilleurScore;
         voisin.swap(indMax, ind2Max);
+        // TODO : mettre à jour les sommes des contraintes ici
 
     }
 
@@ -244,6 +248,11 @@ int Solver::calculerScore(Configuration& config) {
     }
 
     return somme;
+}
+
+/*----------------------------------------------------------------------------*/
+int recalculerScore(int var1, int var2) {
+    return 0;
 }
 
 
