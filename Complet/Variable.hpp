@@ -38,9 +38,9 @@ class Variable {
         /**
          * \brief tente d'enlever une valeur du domaine
          * \param val l'ensemble des valeurs à enlever
-         * \return 0 si la valeur n'était pas présente, 1 si la valeur était présente et que le domaine n'est pas vide, deux si le domaine est désormais vide
+         * \return vrai ssi le domaine a été modifié
          */
-        int enleveVal(int val);
+        bool enleveVal(int val);
 
         /**
          * \brief sauvegarde de l'état actuel du domaine

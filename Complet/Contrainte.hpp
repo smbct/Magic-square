@@ -38,7 +38,7 @@ class Contrainte {
          * \brief filtrage de la contrainte -> met à jour le domaine des variables
          * \param aFiltrer les contraintes qui seront à filtrer après le filtrage de celle-ci
          * \param associees la liste des contraintes associées à chaque variable du problème
-         * \return vrai ssi un changement a été effectué sur le domaine des variables
+         * \return vrai ssi un domaine de variable est désormais vide
          */
         virtual bool filtrer(std::list<Contrainte*>& aFiltrer, std::map<Variable*, std::list<Contrainte*>>& associees) = 0;
 

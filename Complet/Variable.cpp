@@ -55,9 +55,9 @@ string Variable::toString() {
 }
 
 /*----------------------------------------------------------------------------*/
-int Variable::enleveVal(int val) {
+bool Variable::enleveVal(int val) {
 
-    int res = 0;
+    bool res = false;
     auto it = find(_domaine.begin(), _domaine.end(), val);
 
     if(it != _domaine.end()) {
@@ -68,11 +68,7 @@ int Variable::enleveVal(int val) {
         _domaine.erase(it);
 
         // la valeur était bien présente
-        if(_domaine.size() > 0) {
-            res = 1;
-        } else {
-            res = 2;
-        }
+        res = true;
     }
 
     return res;

@@ -45,7 +45,6 @@ bool CtSomme::evaluer() {
 /*----------------------------------------------------------------------------*/
 bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Contrainte*>>& associees) {
 
-
     bool res = false;
 
     // 1ère étape : calcul du membre de droite en fonction des valeurs affectées
@@ -74,8 +73,10 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
     // le test est fait pour chaque variable non affectée
 
     indVar = 0;
-    for(Variable* variable : libre) {
+    auto iter = libre.begin();
+    while(iter != libre.end() && !res) {
 
+        Variable* variable = *iter;
         list<int> aEnlever;
 
         // recherche d'une affectation des variables pour vérifier la contrainte
@@ -91,8 +92,6 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
         }
 
         if(aEnlever.size() > 0 && !res) {
-            res = true;
-
             // mise à jour des contraintes à filtrer
 
             list<Contrainte*>& cont = associees[variable];
@@ -106,10 +105,16 @@ bool CtSomme::filtrer(list<Contrainte*>& aFiltrer, map<Variable*, std::list<Cont
 
         // les valeurs contradictoires sont ensuite supprimées du domaine de la variable
         for(int val : aEnlever) {
-            variable->enleveVal(val);
+            if(variable->enleveVal(val)) {
+                if(variable->impossible()) {
+                    res = true; // une contradiction est trouvée
+                    // TODO sortir directement de la boucle et de la fonction
+                }
+            }
         }
 
         indVar ++;
+        iter ++;
     }
 
     return res;
