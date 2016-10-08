@@ -12,7 +12,7 @@ int main() {
 
     srand(time(0));
 
-    Solver solver(20);
+    Solver solver(4);
 
     clock_t begin = clock();
     solver.resoudre();

@@ -111,7 +111,7 @@ void Solver::resoudre() {
         scoreMinVoisin = -1;
 
         // calcul du meilleur voisin
-        trouverMeilleurVoisin(config, voisinMin, scoreMinVoisin, tabou, iter);
+        trouverMeilleurVoisin(config, tabou ? scoreTabou : scoreActuel, voisinMin, scoreMinVoisin, tabou, iter);
 
         cout << "scoreActuel : " << scoreActuel << endl;
         cout << "scoreMin voisins : " << scoreMinVoisin << endl;
@@ -180,29 +180,39 @@ void Solver::resoudre() {
 }
 
 /*----------------------------------------------------------------------------*/
-void Solver::trouverMeilleurVoisin(Configuration& config, Configuration& voisin, int& scoreVoisin, bool tabou, int iter) {
+void Solver::trouverMeilleurVoisin(Configuration& config, int& score, Configuration& voisin, int& scoreVoisin, bool tabou, int iter) {
 
     int indMax = -1, ind2Max = -1;
     Configuration meilleure(config);
     int meilleurScore = -1;
 
     int ind = 0, ind2;
-    while(ind < _taille*_taille) {
+    bool continuer = true;
+
+    voisin = config;
+    int objectif = score*0.98;
+
+    while(continuer && ind < _taille*_taille) {
 
         ind2 = ind+1;
-        while(ind2 < _taille*_taille) {
+        while(continuer && ind2 < _taille*_taille) {
 
             if(!tabou || (_tabou[ind] <= iter && _tabou[ind2] <= iter)) { // on peut sélectionner ces éléments
-                Configuration voisin = config;
+
                 voisin.swap(ind, ind2);
                 int score = calculerScore(voisin);
 
                 if(meilleurScore == -1 || score < meilleurScore) {
-                    meilleure = voisin;
+                    // meilleure = voisin;
                     meilleurScore = score;
                     indMax = ind;
                     ind2Max = ind2;
+
+                    if(meilleurScore < objectif) {
+                        continuer = false;
+                    }
                 }
+                voisin.swap(ind2, ind);
             }
             ind2 ++;
         }
@@ -215,8 +225,9 @@ void Solver::trouverMeilleurVoisin(Configuration& config, Configuration& voisin,
             _tabou[indMax] = iter+_tailleTabou;
             _tabou[ind2Max] = iter+_tailleTabou;
         }
-        voisin = meilleure;
+        // voisin = meilleure;
         scoreVoisin = meilleurScore;
+        voisin.swap(indMax, ind2Max);
 
     }
 
