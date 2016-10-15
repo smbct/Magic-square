@@ -34,7 +34,7 @@ bool CtSomme::evaluer() {
         somme += var->valeur();
     }
 
-    // varification du respect de la contrainte
+    // vérification du respect de la contrainte
     if(somme == _M) {
         res = true;
     }
