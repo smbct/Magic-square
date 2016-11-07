@@ -1,7 +1,7 @@
 EXEC=magic-square
 
 CC=g++ -pg
-CXX=g++
+CXX=g++ -std=c++11 -O3
 LDLIBS=
 CPPFLAGS=
 
