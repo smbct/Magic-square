@@ -85,7 +85,6 @@ void Solver::resoudre() {
     bool arret = false;
     bool solution = false;
 
-
     list<Variable*> aAffecter(_variables); // les variables restant à affecter
 
     stack<Variable*> affectees; // les variables déjà affectées
@@ -109,7 +108,7 @@ void Solver::resoudre() {
         if(!aAffecter.empty()) { // parcours en profondeur
 
             // filtrage/propagation
-            bool contrad = contrad = filtrerPropager();
+            bool contrad = filtrerPropager();
 
             // cout << "contradiction ? " << contradiction() << endl;
 
@@ -118,14 +117,14 @@ void Solver::resoudre() {
                 // exploration
                 affectees.push(aAffecter.front());
                 aAffecter.pop_front();
-                affectees.top()->affecter(); // affectation de la variable à la première valeur
+                affectees.top()->affecterOrdre(); // affectation de la variable à la première valeur
 
                 // mise à jour de la liste des contraites à filtrer
                 list<Contrainte*>& cont = _associees[affectees.top()];
                 _aFiltrer.insert(_aFiltrer.end(), cont.begin(), cont.end());
 
                 // une affectation -> sauvegarde des domaines
-                for(Variable* var : aAffecter) {
+                for(Variable* var : _variables) {
                     var->sauvegardeDomaine();
                 }
 
@@ -156,7 +155,7 @@ void Solver::resoudre() {
     }
 
     if(solution) {
-        cout << "Une solution a été trouvée : " << endl;
+        // cout << "Une solution a été trouvée : " << endl;
 
         auto it = _variables.begin();
         for(int ligne = 0; ligne < _n; ligne ++) {
@@ -183,11 +182,11 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
         if(!affectees.empty()) {
 
             // rétablissement des domaines car une modification est faite
-            for(Variable* var : aAffecter) {
+            for(Variable* var : _variables) {
                 var->restoreDomaine();
             }
 
-            affectees.top()->affecter(); // le premier est forcément affecté (car en cours de résolution)
+            affectees.top()->affecterOrdre(); // le premier est forcément affecté (car en cours de résolution)
 
             if(!affectees.top()->estAffectee()) { // pas possible de l'affecter, il faut remonter
 
@@ -197,7 +196,7 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
             } else { // l'affectation est réussie, arret du backtrack
 
                 // sauvegarde des domaines
-                for(Variable* variable : aAffecter) {
+                for(Variable* variable : _variables) {
                     variable->sauvegardeDomaine();
                 }
 
