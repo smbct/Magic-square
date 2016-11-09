@@ -35,7 +35,6 @@ bool CtAllDiff::evaluer() {
         bool contr = false;
 
         while(!contr && it2 != _var.end()) {
-
             // si deux variables ont la même valeur, le test échoue
             if(it != it2 && (*it)->valeur() == (*it2)->valeur()) {
                 contr = true;
@@ -74,7 +73,6 @@ bool CtAllDiff::filtrer(list<Contrainte*>& aFiltrer, std::map<Variable*, list<Co
     vector<bool> modifiee(libre.size(), false);
 
     for(Variable* var : affect) {
-
         int indVar = 0;
         // la valeur de cette variable ne peut être proposées aux variables libres
         for(Variable* varLibre : libre) {
@@ -85,8 +83,34 @@ bool CtAllDiff::filtrer(list<Contrainte*>& aFiltrer, std::map<Variable*, list<Co
             }
             indVar ++;
         }
+    }
+
+
+    // deuxième filtrage, si deux domaines de taille 2 sont égaux, alors on peut retirer des autres domaines ces valeurs
+    for(Variable* var1 : libre) {
+
+        if(var1->tailleDomaine() == 2) {
+
+            for(Variable* var2 : libre) {
+
+                if(var2 != var1 && var1->memeDomaine(*var2)) {
+                    list<int> aSup;
+                    var1->copieDomaine(aSup);
+                    for(Variable* var3 : libre) {
+                        if(var3 != var1 && var3 != var2) {
+                            for(int val : aSup) {
+                                var3->enleveVal(val);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
 
     }
+
 
     // mise à jour des contraintes à filtrer
     int indVar = 0;

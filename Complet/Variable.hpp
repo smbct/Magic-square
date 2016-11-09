@@ -100,6 +100,18 @@ class Variable {
          */
         int indAffecte();
 
+        /**
+         * \brief indique si les domaines des deux variables sont identiques
+         * \param autre la variable à comparer
+         */
+        bool memeDomaine(Variable& autre);
+
+        /**
+         * \brief retourne une copie du domaine dans la liste copie
+         * \param copie la liste contenant les valeurs du domaine
+         */
+        void copieDomaine(std::list<int>& copie);
+
     private:
         bool _affectee;
         std::list<int> _domaine;

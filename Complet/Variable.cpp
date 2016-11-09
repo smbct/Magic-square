@@ -26,12 +26,12 @@ _ordre(max-min+1)
     }
 
     // création d'une permutation aléatoire pour déterminer l'ordre d'affectation des variables
-    /*vector<int> dom(max-min+1);
+    vector<int> dom(max-min+1);
     for(int i = 0; i < dom.size(); i++) {
         dom[i] = i+1;
     }
 
-    int nbFait = 0;
+    /*int nbFait = 0;
     while(!dom.empty()) {
         int indice = rand()%dom.size();
         _ordre[nbFait] = dom[indice];
@@ -39,6 +39,7 @@ _ordre(max-min+1)
 
         nbFait ++;
     }*/
+    _ordre = dom;
 
 }
 
@@ -134,8 +135,11 @@ bool Variable::affecterOrdre() {
         _affectee = true;
         _valIt = _domaine.begin();
         _indDom = 0;
+    } else {
+        enleveVal(*_valIt);
     }
-    cout << "indDom : " << _indDom << endl;
+
+    // cout << "indDom : " << _indDom << endl;
 
     bool continuer = true;
     while(continuer && _indDom < _ordre.size()) {
@@ -152,10 +156,9 @@ bool Variable::affecterOrdre() {
     // si toutes les valeurs ont été affectées, la variable n'est plus affectable pour le moment
     if(_indDom == _ordre.size()) {
         _affectee = false;
-        cout << "fin domaine" << endl;
+        // cout << "fin domaine" << endl;
     } else { // la valeur est retirée du domaine
-        cout << "valeur : " << *_valIt << endl;
-        enleveVal(*_valIt);
+        // cout << "valeur : " << *_valIt << endl;
     }
 
 
@@ -192,4 +195,33 @@ int Variable::tailleDomaine() {
 /*----------------------------------------------------------------------------*/
 int Variable::indAffecte() {
     return _indDom;
+}
+
+/*----------------------------------------------------------------------------*/
+bool Variable::memeDomaine(Variable& autre) {
+
+    bool meme = true;
+    if(_domaine.size() != autre._domaine.size()) {
+        meme = false;
+    } else {
+
+        auto it = _domaine.begin();
+        while(meme && it != _domaine.end()) {
+            if(count(autre._domaine.begin(), autre._domaine.begin(), *it) == 1) {
+                it ++;
+            } else {
+                meme = false;
+            }
+        }
+
+    }
+
+    return meme;
+}
+
+/*----------------------------------------------------------------------------*/
+void Variable::copieDomaine(list<int>& copie) {
+    for(int val : _domaine) {
+        copie.push_back(val);
+    }
 }
