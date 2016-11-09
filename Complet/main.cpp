@@ -13,14 +13,16 @@ using namespace std;
 
 int main() {
 
-    int size = 4;
+    srand(time(0));
+
+    int size = 5;
 
     /*cout << "entrer la taille de la grille : ";
     cin >> size;*/
 
     // cout << "La grille est de taille " << size << " * " << size << endl;
 
-    complet::Solver solver(6);
+    complet::Solver solver(5);
 
     clock_t begin = clock();
     solver.resoudre();
