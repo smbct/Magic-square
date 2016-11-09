@@ -60,14 +60,6 @@ class Solver {
         int recalculerScore(int var1, int var2);
 
         /**
-         * \brief explore un minimum local pour tenter d'en sortir
-         * \param confMin la configuration du min
-         * \param confEqui la configuration pour en sortir, qui a le même score
-         * \param scoreActuel le score des deux configurations
-         */
-        bool explorerMinLocal(Configuration& confMin, Configuration confEqui, int& scoreActuel);
-
-        /**
          * \brief recherche du meilleu voisin d'une configuration
          * \param config la configuration étudiée
          * \param score le score de la configuration étudiée
