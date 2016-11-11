@@ -255,63 +255,6 @@ int recalculerScore(int var1, int var2) {
     return 0;
 }
 
-
-/*----------------------------------------------------------------------------*/
-bool Solver::explorerMinLocal(Configuration& confMin, Configuration confEqui, int& scoreActuel) {
-
-    list<Configuration> interdites;
-    interdites.push_back(confMin);
-
-    int it = 0;
-
-    cout << "exploration d'un minimum" << endl;
-
-    bool ameliore = false;
-
-    while(it < 10 && scoreActuel != 0) {
-
-        list<Configuration> voisins;
-        confEqui.genererVoisinage(voisins, false);
-
-        int scoreMinVoisin = -1;
-        Configuration voisinMin(confMin);
-        for(Configuration& voisin : voisins) {
-
-            int score = calculerScore(voisin);
-            if(score < scoreActuel) {
-                scoreActuel = score;
-                voisinMin = voisin;
-                // ameliore = true;
-                // cout << "amélioration du minimum trouvé" << endl;
-            } else {
-
-                if(count(interdites.begin(), interdites.end(), voisin) == 0) {
-
-                    if(scoreMinVoisin == -1 || score < scoreMinVoisin) {
-                        scoreMinVoisin = score;
-                        voisinMin = voisin;
-                    }
-
-
-                }
-            }
-        }
-
-        if(scoreMinVoisin == scoreActuel) {
-            interdites.push_back(voisinMin);
-
-        }
-        scoreActuel = scoreMinVoisin;
-        confEqui = voisinMin;
-
-        it ++;
-    }
-
-    cout << "fin de l'exploration d'un minimum : nbIteration : " << it << endl;
-
-    return ameliore;
-}
-
 /*----------------------------------------------------------------------------*/
 Solver::~Solver() {
 

@@ -95,7 +95,7 @@ void Solver::resoudre() {
     while(!arret) {
 
         // affichage courant
-        int ind = 0;
+        // int ind = 0;
         // for(Variable* variable : _variables) {
         //
         //     cout << ind << " : " << variable->toString() << endl;

@@ -1,7 +1,7 @@
 EXEC=magic-square
 
 CC=g++ -pg
-CXX=g++ -std=c++11 -O3
+CXX=g++
 LDLIBS=
 CPPFLAGS=
 
@@ -16,7 +16,7 @@ OBJECTS_FILES = main.o Variable.o Solver.o Contrainte.o CtSomme.o CtAllDiff.o
 gcc : CXXFLAGS= $(OPTIONS) -O3
 gcc : main
 
-gcc-debug : CXXFLAGS=$(OPTIONS) -O3
+gcc-debug : CXXFLAGS=$(OPTIONS) -g
 gcc-debug : main
 
 run :

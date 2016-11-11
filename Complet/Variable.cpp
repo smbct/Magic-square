@@ -17,12 +17,28 @@ using namespace complet;
 
 /*----------------------------------------------------------------------------*/
 Variable::Variable(int min, int max) :
-_affectee(false)
+_affectee(false),
+_ordre(max-min+1)
 {
 
     for(int val = min; val <= max; val ++) {
         _domaine.push_back(val);
     }
+
+    // création d'une permutation aléatoire pour déterminer l'ordre d'affectation des variables
+    /*vector<int> dom(max-min+1);
+    for(int i = 0; i < dom.size(); i++) {
+        dom[i] = i+1;
+    }
+
+    int nbFait = 0;
+    while(!dom.empty()) {
+        int indice = rand()%dom.size();
+        _ordre[nbFait] = dom[indice];
+        dom.erase(dom.begin()+indice);
+
+        nbFait ++;
+    }*/
 
 }
 
@@ -108,6 +124,43 @@ bool Variable::affecter() {
     }
 
     return _affectee;
+}
+
+/*----------------------------------------------------------------------------*/
+bool Variable::affecterOrdre() {
+
+    // si pas d'affectation, on affecte au début de la liste
+    if(!_affectee) {
+        _affectee = true;
+        _valIt = _domaine.begin();
+        _indDom = 0;
+    }
+    cout << "indDom : " << _indDom << endl;
+
+    bool continuer = true;
+    while(continuer && _indDom < _ordre.size()) {
+        _valIt = find(_domaine.begin(), _domaine.end(), _ordre[_indDom]);
+        if(_valIt == _domaine.end()) {
+            _indDom ++;
+        } else {
+            continuer = false;
+        }
+    }
+
+    _affectee = true;
+
+    // si toutes les valeurs ont été affectées, la variable n'est plus affectable pour le moment
+    if(_indDom == _ordre.size()) {
+        _affectee = false;
+        cout << "fin domaine" << endl;
+    } else { // la valeur est retirée du domaine
+        cout << "valeur : " << *_valIt << endl;
+        enleveVal(*_valIt);
+    }
+
+
+    return _affectee;
+
 }
 
 /*----------------------------------------------------------------------------*/

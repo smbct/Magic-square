@@ -22,7 +22,6 @@ int CtAllDiff::score(Configuration& config) {
     int score = 0;
 
     for(int ind : _indices) {
-
         for(int ind2 : _indices) {
             if(ind != ind2 && config(ind) == config(ind2)) {
                 score += 2;
