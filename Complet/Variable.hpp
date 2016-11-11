@@ -12,6 +12,7 @@
 #include <string>
 #include <stack>
 #include <map>
+#include <vector>
 
 namespace complet {
 
@@ -59,6 +60,12 @@ class Variable {
         bool affecter();
 
         /**
+         * \brief affectation de la variable à une valeur non encore affectée, suivant l'ordre
+         * \return faux ssi la dernière affectation a été faite
+         */
+        bool affecterOrdre();
+
+        /**
          * \brief la variable redevient libre
          */
         void desaffecter();
@@ -99,6 +106,8 @@ class Variable {
         std::stack<std::list<int> > _filtrees;
         std::list<int>::iterator _valIt; // itérateur vers la valeur en cours d'affectation
         int _indDom; // indice de l'élément du domaine actuellement affecté
+
+        std::vector<int> _ordre;
 };
 
 }
