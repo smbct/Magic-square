@@ -10,7 +10,7 @@ int main() {
 
     srand(time(nullptr));
 
-    Solver solver(20);
+    Solver solver(25);
 
     solver.solve();
 
