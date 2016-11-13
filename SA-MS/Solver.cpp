@@ -68,7 +68,10 @@ void Solver::solve() {
             if(grid.score() < scoreMin) {
                 scoreMin = grid.score();
 
-                if(grid.score() <= 6) {
+                // cout << "score : " << scoreMin << endl;
+
+                if(grid.score() <= 10) {
+                    // cout << "tabuMode" << endl << endl;
                     tabuSearch(grid);
                     if(grid.score() == 0) {
                         stop = true;
@@ -148,7 +151,7 @@ void Solver::localSearch(Grid& grid) {
 /*----------------------------------------------------------------------------*/
 void Solver::tabuSearch(Grid& grid) {
 
-    const int tabuLength = 50;
+    const int tabuLength = 7;
     vector<vector<int>> tabuList(_size*_size);
     for(int i = 0; i < _size*_size; i++) {
         tabuList[i].resize(_size*_size, 1);
@@ -157,6 +160,8 @@ void Solver::tabuSearch(Grid& grid) {
 
     bool stop = false;
     int nbIt = 1;
+
+    int bestScore = grid.score();
 
     while(!stop) {
 
@@ -168,7 +173,7 @@ void Solver::tabuSearch(Grid& grid) {
             for(int j = i+1; j < _size*_size; j++) {
 
                 /* if this move isn't tabu, we can try it */
-                if(tabuList[i][j] <= nbIt) {
+                if(tabuList[i][j] <= nbIt || grid.score() < bestScore) {
                     grid.move(i, j);
                     if(neighbourScore == -1 || grid.score() < neighbourScore) {
                         neighbourScore = grid.score();
@@ -189,6 +194,12 @@ void Solver::tabuSearch(Grid& grid) {
             if(grid.score() == 0) {
                 stop = true;
             }
+
+            if(grid.score() < bestScore) {
+                bestScore = grid.score();
+            }
+
+            // cout << "tabu score : " << grid.score() << endl;
 
         } else {
             stop = true;
