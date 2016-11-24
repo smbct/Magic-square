@@ -38,7 +38,7 @@ class Variable {
 
         /**
          * \brief tente d'enlever une valeur du domaine
-         * \param val l'ensemble des valeurs à enlever
+         * \param val la valeur à enlever
          * \return vrai ssi le domaine a été modifié
          */
         bool enleveVal(int val);
@@ -112,6 +112,18 @@ class Variable {
          */
         void copieDomaine(std::list<int>& copie);
 
+        /**
+         * \brief retourne la valeur minimale du domaine de la variable
+         * \return la valeur maximale
+         */
+        int minDomaine();
+
+        /**
+         * \brief retourne la valeur maximale du domaine de la variable
+         * \return la valeur maximale
+         */
+        int maxDomaine();
+
     private:
         bool _affectee;
         std::list<int> _domaine;
@@ -120,6 +132,9 @@ class Variable {
         int _indDom; // indice de l'élément du domaine actuellement affecté
 
         std::vector<int> _ordre;
+
+        int _min; // conservation des valeurs minimales et maximales du domaine
+        int _max;
 };
 
 }

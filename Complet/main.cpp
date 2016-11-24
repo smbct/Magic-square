@@ -22,7 +22,7 @@ int main() {
 
     // cout << "La grille est de taille " << size << " * " << size << endl;
 
-    complet::Solver solver(5);
+    complet::Solver solver(4);
 
     clock_t begin = clock();
     solver.resoudre();
