@@ -12,7 +12,6 @@
 #include <iostream>
 #include <algorithm>
 
-
 using namespace std;
 
 using namespace complet;
@@ -91,21 +90,26 @@ void Solver::resoudre() {
 
     int iteration = 0;
 
+    // sauvegarde des domaines
+    for(Variable* variable : _variables) {
+        variable->sauvegardeDomaine();
+    }
+
     while(!arret) {
 
         // affichage courant
-        // int ind = 0;
-        // for(Variable* variable : _variables) {
-        //
-        //     cout << ind << " : " << variable->toString() << endl;
-        //     ind ++;
-        // }
-        // cout << endl << endl;
-        //
-        // cout << "itération : " << iteration << endl;
+        int ind = 0;
+        for(Variable* variable : _variables) {
+            cout << ind << " : " << variable->toString() << endl;
+            ind ++;
+        }
+        cout << endl << endl;
+
+        cout << "itération : " << iteration << endl;
         iteration ++;
 
         if(!aAffecter.empty()) { // parcours en profondeur
+
 
             // filtrage/propagation
             bool contrad = filtrerPropager();
@@ -113,6 +117,11 @@ void Solver::resoudre() {
             // cout << "contradiction ? " << contradiction() << endl;
 
             if(!contrad) {
+
+                // une affectation -> sauvegarde des domaines
+                for(Variable* var : _variables) {
+                    var->sauvegardeDomaine();
+                }
 
                 // exploration
                 affectees.push(aAffecter.front());
@@ -123,10 +132,7 @@ void Solver::resoudre() {
                 list<Contrainte*>& cont = _associees[affectees.top()];
                 _aFiltrer.insert(_aFiltrer.end(), cont.begin(), cont.end());
 
-                // une affectation -> sauvegarde des domaines
-                for(Variable* var : _variables) {
-                    var->sauvegardeDomaine();
-                }
+
 
             } else { // verif si contradiction, backtracking si nécessaire
                 backtrack(affectees, aAffecter);
@@ -151,7 +157,6 @@ void Solver::resoudre() {
                 }
             }
         }
-
     }
 
     if(solution) {
@@ -209,6 +214,7 @@ void Solver::backtrack(std::stack<Variable*>& affectees, std::list<Variable*>& a
         } else {
             arret = true;
         }
+
     }
 
 

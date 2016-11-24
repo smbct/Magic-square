@@ -18,7 +18,9 @@ using namespace complet;
 /*----------------------------------------------------------------------------*/
 Variable::Variable(int min, int max) :
 _affectee(false),
-_ordre(max-min+1)
+_ordre(max-min+1),
+_min(min),
+_max(max)
 {
 
     for(int val = min; val <= max; val ++) {
@@ -51,8 +53,11 @@ string Variable::toString() {
     if(!estAffectee()) {
         res = "{";
 
+        ostringstream flux;
+
         for(auto it = _domaine.begin(); it != _domaine.end(); it++) {
-            ostringstream flux;
+            flux.str(string());
+            flux.clear();
             flux << *it;
             res += flux.str();
             auto it2 = it;
@@ -62,8 +67,18 @@ string Variable::toString() {
             }
         }
         res += "}";
+        res += "  min = ";
+
+
+        res += flux.str() + " ; max = ";
+        flux.str(string());
+        flux.clear();
+        flux << _max;
+        res += flux.str();
     } else {
         ostringstream flux;
+        flux.str(string());
+        flux.clear();
         flux << valeur();
         res += ":= " + flux.str();
     }
@@ -78,6 +93,7 @@ bool Variable::enleveVal(int val) {
     auto it = find(_domaine.begin(), _domaine.end(), val);
 
     if(it != _domaine.end()) {
+
         // garde en mémoire la liste des valeurs enlevées
         _filtrees.top().push_back(val);
 
@@ -86,6 +102,17 @@ bool Variable::enleveVal(int val) {
 
         // la valeur était bien présente
         res = true;
+    }
+
+    // le domaine n'est pas vide, on peut calculer les valeurs minimales et maximales
+    if(_domaine.size() > 0) {
+        // mise à jour des valeurs minimales et des valeurs maximales
+        if(val == _min) {
+            _min = *std::min_element(_domaine.begin(), _domaine.end());
+        }
+        if(val == _max) {
+            _max = *std::max_element(_domaine.begin(), _domaine.end());
+        }
     }
 
     return res;
@@ -100,10 +127,16 @@ void Variable::sauvegardeDomaine() {
 void Variable::restoreDomaine() {
 
     list<int>& supp = _filtrees.top();
-    // réinsertion des valeurs supprimmées
+    // réinsertion des valeurs supprimées
     _domaine.insert(_domaine.end(), supp.begin(), supp.end());
     // suppression des valeurs supprimées du backup
     _filtrees.pop();
+
+    // mise à jour des valeurs min et max
+    auto paire = std::minmax_element(_domaine.begin(), _domaine.end());
+    _min = *(paire.first);
+    _max = *(paire.second);
+
 }
 
 /*----------------------------------------------------------------------------*/
@@ -217,6 +250,17 @@ bool Variable::memeDomaine(Variable& autre) {
     }
 
     return meme;
+}
+
+
+/*----------------------------------------------------------------------------*/
+int Variable::minDomaine() {
+    return _min;
+}
+
+/*----------------------------------------------------------------------------*/
+int Variable::maxDomaine() {
+    return _max;
 }
 
 /*----------------------------------------------------------------------------*/
