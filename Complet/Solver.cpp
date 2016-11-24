@@ -8,6 +8,7 @@
 #include "Solver.hpp"
 #include "CtSomme.hpp"
 #include "CtAllDiff.hpp"
+#include "CtInf.hpp"
 
 #include <iostream>
 #include <algorithm>
