@@ -11,7 +11,7 @@ LDFLAGS=$(OPTIIONS)
 
 .PHONY = clean
 
-OBJECTS_FILES = main.o Variable.o Solver.o Contrainte.o CtSomme.o CtAllDiff.o CtSup.o
+OBJECTS_FILES = main.o Variable.o Solver.o Contrainte.o CtSomme.o CtAllDiff.o CtInf.o
 
 gcc : CXXFLAGS= $(OPTIONS) -O3 -Ofast
 gcc : main
