@@ -7,7 +7,7 @@
 
 #include "CtAllDiff.hpp"
 
-using namespace incomplet;
+using namespace incomplet_premier;
 
 /*----------------------------------------------------------------------------*/
 CtAllDiff::CtAllDiff() {

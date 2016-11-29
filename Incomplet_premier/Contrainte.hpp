@@ -5,12 +5,12 @@
  * \date 27/09/2016
  */
 
-#ifndef CONTRAINTE_INCOMPLET_HPP
-#define CONTRAINTE_INCOMPLET_HPP
+#ifndef CONTRAINTE_INCOMPLET_PREMIER_HPP
+#define CONTRAINTE_INCOMPLET_PREMIER_HPP
 
 #include "Configuration.hpp"
 
-namespace incomplet {
+namespace incomplet_premier {
 
 /**
  * \class Contrainte
@@ -49,4 +49,4 @@ class Contrainte {
 
 }
 
-#endif // CONTRAINTE_INCOMPLET_HPP
+#endif // CONTRAINTE_INCOMPLET_PREMIER_HPP

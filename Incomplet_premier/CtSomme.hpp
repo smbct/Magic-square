@@ -5,12 +5,12 @@
  * \date 27/09/2016
  */
 
-#ifndef CT_SOMME_INCOMPLET
-#define CT_SOMME_INCOMPLET
+#ifndef CT_SOMME_INCOMPLET_PREMIER_HPP
+#define CT_SOMME_INCOMPLET_PREMIER_HPP
 
 #include "Contrainte.hpp"
 
-namespace incomplet {
+namespace incomplet_premier {
 
 class CtSomme : public Contrainte {
 
@@ -36,4 +36,4 @@ class CtSomme : public Contrainte {
 
 }
 
-#endif // CT_SOMME_INCOMPLET
+#endif // CT_SOMME_INCOMPLET_PREMIER_HPP
