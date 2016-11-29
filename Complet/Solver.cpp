@@ -161,7 +161,8 @@ void Solver::resoudre() {
     }
 
     if(solution) {
-        // cout << "Une solution a été trouvée : " << endl;
+
+        cout << "Une solution a été trouvée : " << endl;
 
         auto it = _variables.begin();
         for(int ligne = 0; ligne < _n; ligne ++) {
