@@ -13,7 +13,7 @@ int main() {
 
     Solver solver(20);
 
-    solver.solve();
+    solver.solverRecuit();
 
     return 0;
 }

@@ -99,14 +99,14 @@ void Solver::resoudre() {
     while(!arret) {
 
         // affichage courant
-        int ind = 0;
+        /*int ind = 0;
         for(Variable* variable : _variables) {
             cout << ind << " : " << variable->toString() << endl;
             ind ++;
         }
         cout << endl << endl;
 
-        cout << "itération : " << iteration << endl;
+        cout << "itération : " << iteration << endl;*/
         iteration ++;
 
         if(!aAffecter.empty()) { // parcours en profondeur
