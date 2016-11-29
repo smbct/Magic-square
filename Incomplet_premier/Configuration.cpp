@@ -10,7 +10,7 @@
 #include <iostream>
 #include <sstream>
 
-using namespace incomplet;
+using namespace incomplet_premier;
 
 using namespace std;
 
@@ -172,9 +172,7 @@ int Configuration::operator()(int ind) {
 /*----------------------------------------------------------------------------*/
 void Configuration::generer() {
 
-    // génération d'une bonne config initiale
-    // prend du temps mais est effectué une seule fois
-    // pas deux valeurs identiques et certaines contraintes respectées
+    // génération d'une config initiale
 
     int val = 1;
     for(int& valeur : _valeurs) {

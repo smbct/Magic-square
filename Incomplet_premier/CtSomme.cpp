@@ -7,7 +7,7 @@
 
 #include "CtSomme.hpp"
 
-using namespace incomplet;
+using namespace incomplet_premier;
 
 /*----------------------------------------------------------------------------*/
 CtSomme::CtSomme(int M) :
