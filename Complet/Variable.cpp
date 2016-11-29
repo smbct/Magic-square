@@ -35,13 +35,13 @@ _max(max)
 
     int nbFait = 0;
     while(!dom.empty()) {
-        int indice = rand()%dom.size();
+        int indice = rand()%static_cast<int>(dom.size());
         _ordre[nbFait] = dom[indice];
         dom.erase(dom.begin()+indice);
 
         nbFait ++;
     }
-    // _ordre = dom;
+
 
 }
 

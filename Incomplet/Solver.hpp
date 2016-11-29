@@ -39,7 +39,7 @@ class Solver {
          * \brief exécute une recherche tabou sur une grille
          * \param grille la grille sur laquelle faire la recherche
          */
-        void recherchTabou(Grille& grille);
+        void rechercheTabou(Grille& grille);
 
     private:
         const int _taille;

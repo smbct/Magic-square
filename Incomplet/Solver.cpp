@@ -36,7 +36,6 @@ void Solver::solve() {
         if(grille.score() > 0) {
             grille.restart();
             nbRestart ++;
-            cout << "nombre de restart : " << nbRestart << endl;
         }
 
     } while(grille.score() != 0 && nbRestart < 500);
@@ -44,12 +43,15 @@ void Solver::solve() {
     /* si la solution n'a toujours pas été trouvée, une recherche tabou est exécutée */
     if(grille.score() > 0) {
         cout << "La recherche locale n'a pas encore trouvée de solution, lancement de la recherche tabou." << endl;
-        recherchTabou(grille);
+        rechercheTabou(grille);
     }
 
-    cout << "résultat de la résolution" << endl;
-    cout << "score : " << grille.score() << endl;
-    cout << grille.toString() << endl;
+    if(grille.score() == 0) {
+        cout << "Une solution a été trouvée : " << endl;
+        cout << grille.toString() << endl;
+    } else {
+        cout << "Hélas aucune solution n'a été trouvée, mais il en existe peut-être une !" << endl;
+    }
 
 }
 
@@ -125,7 +127,6 @@ void Solver::solverRecuit() {
         delta += grille.score();
 
         /* calcul de la proba d'acceptation du voisin */
-
         bool accepte = false;
         if(delta < 0) {
             accepte = true;
@@ -148,12 +149,9 @@ void Solver::solverRecuit() {
             if(grille.score() < scoreMin) {
                 scoreMin = grille.score();
 
-                // cout << "score : " << scoreMin << endl;
-
                 /* si le score est assez petit, l'algorithme termine par une recherche tabou, pour grater vers la solution */
                 if(grille.score() <= 10) {
-                    // cout << "tabuMode" << endl << endl;
-                    recherchTabou(grille);
+                    rechercheTabou(grille);
                     if(grille.score() == 0) {
                         stop = true;
                     }
@@ -185,15 +183,18 @@ void Solver::solverRecuit() {
 
     fichier.close();
 
-    cout << "it : " << it << endl;
+    if(grille.score() == 0) {
+        cout << "Une solution a été trouvée : " << endl;
+        cout << grille.toString() << endl;
+    } else {
+        cout << "Hélas, aucun solution n'a été trouvée. Mais elle existe peut-être !" << endl;
+    }
 
-    cout << "meilleur score trouvé : " << grille.score() << endl;
-    cout << grille.toString() << endl;
 
 }
 
 /*----------------------------------------------------------------------------*/
-void Solver::recherchTabou(Grille& grille) {
+void Solver::rechercheTabou(Grille& grille) {
 
     /* longueur tabou classique */
     const int longueurTabou = 7;
@@ -255,7 +256,5 @@ void Solver::recherchTabou(Grille& grille) {
 
         nbIt ++;
     }
-
-    cout << "meilleur trouvé : " << grille.score() << endl;
 
 }
