@@ -53,7 +53,7 @@ class Grille {
          * \brief score de la grille actuelle
          * \return le score
          */
-        int score();
+        unsigned int score();
 
     private: // méthodes provées
         /**

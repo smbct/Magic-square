@@ -129,7 +129,7 @@ class Variable {
         std::list<int> _domaine;
         std::stack<std::list<int> > _filtrees;
         std::list<int>::iterator _valIt; // itérateur vers la valeur en cours d'affectation
-        int _indDom; // indice de l'élément du domaine actuellement affecté
+        unsigned int _indDom; // indice de l'élément du domaine actuellement affecté
 
         std::vector<int> _ordre;
 

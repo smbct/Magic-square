@@ -40,6 +40,7 @@ void Grille::initialiserSomme() {
     _sommeDiag = 0;
     _sommeAntiDiag = 0;
 
+    /* initialisation des sommes des lignes, colonnes et diagonales */
     for(int i = 0; i < _taille; i++) {
         for(int j = 0; j < _taille; j++) {
             _sommeLigne[i] += _grille[i*_taille+j];
@@ -70,6 +71,7 @@ void Grille::majScore(int elta, int eltb) {
     /* mise à jour des deux lignes */
     if(lignea != ligneb) {
 
+        /* le carré est retranché, la somme est mise à jour puis le carré est re-calculé avec la nouvelle somme */
         _score -= (_sommeLigne[lignea]-_magique)*(_sommeLigne[lignea]-_magique);
         _sommeLigne[lignea] += _grille[ligneb*_taille+colb] - _grille[lignea*_taille+cola];
         _score += (_sommeLigne[lignea]-_magique)*(_sommeLigne[lignea]-_magique);
@@ -151,6 +153,7 @@ void Grille::echangeAlea() {
     int elta;
     int eltb;
 
+    /* les deux éléments à échanger sont piochés aléatoirement */
     elta = rand()%(_taille*_taille);
     eltb = rand()%(_taille*_taille);
 
@@ -189,25 +192,34 @@ void Grille::initialiserScore() {
 /*----------------------------------------------------------------------------*/
 void Grille::restart() {
 
+    /* remplissage d'un tableau d'éléments à ajouter à la configuration */
     vector<int> valeursDispos(_taille*_taille);
-    for(int i = 0; i < valeursDispos.size(); i++) {
+    for(unsigned int i = 0; i < valeursDispos.size(); i++) {
         valeursDispos[i] = i+1;
     }
-    int nbRestantes = valeursDispos.size();
 
+    int nbRestantes = static_cast<int>(valeursDispos.size());
+
+    /* ajout des élements disponibles dans la configuration */
     for(int i = 0; i < _taille*_taille; i++) {
+
+        /* l'élement à ajouter est pioché aléatoirement */
         int indice = rand()%nbRestantes;
         _grille[i] = valeursDispos[indice];
+
+        /* la valeur que l'on vient d'ajouter sera ensuite ignorée */
         nbRestantes --;
         valeursDispos[indice] = valeursDispos[nbRestantes];
     }
+
+    /* le score est recalculé complètement */
     initialiserSomme();
     initialiserScore();
 
 }
 
 /*----------------------------------------------------------------------------*/
-int Grille::score() {
+unsigned int Grille::score() {
 
     return _score;
 }
