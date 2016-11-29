@@ -1,265 +1,243 @@
 /**
  * \file Solver.cpp
- * \brief implémentation de la classe Solver (incomplet)
- * \author S.B
- * \date 26/09/2016
+ * \brief implémentation de la classe Solver
  */
 
-
 #include "Solver.hpp"
-#include "CtSomme.hpp"
 
 #include <iostream>
-#include <algorithm>
+#include <cmath>
 
-using namespace incomplet;
+#include <fstream>
 
 using namespace std;
+using namespace incomplet;
 
 /*----------------------------------------------------------------------------*/
 Solver::Solver(int taille) :
-_taille(taille),
-_M( (taille* (taille*taille+1))/2 ),
-_tailleTabou(10),
-_maxTabouIt(50),
-_tabou(taille*taille, 0)
+_taille(taille)
 {
-    creerContraintes();
 
-    // vector<int> valeurs = {34, 10, 20, 13, 28, 6, 1, 32, 33, 9, 4, 31, 25, 12, 19, 22, 16, 17, 24, 18, 21, 8, 26, 14, 5, 36, 11, 30, 2, 27, 23, 3, 7, 29, 35, 15};
-
-    // vector<int> valeurs = {4, 9, 2, 3, 5, 7, 8, 1, 6};
-
-    // vector<int> valeurs = {16, 3, 2, 13, 5, 10, 11, 8, 9, 6, 7, 12, 4, 15, 14, 1};
-
-    // Configuration config(valeurs, 4);
-    // list<Configuration> voisins;
-    // config.genererVoisinage(voisins, false);
-    //
-    // vector<int> scores;
-    // for(Configuration& config : voisins) {
-    //     scores.push_back(calculerScore(config));
-    // }
-    // sort(scores.begin(), scores.end());
-    // for(int score : scores) {
-    //     cout << score << endl;
-    // }
 
 }
 
 /*----------------------------------------------------------------------------*/
-void Solver::creerContraintes() {
+void Solver::solve() {
 
-    // contrainte des lignes
-    for(int ligne = 0; ligne < _taille; ligne ++) {
-        _contraintes.push_back(new CtSomme(_M));
-        for(int col = 0; col < _taille; col ++) {
-            _contraintes.back()->ajouterVariable(ligne*_taille + col);
+    Grille grille(_taille);
+    int nbRestart = 0;
+
+    do {
+
+        rechercheLocale(grille);
+
+        if(grille.score() > 0) {
+            grille.restart();
+            nbRestart ++;
+            cout << "nombre de restart : " << nbRestart << endl;
         }
+
+    } while(grille.score() != 0 && nbRestart < 500);
+
+    if(grille.score() > 0) {
+        cout << "La recherche locale n'a pas encore trouvée de solution, lancement de la recherche tabou." << endl;
+        recherchTabou(grille);
     }
 
-    // contraintes des colonnes
-    for(int col = 0; col < _taille; col ++) {
-        _contraintes.push_back(new CtSomme(_M));
-        for(int ligne = 0; ligne < _taille; ligne ++) {
-            _contraintes.back()->ajouterVariable(ligne*_taille + col);
-        }
-    }
-
-    // contraintes des diagonales
-    _contraintes.push_back(new CtSomme(_M));
-    for(int ligne = 0; ligne < _taille; ligne ++) {
-        _contraintes.back()->ajouterVariable(ligne*_taille + ligne);
-    }
-
-    _contraintes.push_back(new CtSomme(_M));
-    for(int ligne = 0; ligne < _taille; ligne ++) {
-        _contraintes.back()->ajouterVariable(ligne*_taille + (_taille - ligne - 1));
-    }
-
-    _sommeContr.resize(_contraintes.size(), 0);
+    cout << "résultat de la résolution" << endl;
+    cout << "score : " << grille.score() << endl;
+    cout << grille.toString() << endl;
 
 }
 
 /*----------------------------------------------------------------------------*/
-void Solver::resoudre() {
+void Solver::rechercheLocale(Grille& grille) {
 
-    Configuration config(_taille);
-    config.generer();
+    /* exécute une simple recherche locale */
 
-    bool continuer = true;
-    int iter = 0;
+    bool stop = false;
+    int scoreMin = grille.score();
 
-    // TODO initialiser les sommes des contraintes ici
-    int scoreActuel = calculerScore(config);
+    while(!stop) {
 
-    int meilleurScore = scoreActuel;
+        int eltaMin = -1, eltbMin = -1;
+        int scoreVoisin = -1;
 
-    list<Configuration> voisinsEgaux; // liste des voisins de même score
-    int scoreMinVoisin;
+        for(int i = 0; i < _taille*_taille; i++) {
+            for(int j = i+1; j < _taille*_taille; j++) {
 
-    bool tabou = false;
-    int tabouIt;
-    int scoreTabou;
+                grille.echange(i, j);
 
-    while(continuer) {
-
-        cout << "jusque là : meilleur score = " << meilleurScore << endl;
-
-        cout << config.toString() << endl;
-        list<Configuration> voisins;
-        config.genererVoisinage(voisins, false);
-
-        Configuration voisinMin(_taille);
-        scoreMinVoisin = -1;
-
-        // calcul du meilleur voisin
-        trouverMeilleurVoisin(config, tabou ? scoreTabou : scoreActuel, voisinMin, scoreMinVoisin, tabou, iter);
-
-        cout << "scoreActuel : " << scoreActuel << endl;
-        cout << "scoreMin voisins : " << scoreMinVoisin << endl;
-        cout << "tabou : " << tabou << "  -  nbIt : " << tabouIt << " score min tabou : " << scoreTabou << endl;
-
-        config = voisinMin;
-        // scoreActuel = scoreMinVoisin;
-
-        // si on est très proche d'un min, on peut essayer de renforcer la recherche
-        // autour des variables problématiques dans la grille
-
-        if(tabou) {
-
-            tabouIt ++;
-
-            if(scoreMinVoisin != -1 && scoreMinVoisin < scoreTabou) { // amélioration locale
-                scoreTabou = scoreMinVoisin;
-
-                if(scoreTabou < scoreActuel) { // arêt du tabou, un meilleur score a été trouvé
-                    tabou = false;
-                    scoreActuel = scoreTabou;
+                if(scoreVoisin == -1 || grille.score() < scoreVoisin) {
+                    scoreVoisin = grille.score();
+                    eltaMin = i;
+                    eltbMin = j;
                 }
-            } else {
-                if(tabouIt > _maxTabouIt) { // tabou terminé, pas d'amélioration
-                    tabou = false;
-                    config.regenerer();
-                    scoreActuel = calculerScore(config);
-                    cout << endl << endl << "restart!" << endl << endl;
-                }
+
+                grille.echange(j, i); /* annule l'échange */
             }
-
+        }
+        if(scoreVoisin < scoreMin) {
+            scoreMin = scoreVoisin;
+            grille.echange(eltaMin, eltbMin);
         } else {
-
-            if(scoreMinVoisin != -1 && scoreMinVoisin < scoreActuel) { // le score est amélioré
-                scoreActuel = scoreMinVoisin;
-
-                if(scoreActuel < meilleurScore) {
-                    meilleurScore = scoreActuel;
-                }
-
-            } else { // min local trouvé, activation du tabou
-                if(!tabou) {
-                    tabou = true;
-                    tabouIt = 0;
-                    scoreTabou = scoreActuel;
-                }
-            }
+            stop = true;
         }
-
-        if(scoreActuel < meilleurScore) {
-            meilleurScore = scoreActuel;
-        }
-
-        if(meilleurScore == 0 || iter > 100000) {
-            continuer = false;
-        }
-
-        iter ++;
 
     }
 
-    cout << "meilleur score : " << meilleurScore << endl;
-
-
-
 }
 
+
 /*----------------------------------------------------------------------------*/
-void Solver::trouverMeilleurVoisin(Configuration& config, int& score, Configuration& voisin, int& scoreVoisin, bool tabou, int iter) {
+void Solver::solverRecuit() {
 
-    int indMax = -1, ind2Max = -1;
-    Configuration meilleure(config);
-    int meilleurScore = -1;
+    Grille grille(_taille);
 
-    int ind = 0, ind2;
-    bool continuer = true;
+    double T0 = 100; /* température initiale */
+    double T = T0; /* la température actuelle */
+    int L = 50; /* nombre d'itération pour une température constante */
+    double alpha = 0.84; /* coefficient de refroidissement */
 
-    voisin = config;
-    int objectif = score*0.98;
+    int nbItMax = 100;
 
-    while(continuer && ind < _taille*_taille) {
+    int it = 1;
+    bool stop = false;
 
-        ind2 = ind+1;
-        while(continuer && ind2 < _taille*_taille) {
+    unsigned int scoreMin = grille.score();
 
-            if(!tabou || (_tabou[ind] <= iter && _tabou[ind2] <= iter)) { // on peut sélectionner ces éléments
+    ofstream fichier("expe.dat");
 
-                voisin.swap(ind, ind2);
-                int score = calculerScore(voisin);
+    while(!stop) {
 
-                if(meilleurScore == -1 || score < meilleurScore) {
-                    // meilleure = voisin;
-                    meilleurScore = score;
-                    indMax = ind;
-                    ind2Max = ind2;
+        int delta = -grille.score();
 
-                    if(meilleurScore < objectif) {
-                        continuer = false;
+        grille.echangeAlea(); /* voisin aléatoire */
+        delta += grille.score();
+
+        bool accepte = false;
+        if(delta < 0) {
+            accepte = true;
+        } else {
+            double limite = exp(-(double)delta/T);
+            double choixAlea = (rand()%100)/100.;
+
+            if(choixAlea < limite) {
+                accepte = true;
+            }
+        }
+
+        if(accepte) {
+
+            fichier << it << " " << grille.score() << " " << scoreMin << endl;
+
+            if(grille.score() == 0) {
+                stop = true;
+            }
+            if(grille.score() < scoreMin) {
+                scoreMin = grille.score();
+
+                // cout << "score : " << scoreMin << endl;
+
+                if(grille.score() <= 10) {
+                    // cout << "tabuMode" << endl << endl;
+                    recherchTabou(grille);
+                    if(grille.score() == 0) {
+                        stop = true;
                     }
                 }
-                voisin.swap(ind2, ind);
             }
-            ind2 ++;
+        } else {
+            grille.annulerEchange();
         }
-        ind ++;
-    }
 
-    if(meilleurScore != -1) { // peut arriver à cause des tabous
-        //mise à jour des tabous
-        if(tabou) {
-            _tabou[indMax] = iter+_tailleTabou;
-            _tabou[ind2Max] = iter+_tailleTabou;
+        it ++;
+
+        if(it % L == 0) { // update temperature
+            T *= alpha;
         }
-        // voisin = meilleure;
-        scoreVoisin = meilleurScore;
-        voisin.swap(indMax, ind2Max);
-        // TODO : mettre à jour les sommes des contraintes ici
+
+        if(T < 1e-20) {
+            T = T0;
+            if(T0 > 1) {
+                T0 *= 0.4;
+            }
+            if(L < 1e12) {
+                L *= 1.5;
+            }
+        }
 
     }
+
+    fichier.close();
+
+    cout << "it : " << it << endl;
+
+    cout << "meilleur score trouvé : " << grille.score() << endl;
+    cout << grille.toString() << endl;
 
 }
 
 /*----------------------------------------------------------------------------*/
-int Solver::calculerScore(Configuration& config) {
+void Solver::recherchTabou(Grille& grille) {
 
-    int somme = 0;
-
-    for(Contrainte* contrainte : _contraintes) {
-        int score = contrainte->score(config);
-        somme += score;
+    const int longueurTabou = 7;
+    vector<vector<int>> listeTabou(_taille*_taille);
+    for(int i = 0; i < _taille*_taille; i++) {
+        listeTabou[i].resize(_taille*_taille, 1);
     }
 
-    return somme;
-}
 
-/*----------------------------------------------------------------------------*/
-int recalculerScore(int var1, int var2) {
-    return 0;
-}
+    bool stop = false;
+    int nbIt = 1;
 
-/*----------------------------------------------------------------------------*/
-Solver::~Solver() {
+    int meilleurScore = grille.score();
 
-    for(Contrainte* contrainte : _contraintes) {
-        delete contrainte;
+    while(!stop) {
+
+        int eltaMin, eltbMin;
+        unsigned int scoreVoisin = -1;
+
+        /* recherche locale : exploration de tous les voisins */
+        for(int i = 0; i < _taille*_taille; i++) {
+            for(int j = i+1; j < _taille*_taille; j++) {
+
+                /* si l'échange n'est pas tabou, on peut l'essayer */
+                if(listeTabou[i][j] <= nbIt || grille.score() < meilleurScore) {
+                    grille.echange(i, j);
+                    if(scoreVoisin == -1 || grille.score() < scoreVoisin) {
+                        scoreVoisin = grille.score();
+                        eltaMin = i;
+                        eltbMin = j;
+                    }
+                    grille.echange(j, i); /* annulation de l'échange */
+                }
+
+            }
+        }
+
+        if(scoreVoisin != -1) {
+
+            grille.echange(eltaMin, eltbMin);
+            listeTabou[eltaMin][eltbMin] = nbIt + longueurTabou;
+
+            if(grille.score() == 0) {
+                stop = true;
+            }
+
+            if(grille.score() < meilleurScore) {
+                meilleurScore = grille.score();
+            }
+
+            // cout << "tabu score : " << grid.score() << endl;
+
+        } else {
+            stop = true;
+        }
+
+        nbIt ++;
     }
+
+    cout << "meilleur trouvé : " << grille.score() << endl;
 
 }

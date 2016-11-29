@@ -7,7 +7,7 @@
 
 #include "Contrainte.hpp"
 
-using namespace incomplet;
+using namespace incomplet_premier;
 
 /*----------------------------------------------------------------------------*/
 Contrainte::Contrainte() {
@@ -22,5 +22,5 @@ void Contrainte::ajouterVariable(int indice) {
 
 /*----------------------------------------------------------------------------*/
 Contrainte::~Contrainte() {
-    
+
 }

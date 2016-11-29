@@ -1,88 +1,52 @@
-/**
+ /**
  * \file Solver.hpp
- * \brief déclaration de la classe solver (incomplet)
- * \author S.B
- * \date 26/09/2016
+ * \brief définition d'une classe Solver
  */
 
 #ifndef SOLVER_INCOMPLET_HPP
 #define SOLVER_INCOMPLET_HPP
 
-#include "Contrainte.hpp"
-#include "Configuration.hpp"
+#include "Grille.hpp"
 
 namespace incomplet {
 
 /**
- *\class Solver
- *\brief classe représenter le solver incomplet du carré magique
+ * \class Solver
+ * \brief représente un solver du problème de Carré Magique
  */
 class Solver {
 
     public:
-
-        /**
-         * \brief constructeur
-         * \param taille largeur de la grille
-         */
         Solver(int taille);
 
         /**
-         * \brief tente de résoudre la grille du carré magique
+         * \brief résolution du problème pour une grille donnée
          */
-        void resoudre();
+        void solve();
 
         /**
-         * \brief destructeur, libère la mémoire
+         * \brief résolution d'une grille basée sur la métaheuristique du recuit simulé
          */
-        ~Solver();
-
-    private: // méthodes privées
+        void solverRecuit();
 
         /**
-         * \brief création des contraintes du problème
+         * \brief exécute une recherche locale d'une configuration donnée
+         * \param grille la grille sur laquelle faire la recherche
          */
-        void creerContraintes();
+        void rechercheLocale(Grille& grille);
 
         /**
-         * \brief calcule le score d'une configuration
-         * \param config la config à tester
-         * \return le score de la configuration
+         * \brief exécute une recherche tabou sur une grille
+         * \param grille la grille sur laquelle faire la recherche
          */
-        int calculerScore(Configuration& configs);
+        void recherchTabou(Grille& grille);
 
-        /**
-         * \brief recalcule le score à partir d'un swap dans la confuration
-         * \param var1 la première variable swapée
-         * \param var2 la deuxième variable swapée
-         * \return le nouveau score après le swap
-         */
-        int recalculerScore(int var1, int var2);
+    private:
+        const int _taille;
 
-        /**
-         * \brief recherche du meilleu voisin d'une configuration
-         * \param config la configuration étudiée
-         * \param score le score de la configuration étudiée
-         * \param voisin le meilleur voisin retourné
-         * \param scoreVoisin le score du meilleur voisin trouvé
-         * \param tabou vrai ssi le tabou est activé
-         * \param iter le nb d'itération de l'algorithme
-         */
-        void trouverMeilleurVoisin(Configuration& config, int& score, Configuration& voisin, int& scoreVoisin, bool tabou, int iter);
-
-    private: // attributs privés
-
-        int _taille;
-        int _M;
-        std::list<Contrainte*> _contraintes;
-        std::vector<int> _sommeContr; // somme de chaque contrainte pour la configuration courante
-        const int _tailleTabou;
-        const int _maxTabouIt; // nombre d'itération maxi autorisé dans un min local pour en sortir
-        std::vector<int> _tabou; // liste tabou, mouvements interdits
 
 };
 
-
 }
 
-#endif // SOLVER_INCOMPLET_HPP
+#endif /* SOLVER_HPP */

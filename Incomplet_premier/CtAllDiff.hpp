@@ -5,12 +5,12 @@
  * \date 27/09/2016
  */
 
-#ifndef CT_ALL_DIFF_INCOMPLET
-#define CT_ALL_DIFF_INCOMPLET
+#ifndef CT_ALL_DIFF_INCOMPLET_PREMIER_HPP
+#define CT_ALL_DIFF_INCOMPLET_PREMIER_HPP
 
 #include "Contrainte.hpp"
 
-namespace incomplet {
+namespace incomplet_premier {
 
 class CtAllDiff : public Contrainte {
 
@@ -33,4 +33,4 @@ class CtAllDiff : public Contrainte {
 
 }
 
-#endif // CT_ALL_DIFF_INCOMPLET
+#endif // CT_ALL_DIFF_INCOMPLET_PREMIER_HPP
