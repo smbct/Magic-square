@@ -29,19 +29,19 @@ _max(max)
 
     // création d'une permutation aléatoire pour déterminer l'ordre d'affectation des variables
     vector<int> dom(max-min+1);
-    for(int i = 0; i < dom.size(); i++) {
+    for(unsigned int i = 0; i < dom.size(); i++) {
         dom[i] = i+1;
     }
 
-    /*int nbFait = 0;
+    int nbFait = 0;
     while(!dom.empty()) {
         int indice = rand()%dom.size();
         _ordre[nbFait] = dom[indice];
         dom.erase(dom.begin()+indice);
 
         nbFait ++;
-    }*/
-    _ordre = dom;
+    }
+    // _ordre = dom;
 
 }
 
@@ -222,7 +222,7 @@ bool Variable::impossible() {
 
 /*----------------------------------------------------------------------------*/
 int Variable::tailleDomaine() {
-    return _domaine.size();
+    return static_cast<int>(_domaine.size());
 }
 
 /*----------------------------------------------------------------------------*/
