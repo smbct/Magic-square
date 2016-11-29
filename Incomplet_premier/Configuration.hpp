@@ -5,14 +5,14 @@
  * \date 26/09/2016
  */
 
-#ifndef CONFIGURATION_INCOMPLET_HPP
-#define CONFIGURATION_INCOMPLET_HPP
+#ifndef CONFIGURATION_INCOMPLET_PREMIER_HPP
+#define CONFIGURATION_INCOMPLET_PREMIER_HPP
 
 #include <vector>
 #include <list>
 #include <string>
 
-namespace incomplet {
+namespace incomplet_premier {
 
 /**
  * \class Configuration
@@ -140,4 +140,4 @@ class Configuration {
 
 }
 
-#endif // CONFIGURATION_INCOMPLET_HPP
+#endif // CONFIGURATION_INCOMPLET_PREMIER_HPP

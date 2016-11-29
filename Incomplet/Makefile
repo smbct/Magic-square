@@ -1,31 +1,25 @@
-EXEC=magic-square
-
-CC=g++
-CXX=g++
-LDLIBS=
-CPPFLAGS=
-
-OPTIONS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter
-
-LDFLAGS=$(OPTIIONS)
+CXX= g++
+CXXFLAGS= -std=c++11 -W -Wall -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter -O3 -Ofast
 
 .PHONY = clean
 
-OBJECTS_FILES = main.o Solver.o Configuration.o Contrainte.o CtAllDiff.o CtSomme.o
+run:
+	./solver
 
-gcc : CXXFLAGS= $(OPTIONS) -O3
-gcc : main
+plot:
+	gnuplot script.plot -p
 
-gcc-debug : CXXFLAGS=$(OPTIONS) -g
-gcc-debug : main
+solver: main.o Grille.o Solver.o
+	$(CXX) $(CXXFLAGS) main.o Grille.o Solver.o -o solver
 
-run :
-	./main
+main.o: main.cpp
+	$(CXX) $(CXXFLAGS) main.cpp -c
 
-debug : gcc-debug
-release : gcc
+Grille.o: Grille.cpp Grille.hpp
+	$(CXX) $(CXXFLAGS) Grille.cpp -c
 
-main : $(OBJECTS_FILES)
+Solver.o: Solver.cpp
+	$(CXX) $(CXXFLAGS) Solver.cpp -c
 
-clean :
-	find . -name "*.o" -type f -delete
+clean:
+	rm *.o solver
