@@ -117,8 +117,6 @@ void Solver::solverRecuit() {
 
     unsigned int scoreMin = grille.score();
 
-    ofstream fichier("expe.dat");
-
     while(!stop) {
 
         int delta = -grille.score();
@@ -140,8 +138,6 @@ void Solver::solverRecuit() {
         }
 
         if(accepte) {
-
-            fichier << it << " " << grille.score() << " " << scoreMin << endl;
 
             if(grille.score() == 0) {
                 stop = true;
@@ -180,8 +176,6 @@ void Solver::solverRecuit() {
         }
 
     }
-
-    fichier.close();
 
     if(grille.score() == 0) {
         cout << "Une solution a été trouvée : " << endl;
